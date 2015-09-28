@@ -59,6 +59,7 @@ namespace Nettbutikk.Models
         public double Pris { get; set; }
         public string Farge { get; set; }
         public string Beskrivelse { get; set; }
+        public string Bilde { get; set; }
         
 
         public virtual List<Storlekar> Storlekar { get; set; }
