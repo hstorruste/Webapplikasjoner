@@ -36,7 +36,7 @@ namespace Nettbutikk.Models
         public string Etternavn { get; set; }
         public string Adresse { get; set; }
         public string Postnr { get; set; }
-        public string epost { get; set; }
+        public string Epost { get; set; }
         public string Passord { get; set; }
 
         public virtual Poststeder Poststeder { get; set; }

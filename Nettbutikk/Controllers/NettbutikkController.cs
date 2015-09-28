@@ -8,8 +8,12 @@ namespace Nettbutikk.Controllers
 {
     public class NettbutikkController : Controller
     {
-        // GET: Nettbutikk
-        public ActionResult Index()
+        public ActionResult Liste()
+        {
+            return View();
+        }
+
+        public ActionResult RegistrerKunde()
         {
             return View();
         }
