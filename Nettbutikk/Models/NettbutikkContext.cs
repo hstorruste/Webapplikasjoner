@@ -20,6 +20,7 @@ namespace Nettbutikk.Models
         public DbSet<Kunder> Kunder { get; set; }
         public DbSet<Poststeder> Poststeder { get; set; }
         public DbSet<Varer> Varer { get; set; }
+        public DbSet<Bilder> Bilder { get; set; }
         public DbSet<Storlekar> Storlekar { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -59,12 +60,21 @@ namespace Nettbutikk.Models
         public double Pris { get; set; }
         public string Farge { get; set; }
         public string Beskrivelse { get; set; }
-        public string Bilde { get; set; }
-        
 
+        public virtual List<Bilder> Bilder { get; set; }
         public virtual List<Storlekar> Storlekar { get; set; }
     }
 
+    public class Bilder
+    {
+        [Key]
+        public int VareId { get; set; }
+        [Key]
+        public int Bilde { get; set; }
+
+        [ForeignKey("VareId")]
+        public Varer Varer { get; set; }
+    }
 
     public class Storlekar
     {
