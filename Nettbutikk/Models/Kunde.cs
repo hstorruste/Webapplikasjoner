@@ -29,7 +29,7 @@ namespace Nettbutikk.Models
         [Display(Name = "Epost")]
         [Required(ErrorMessage = "Epost må oppgis")]
         [DataType(DataType.EmailAddress)]
-        [RegularExpression(@"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$", ErrorMessage = "Oppgi en gyldig epost")]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Oppgi en gyldig epost")]
         public string epost { get; set; }
         [DataType(DataType.Password)]
         [StringLength(255,MinimumLength = 8, ErrorMessage = "Passord må være mellom 8 og 255 tegn")]
