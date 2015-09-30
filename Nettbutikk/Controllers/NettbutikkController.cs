@@ -12,10 +12,5 @@ namespace Nettbutikk.Controllers
         {
             return View();
         }
-
-        public ActionResult RegistrerKunde()
-        {
-            return View();
-        }
     }
 }
