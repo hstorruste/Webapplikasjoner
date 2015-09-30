@@ -21,7 +21,7 @@ namespace Nettbutikk.Models
         public string adresse { get; set; }
         [Display(Name = "Postnr")]
         [Required(ErrorMessage = "Postnr må oppgis")]
-        [RegularExpression(@"[0-9]{4}", ErrorMessage = "Postnr må väre 4 siffer")]
+        [RegularExpression(@"[0-9]{4}", ErrorMessage = "Postnr må være 4 siffer")]
         public string postnr { get; set; }
         [Display(Name = "Poststed")]
         [Required(ErrorMessage = "Poststed må oppgis")]
