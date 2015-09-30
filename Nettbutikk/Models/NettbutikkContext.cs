@@ -70,7 +70,7 @@ namespace Nettbutikk.Models
         [Key]
         public int VareId { get; set; }
         [Key]
-        public int Bilde { get; set; }
+        public String Bilde { get; set; }
 
         [ForeignKey("VareId")]
         public Varer Varer { get; set; }
