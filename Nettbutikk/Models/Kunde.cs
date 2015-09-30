@@ -21,7 +21,7 @@ namespace Nettbutikk.Models
         public string adresse { get; set; }
         [Display(Name = "Postnr")]
         [Required(ErrorMessage = "Postnr må oppgis")]
-        [RegularExpression(@"[0-9]{4}", ErrorMessage = "Postnr må väre 4 siffer")]
+        [RegularExpression(@"[0-9]{4}", ErrorMessage = "Postnr må være 4 siffer")]
         public string postnr { get; set; }
         [Display(Name = "Poststed")]
         [Required(ErrorMessage = "Poststed må oppgis")]
@@ -29,7 +29,7 @@ namespace Nettbutikk.Models
         [Display(Name = "Epost")]
         [Required(ErrorMessage = "Epost må oppgis")]
         [DataType(DataType.EmailAddress)]
-        [RegularExpression(@"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$", ErrorMessage = "Oppgi en gyldig epost")]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Oppgi en gyldig epost")]
         public string epost { get; set; }
         [DataType(DataType.Password)]
         [StringLength(255,MinimumLength = 8, ErrorMessage = "Passord må være mellom 8 og 255 tegn")]
