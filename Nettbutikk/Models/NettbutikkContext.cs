@@ -19,7 +19,9 @@ namespace Nettbutikk.Models
 
         public DbSet<Kunder> Kunder { get; set; }
         public DbSet<Poststeder> Poststeder { get; set; }
-        public DbSet<Varer> Varer { get; set; }
+        public DbSet<Sko> Sko { get; set; }
+        public DbSet<For> For { get; set; }
+        public DbSet<Kategorier> Kategorier { get; set; }
         public DbSet<Bilder> Bilder { get; set; }
         public DbSet<Storlekar> Storlekar { get; set; }
 
@@ -51,12 +53,13 @@ namespace Nettbutikk.Models
         public virtual List<Kunder> Kunder { get; set; }
     }
 
-    public class Varer
+    public class Sko
     {
         [Key]
-        public int VareId { get; set; }
+        public int SkoId { get; set; }
         public string Navn { get; set; }
-        public string Kategori { get; set; }
+        public For ForHvem { get; set; }
+        public Kategorier Kategori { get; set; }
         public double Pris { get; set; }
         public string Farge { get; set; }
         public string Beskrivelse { get; set; }
@@ -65,26 +68,45 @@ namespace Nettbutikk.Models
         public virtual List<Storlekar> Storlekar { get; set; }
     }
 
+    public class For
+    {
+        [Key]
+        public string ForId { get; set; }
+        public string Navn { get; set; }
+
+        public virtual List<Sko> Sko { get; set; }
+    }
+
+    public class Kategorier
+    {
+        [Key]
+        public int KategoriId { get; set; }
+        public string Navn { get; set; }
+
+        public virtual List<Sko> Sko { get; set; }
+    }
+
     public class Bilder
     {
         [Key]
-        public int VareId { get; set; }
+        public int SkoId { get; set; }
         [Key]
         public String Bilde { get; set; }
 
         [ForeignKey("VareId")]
-        public Varer Varer { get; set; }
+        public Sko Varer { get; set; }
     }
 
     public class Storlekar
     {
         [Key]
-        public int VareId { get; set; }
+        public int SkoId { get; set; }
         [Key]
         public int Storlek { get; set; }
 
         [ForeignKey("VareId")]
-        public Varer Varer { get; set; }
+        public Sko Sko { get; set; }
+
     }
 
 }
