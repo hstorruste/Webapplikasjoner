@@ -11,6 +11,8 @@ namespace Nettbutikk
     {
         protected void Application_Start()
         {
+            System.Data.Entity.Database.SetInitializer(new Nettbutikk.Models.Eksempeldata());
+
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }

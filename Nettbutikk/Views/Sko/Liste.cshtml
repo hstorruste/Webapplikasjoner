@@ -1,0 +1,73 @@
+﻿@model List<Nettbutikk.Models.Skoen>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Liste</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].skoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].navn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].forHvem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].kategori)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].pris)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].farge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].beskrivelse)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.skoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.navn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.forHvem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kategori)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pris)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.farge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.beskrivelse)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
