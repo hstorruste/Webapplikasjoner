@@ -26,7 +26,9 @@ namespace Nettbutikk.Models
         [Display(Name = "Beskrivelse")]
         public string beskrivelse { get; set; }
 
+        [Display(Name = "Bilder")]
         public List<Bilder> bilder { get; set; }
+        [Display(Name = "Størrelser")]
         public List<Storlekar> storlekar { get; set; }
     }
 }
