@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace Nettbutikk.Models
 {
-    public class Eksempeldata : DropCreateDatabaseAlways<NettbutikkContext>
+    public class Eksempeldata : DropCreateDatabaseIfModelChanges<NettbutikkContext>
     {
         protected override void Seed(NettbutikkContext context)
         {
