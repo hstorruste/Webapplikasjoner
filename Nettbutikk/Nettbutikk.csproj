@@ -138,7 +138,7 @@
     <Content Include="Web.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Nettbutikk\RegistrerKunde.cshtml" />
+    <Content Include="Views\Kunde\RegistrerKunde.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -160,6 +160,7 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Sko\Registrer.cshtml" />
     <Content Include="Views\Sko\Liste.cshtml" />
+    <Content Include="Views\Kunde\RedigerKunde.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -169,7 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Kunde\" />
+    <Folder Include="Views\Nettbutikk\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
