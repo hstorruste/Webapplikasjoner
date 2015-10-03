@@ -20,7 +20,9 @@ namespace Nettbutikk.Controllers
                     forHvem = s.ForHvem.Navn,
                     pris = s.Pris,
                     farge = s.Farge,
-                    beskrivelse = s.Beskrivelse
+                    beskrivelse = s.Beskrivelse,
+                    storlekar = s.Storlekar,
+                    bilder = s.Bilder
 
                 }).ToList();
 
