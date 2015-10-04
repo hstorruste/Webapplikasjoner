@@ -29,7 +29,7 @@ namespace Nettbutikk.Models
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
-        public System.Data.Entity.DbSet<Nettbutikk.Models.RedigerKundeModell> RedigerKundeModells { get; set; }
+        //public System.Data.Entity.DbSet<Nettbutikk.Models.RedigerKundeModell> RedigerKundeModells { get; set; } //Tror ikke denne modellen skal være med her( DbSet setter hva som skal være med i databasen ), vi har jo allerede Kunder
     }
 
     public class Kunder
@@ -90,9 +90,6 @@ namespace Nettbutikk.Models
         public virtual List<Sko> Sko { get; set; }
     }
 
-    /*Det er godt mulig at Bilder-klassen skal se slik ut (det samme gjelder Storlekar-klassen):
-    Men vi får se om den vi har fungerer først.
-    */
     public class Bilder
     {
         [Key]
@@ -101,19 +98,6 @@ namespace Nettbutikk.Models
         public Sko Sko { get; set; }
     }
 
-    /*public class Bilder
-    {
-        [Key]
-        [Column(Order = 1 )]
-        public int SkoId { get; set; }
-        [Key]
-        [Column(Order = 2 )]
-        public String BildeUrl { get; set; }
-
-        [ForeignKey("SkoId")]
-        public Sko Sko { get; set; }
-    }*/
-
     public class Storlekar
     {
         [Key]
@@ -121,19 +105,5 @@ namespace Nettbutikk.Models
         public int Storlek { get; set; }
         public Sko Sko { get; set; }
     }
-
-    /*public class Storlekar
-    {
-        [Key]
-        [Column(Order = 1 )]
-        public int SkoId { get; set; }
-        [Key]
-        [Column(Order = 2 )]
-        public int Storlek { get; set; }
-
-        [ForeignKey("SkoId")]
-        public Sko Sko { get; set; }
-
-    }*/
 
 }
