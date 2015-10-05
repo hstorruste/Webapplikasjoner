@@ -9,9 +9,10 @@ namespace Nettbutikk.Controllers
 {
     public class NettbutikkController : Controller
     {
-        public ActionResult Liste()
+        public ActionResult Hjem()
         {
-            return View();
+            return View(SkoController.hentAlleSko());
         }
+
     }
 }

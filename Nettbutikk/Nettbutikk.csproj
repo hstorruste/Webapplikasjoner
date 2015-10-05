@@ -113,10 +113,22 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Pictures\Sko\1225520531_1.jpg" />
+    <Content Include="Pictures\Sko\1225520531_2.jpg" />
+    <Content Include="Pictures\Sko\1225520531_4.jpg" />
+    <Content Include="Pictures\Sko\1225520531_6.jpg" />
+    <Content Include="Pictures\Sko\1625500150_1.jpg" />
+    <Content Include="Pictures\Sko\1625500150_2.jpg" />
+    <Content Include="Pictures\Sko\1625500150_4.jpg" />
+    <Content Include="Pictures\Sko\1625500150_6.jpg" />
     <Content Include="Pictures\Sko\2455100311_1.jpg" />
     <Content Include="Pictures\Sko\2455100311_2.jpg" />
     <Content Include="Pictures\Sko\2455100311_4.jpg" />
     <Content Include="Pictures\Sko\2455100311_6.jpg" />
+    <Content Include="Pictures\Sko\8425411611_1.jpg" />
+    <Content Include="Pictures\Sko\8425411611_2.jpg" />
+    <Content Include="Pictures\Sko\8425411611_4.jpg" />
+    <Content Include="Pictures\Sko\8425411611_6.jpg" />
     <Content Include="Pictures\Sko\8435550140_1.jpg" />
     <Content Include="Pictures\Sko\8435550140_2.png" />
     <Content Include="Pictures\Sko\8435550140_4.png" />
@@ -161,6 +173,8 @@
     <Content Include="Views\Sko\Registrer.cshtml" />
     <Content Include="Views\Sko\Liste.cshtml" />
     <Content Include="Views\Kunde\RedigerKunde.cshtml" />
+    <Content Include="Views\Nettbutikk\Hjem.cshtml" />
+    <Content Include="Views\Nettbutikk\ListePartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -170,7 +184,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Nettbutikk\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

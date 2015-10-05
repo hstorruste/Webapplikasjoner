@@ -9,7 +9,7 @@ namespace Nettbutikk.Controllers
 {
     public class SkoController : Controller
     {
-        public List<Skoen> hentAlleSko()
+        public static List<Skoen> hentAlleSko()
         {
             using (var db = new NettbutikkContext())
             {

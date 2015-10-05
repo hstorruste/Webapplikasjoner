@@ -13,7 +13,7 @@
     <title>Skobutikken</title>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top clearfix" style="margin-bottom: 40px">
         <div class="container">
             <div class="navbar-header">
                 @Html.ActionLink("Skobutikken", "Liste", "Nettbutikk", new { tom = "" }, new { @class = "navbar-brand" })
@@ -31,8 +31,9 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        
         <footer>
+            <hr />
             <p>&copy;Mappeoppgave i Webaplikasjoner for Adrian Westlund og Hallbjørn Storruste</p>
         </footer>
     </div>
