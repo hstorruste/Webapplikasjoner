@@ -175,6 +175,7 @@
     <Content Include="Views\Kunde\RedigerKunde.cshtml" />
     <Content Include="Views\Nettbutikk\Hjem.cshtml" />
     <Content Include="Views\Nettbutikk\ListePartial.cshtml" />
+    <Content Include="Views\Sko\Detaljer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -29,6 +29,36 @@ namespace Nettbutikk.Controllers
                 return alleSko;
             }
         }
+
+        public static Skoen hentEnSko(int skoId)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                
+                Sko enSko = db.Sko.SingleOrDefault(s => s.SkoId == skoId);
+                if (enSko != null)
+                {
+                    Skoen hentetSko = new Skoen()
+                    {
+                        navn = enSko.Navn,
+                        kategori = enSko.Kategori.Navn,
+                        forHvem = enSko.ForHvem.Navn,
+                        pris = enSko.Pris,
+                        farge = enSko.Farge,
+                        beskrivelse = enSko.Beskrivelse,
+                        storlekar = enSko.Storlekar,
+                        bilder = enSko.Bilder
+
+                    };
+
+                    return hentetSko;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
         public ActionResult Liste()
         {
             return View(hentAlleSko());
@@ -36,6 +66,11 @@ namespace Nettbutikk.Controllers
         public ActionResult Registrer()
         {
             return View();
+        }
+
+        public ActionResult Detaljer(int skoId)
+        {
+            return View(hentEnSko(skoId));
         }
     }
 }

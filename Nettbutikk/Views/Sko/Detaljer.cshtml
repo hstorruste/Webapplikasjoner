@@ -1,0 +1,22 @@
+﻿@model Nettbutikk.Models.Skoen
+
+<div>
+    <h4>@Html.DisplayNameFor(model => model.navn)</h4>
+    <hr />
+    <div class="col-md-8">
+        <div class="col-md-12">
+            <img src="@Html.DisplayFor(modelItem => Model.bilder[0].BildeUrl)" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        @foreach (var bilde in Model.bilder)
+        {
+            <img src="@Html.DisplayFor(modelItem => bilde.BildeUrl)" />
+        }
+    </div>
+
+    
+</div>
+<p>
+   
+</p>
