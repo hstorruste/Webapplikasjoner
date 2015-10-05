@@ -133,6 +133,26 @@
     <Content Include="Pictures\Sko\Medium\8435550140_2.png" />
     <Content Include="Pictures\Sko\Medium\8435550140_4.png" />
     <Content Include="Pictures\Sko\Medium\8435550140_6.png" />
+    <Content Include="Pictures\Sko\Stor\1225520531_1.jpg" />
+    <Content Include="Pictures\Sko\Stor\1225520531_2.jpg" />
+    <Content Include="Pictures\Sko\Stor\1225520531_4.jpg" />
+    <Content Include="Pictures\Sko\Stor\1225520531_6.jpg" />
+    <Content Include="Pictures\Sko\Stor\1625500150_1.jpg" />
+    <Content Include="Pictures\Sko\Stor\1625500150_2.jpg" />
+    <Content Include="Pictures\Sko\Stor\1625500150_4.jpg" />
+    <Content Include="Pictures\Sko\Stor\1625500150_6.jpg" />
+    <Content Include="Pictures\Sko\Stor\2455100311_1.jpg" />
+    <Content Include="Pictures\Sko\Stor\2455100311_2.jpg" />
+    <Content Include="Pictures\Sko\Stor\2455100311_4.jpg" />
+    <Content Include="Pictures\Sko\Stor\2455100311_6.jpg" />
+    <Content Include="Pictures\Sko\Stor\8425411611_1.jpg" />
+    <Content Include="Pictures\Sko\Stor\8425411611_2.jpg" />
+    <Content Include="Pictures\Sko\Stor\8425411611_4.jpg" />
+    <Content Include="Pictures\Sko\Stor\8425411611_6.jpg" />
+    <Content Include="Pictures\Sko\Stor\8435550140_1.jpg" />
+    <Content Include="Pictures\Sko\Stor\8435550140_2.png" />
+    <Content Include="Pictures\Sko\Stor\8435550140_4.png" />
+    <Content Include="Pictures\Sko\Stor\8435550140_6.png" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -185,7 +205,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Pictures\Sko\Stor\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
