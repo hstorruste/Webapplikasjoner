@@ -9,9 +9,36 @@ namespace Nettbutikk.Controllers
 {
     public class KundeController : Controller
     {
-        public ActionResult RegistrerKunde()
+        [HttpPost]
+        public ActionResult Registrer(RegistrerKundeModell innKunde)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    var nyKunde = new Kunder();
+                    nyKunde.Fornavn = innKunde.fornavn;
+                    nyKunde.Etternavn = innKunde.etternavn;
+                    nyKunde.Adresse = innKunde.adresse;
+                    nyKunde.Postnr = innKunde.postnr;
+                    nyKunde.Poststeder.Poststed = innKunde.poststed;
+                    nyKunde.Epost = innKunde.epost;
+                    byte[] passordDb = DbKunder.lagHash(innKunde.passord);
+                    nyKunde.Passord = passordDb;
+                    db.Kunder.Add(nyKunde);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (Exception feil)
+                {
+                    return View();
+                }
+            }
         }
 
         public ActionResult RedigerKunde(int id)

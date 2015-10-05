@@ -92,8 +92,8 @@ namespace Nettbutikk.Models
     public class LoggInnModell
     {
         [Required]
-        [Display(Name = "Bruker navn")]
-        public string brukerNavn { get; set; }
+        [Display(Name = "Epost")]
+        public string Epost { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

@@ -21,8 +21,12 @@ namespace Nettbutikk.Models
         public DbSet<Sko> Sko { get; set; }
         public DbSet<For> For { get; set; }
         public DbSet<Kategorier> Kategorier { get; set; }
+        public DbSet<Merker> Merker { get; set; }
         public DbSet<Bilder> Bilder { get; set; }
         public DbSet<Storlekar> Storlekar { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderDetaljer> OrderDetaljer { get; set; }
+        public DbSet<Kundevogn> Kundevogn { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
