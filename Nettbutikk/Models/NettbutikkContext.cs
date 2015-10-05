@@ -29,7 +29,6 @@ namespace Nettbutikk.Models
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
-        //public System.Data.Entity.DbSet<Nettbutikk.Models.RedigerKundeModell> RedigerKundeModells { get; set; } //Tror ikke denne modellen skal være med her( DbSet setter hva som skal være med i databasen ), vi har jo allerede Kunder
     }
 
     public class Kunder
@@ -40,7 +39,7 @@ namespace Nettbutikk.Models
         public string Adresse { get; set; }
         public int Postnr { get; set; }
         public string Epost { get; set; }
-        public string Passord { get; set; }
+        public byte[] Passord { get; set; }
 
         public virtual Poststeder Poststeder { get; set; }
     }
@@ -68,6 +67,7 @@ namespace Nettbutikk.Models
 
         public virtual For ForHvem { get; set; }
         public virtual Kategorier Kategori { get; set; }
+        public virtual Merker Merke { get; set; }
         public virtual List<Bilder> Bilder { get; set; }
         public virtual List<Storlekar> Storlekar { get; set; }
     }
@@ -90,6 +90,15 @@ namespace Nettbutikk.Models
         public virtual List<Sko> Sko { get; set; }
     }
 
+    public class Merker
+    {
+        [Key]
+        public int MerkerId { get; set; }
+        public string Navn { get; set; }
+
+        public virtual List<Sko> Sko { get; set; }
+    }
+
     public class Bilder
     {
         [Key]
@@ -105,5 +114,43 @@ namespace Nettbutikk.Models
         public int Storlek { get; set; }
         public Sko Sko { get; set; }
     }
+    
+    //Finns det ett ord för många order på noska?
+    public class Order
+    {
+        public int OrderId { get; set; }
+        public System.DateTime OrderDatum { get; set; }
+        public int KundeId { get; set; }
+        public decimal TotalBelop { get; set; }
 
+        public virtual Kunder Kunder { get; set; }
+
+    }
+    
+    public class OrderDetaljer
+    {
+        public int OrderDetaljerId { get; set; }
+        public int OrderId { get; set; }
+        public int SkoId { get; set; }
+        public int Antal { get; set; }
+        public decimal Pris { get; set; }
+        public int Storlek { get; set; }
+        
+        public virtual Sko Sko { get; set; }
+        public virtual Order Order { get; set; }
+
+    }
+
+    public class Kundevogn
+    {
+        public int KundevognId {get; set;}
+        public int KundeId { get; set; }
+        public int SkoId { get; set; }
+        public int Storlek { get; set; }
+        //Antal
+        public System.DateTime Datum { get; set; }
+
+        public virtual Kunder Kunde { get; set; }
+        public virtual Sko Sko { get; set; }
+    }
 }

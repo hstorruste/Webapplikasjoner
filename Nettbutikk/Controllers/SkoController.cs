@@ -9,59 +9,9 @@ namespace Nettbutikk.Controllers
 {
     public class SkoController : Controller
     {
-        public static List<Skoen> hentAlleSko()
-        {
-            using (var db = new NettbutikkContext())
-            {
-                List<Skoen> alleSko = db.Sko.Select( s => new Skoen()
-                {
-                    navn = s.Navn,
-                    kategori = s.Kategori.Navn,
-                    forHvem = s.ForHvem.Navn,
-                    pris = s.Pris,
-                    farge = s.Farge,
-                    beskrivelse = s.Beskrivelse,
-                    storlekar = s.Storlekar,
-                    bilder = s.Bilder
-
-                }).ToList();
-
-                return alleSko;
-            }
-        }
-
-        public static Skoen hentEnSko(int skoId)
-        {
-            using (var db = new NettbutikkContext())
-            {
-                
-                Sko enSko = db.Sko.SingleOrDefault(s => s.SkoId == skoId);
-                if (enSko != null)
-                {
-                    Skoen hentetSko = new Skoen()
-                    {
-                        navn = enSko.Navn,
-                        kategori = enSko.Kategori.Navn,
-                        forHvem = enSko.ForHvem.Navn,
-                        pris = enSko.Pris,
-                        farge = enSko.Farge,
-                        beskrivelse = enSko.Beskrivelse,
-                        storlekar = enSko.Storlekar,
-                        bilder = enSko.Bilder
-
-                    };
-
-                    return hentetSko;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
         public ActionResult Liste()
         {
-            return View(hentAlleSko());
+            return View(DbSko.hentAlleSko());
         }
         public ActionResult Registrer()
         {
@@ -70,7 +20,7 @@ namespace Nettbutikk.Controllers
 
         public ActionResult Detaljer(int skoId)
         {
-            return View(hentEnSko(skoId));
+            return View(DbSko.hentEnSko(skoId));
         }
     }
 }
