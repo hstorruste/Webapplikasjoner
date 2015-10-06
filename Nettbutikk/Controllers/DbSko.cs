@@ -16,6 +16,7 @@ namespace Nettbutikk.Controllers
                 {
                     navn = s.Navn,
                     kategori = s.Kategori.Navn,
+                    merke = s.Merke.Navn,
                     forHvem = s.ForHvem.Navn,
                     pris = s.Pris,
                     farge = s.Farge,
@@ -40,6 +41,7 @@ namespace Nettbutikk.Controllers
                     {
                         navn = enSko.Navn,
                         kategori = enSko.Kategori.Navn,
+                        merke = enSko.Merke.Navn,
                         forHvem = enSko.ForHvem.Navn,
                         pris = enSko.Pris,
                         farge = enSko.Farge,

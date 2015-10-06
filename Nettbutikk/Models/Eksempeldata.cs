@@ -26,18 +26,28 @@ namespace Nettbutikk.Models
                 new Kategorier { Navn = "TEX-membran" }
             };
 
+            var merker = new List<Merker>
+            {
+                new Merker { Navn = "Odiin" },
+                new Merker { Navn = "B&CO" },
+                new Merker { Navn = "Sanita" },
+                new Merker { Navn = "Duffy" },
+                new Merker { Navn = "ECCO" }
+
+            };
+
             var skoene = new List<Sko>
             {
                 new Sko { Navn = "B&CO 2455100311", Beskrivelse= "Tøff B&CO damesko med lisser. Skoen er i tekstil med små metall nitter. Den har sort kantbånd rundt lisser stykket og langs kanten. Skoen er sort med brune flammer. Den har canvas dekksåle og canvas fôr. Gummisålen er tofarget hvit og sort.",
-                        Farge = "Sort", Pris = 499.00M,  ForHvem = forHvem.Single( f => f.Navn == "Dame"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
+                        Merke = merker.Single( m => m.Navn == "B&CO"), Farge = "Sort", Pris = 499.00M,  ForHvem = forHvem.Single( f => f.Navn == "Dame"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
                 new Sko { Navn = "Sanita 538665", Beskrivelse = "" ,
-                        Farge = "Grønn", Pris = 249.00M , ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Gummistøvler")},
+                        Merke = merker.Single( m => m.Navn == "Sanita"), Farge = "Grønn", Pris = 249.00M , ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Gummistøvler")},
                 new Sko { Navn = "92-98024", Beskrivelse= "",
-                        Farge = "Sort", Pris = 399.00M, ForHvem = forHvem.Single( f => f.Navn == "Dame"), Kategori = kategorier.Single( k => k.Navn == "Gummistøvler")},
+                        Merke = merker.Single( m => m.Navn == "Duffy"), Farge = "Sort", Pris = 399.00M, ForHvem = forHvem.Single( f => f.Navn == "Dame"), Kategori = kategorier.Single( k => k.Navn == "Gummistøvler")},
                 new Sko { Navn = "Odiin 1625500150", Beskrivelse = "Tøff snøresko til herre i marineblått nubuckskinn. Skoen har et perforert mønster unntatt på hælkappen, som er i glatt brunt skinn. Den har en brun skinndetalj på pløsen og detaljer på yttersiden. Den har dekksåle og fôr i tekstil. Den hvite gummisålen gjør den tøff og ungdommelig. ",
-                        Farge = "Blå", Pris = 999.00M, ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
+                        Merke = merker.Single( m => m.Navn == "Odiin") ,Farge = "Blå", Pris = 999.00M, ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
                 new Sko { Navn = "ECCO 634504 HAROLD", Beskrivelse = "Flott Ecco snøresko til herre i lekkert konjakkfarget skinn. Skoen har dekksåle i skinn samt meshfôr og skinnfôr i bakkappen. Den har stikninger på sidene. Sålen er i PU. Modellen fås også i sort. ",
-                        Farge = "Brun", Pris = 999.00M, ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")}
+                        Merke = merker.Single( m => m.Navn == "ECCO"), Farge = "Brun", Pris = 999.00M, ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")}
             };
             
             skoene.ForEach(s => context.Sko.Add(s));

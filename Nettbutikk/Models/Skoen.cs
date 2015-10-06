@@ -19,6 +19,8 @@ namespace Nettbutikk.Models
         public string forHvem { get; set; }
         [Display(Name = "Kategori")]
         public string kategori { get; set; }
+        [Display(Name = "Merke")]
+        public string merke { get; set; }
         [Display(Name = "Pris")]
         [Required(ErrorMessage = "Pris må oppgis")]
         public decimal pris { get; set; }
