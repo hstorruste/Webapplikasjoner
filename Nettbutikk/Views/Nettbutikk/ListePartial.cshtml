@@ -2,19 +2,21 @@
 
 
 <div class="panel panel-default text-center col-md-12">
-    <div class="panel-body col-md-12 clearfix">
-        <img src="@Html.DisplayFor(modelItem => Model.bilder[0].BildeUrl)" />
-        <div class="col-md-12 ">
-            @Html.DisplayFor(modelItem => Model.navn)
+    <a href="@Url.Action("Detaljer","Sko", new { skoId = Model.skoId })">
+        <div class="panel-body col-md-12 clearfix">
+            <img src="@Html.DisplayFor(modelItem => Model.bilder[0].BildeUrl)" />
+            <div class="col-md-12 ">
+                @Html.DisplayFor(modelItem => Model.navn)
+            </div>
+            <!--<div class="col-md-12">
+            //foreach (var storlek in Model.storlekar)
+            {
+                //Html.DisplayFor(modelItem => storlek.Storlek)
+                <span>&nbsp;</span>
+            }
+            </div>-->
         </div>
-        <!--<div class="col-md-12">
-        //foreach (var storlek in Model.storlekar)
-        {
-            //Html.DisplayFor(modelItem => storlek.Storlek)
-            <span>&nbsp;</span>
-        }
-        </div>-->
-    </div>
+    </a>
 </div>
 
 

@@ -20,7 +20,8 @@ namespace Nettbutikk.Controllers
 
         public ActionResult Detaljer(int skoId)
         {
-            return View(DbSko.hentEnSko(skoId));
+            var ensko = DbSko.hentEnSko(skoId);
+            return View(ensko);
         }
     }
 }

@@ -1,41 +1,59 @@
 ﻿@model Nettbutikk.Models.Skoen
 
-<div>
-    <h4>@Html.DisplayNameFor(model => model.navn)</h4>
-    <hr />
-    <div class="col-md-8">
-        <div class="col-md-12">
-            @foreach (var bilde in Model.bilder)
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Liste</title>
+</head>
+<body style="margin-top: 60px">
+    <div>
+        <h3>@Html.DisplayFor(model => model.navn)</h3>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    @if (Model != null)
             {
-                if (bilde.BildeUrl.Contains("/Stor/"))
+                foreach (var bilde in Model.bilder)
                 {
-                    <img src="@Html.DisplayFor(modelItem => bilde.BildeUrl)" />
-                    break;
+                    if (bilde.BildeUrl.Contains("/Stor/"))
+                    {
+                                <img src="@Html.DisplayFor(modelItem => bilde.BildeUrl)" class="img-responsive" />
+                                break;
+                            }
+                        }
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                @if (Model != null)
+            {
+                foreach (var bilde in Model.bilder)
+                {
+                    if (bilde.BildeUrl.Contains("/Medium/"))
+                    {
+                            <div class="col-md-12">
+                                <img src="@Html.DisplayFor(modelItem => bilde.BildeUrl)" class="img-responsive" />
+                            </div>
+                        }
+                    }
                 }
-            }
+            </div>
+            <div class="col-md-4">
+                <h2><b>@Model.pris ,-</b></h2>
+                <h3>@Model.merke</h3>
+                <p><b>@Html.DisplayNameFor(modelItem => Model.beskrivelse):</b></p>
+                <p>@Model.beskrivelse</p><p><b>@Html.DisplayNameFor(modelItem => Model.storlekar):</b></p>
+
+                @Html.DropDownListFor(modelItem => Model.storlekar, new SelectList(Model.storlekar,"StorlekId","Storlek"))
+                <br /><br />
+                <button type="button" class="btn btn-success">Legg i handlevogn</button>
+            </div>
         </div>
     </div>
 
-    <div class="col-md-2">
-        @foreach (var bilde in Model.bilder)
-        {
-            @if (bilde.BildeUrl.Contains("/Medium/"))
-            {
-                <div class="col-md-12">
-                    <img src="@Html.DisplayFor(modelItem => bilde.BildeUrl)" />
-                </div>
-            }
-        }
-    </div>
-    <div class="col-md-2">
-        <p>@Model.pris</p>
-        <p>@Model.merke</p>
-        <p>@Model.kategori</p>
-        <p>@Model.beskrivelse</p>
-    </div>
-
-</div>
-
-<p>
-
-</p>
+</body>
+</html>

@@ -11,7 +11,8 @@ namespace Nettbutikk.Controllers
     {
         public ActionResult Hjem()
         {
-            return View(DbSko.hentAlleSko());
+            var skoene = DbSko.hentAlleSko();
+            return View(skoene);
         }
 
     }

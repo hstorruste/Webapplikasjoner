@@ -12,21 +12,30 @@ namespace Nettbutikk.Controllers
         {
             using (var db = new NettbutikkContext())
             {
-                List<Skoen> alleSko = db.Sko.Select(s => new Skoen()
+                try
                 {
-                    navn = s.Navn,
-                    kategori = s.Kategori.Navn,
-                    merke = s.Merke.Navn,
-                    forHvem = s.ForHvem.Navn,
-                    pris = s.Pris,
-                    farge = s.Farge,
-                    beskrivelse = s.Beskrivelse,
-                    storlekar = s.Storlekar,
-                    bilder = s.Bilder
+                    List<Skoen> alleSko = db.Sko.Select(s => new Skoen()
+                    {
+                        skoId = s.SkoId,
+                        navn = s.Navn,
+                        kategori = s.Kategori.Navn,
+                        merke = s.Merke.Navn,
+                        forHvem = s.ForHvem.Navn,
+                        pris = s.Pris,
+                        farge = s.Farge,
+                        beskrivelse = s.Beskrivelse,
+                        storlekar = s.Storlekar,
+                        bilder = s.Bilder
 
-                }).ToList();
+                    }).ToList();
 
-                return alleSko;
+
+                    return alleSko;
+                }
+                catch (Exception feil)
+                {
+                    return null;
+                }
             }
         }
 
@@ -34,26 +43,34 @@ namespace Nettbutikk.Controllers
         {
             using (var db = new NettbutikkContext())
             {
-                Sko enSko = db.Sko.SingleOrDefault(s => s.SkoId == skoId);
-                if (enSko != null)
+                try
                 {
-                    Skoen hentetSko = new Skoen()
+                    Sko enSko = db.Sko.SingleOrDefault(s => s.SkoId == skoId);
+                    if (enSko != null)
                     {
-                        navn = enSko.Navn,
-                        kategori = enSko.Kategori.Navn,
-                        merke = enSko.Merke.Navn,
-                        forHvem = enSko.ForHvem.Navn,
-                        pris = enSko.Pris,
-                        farge = enSko.Farge,
-                        beskrivelse = enSko.Beskrivelse,
-                        storlekar = enSko.Storlekar,
-                        bilder = enSko.Bilder
+                        Skoen hentetSko = new Skoen()
+                        {
+                            skoId = enSko.SkoId,
+                            navn = enSko.Navn,
+                            kategori = enSko.Kategori.Navn,
+                            merke = enSko.Merke.Navn,
+                            forHvem = enSko.ForHvem.Navn,
+                            pris = enSko.Pris,
+                            farge = enSko.Farge,
+                            beskrivelse = enSko.Beskrivelse,
+                            storlekar = enSko.Storlekar,
+                            bilder = enSko.Bilder
 
-                    };
+                        };
 
-                    return hentetSko;
+                        return hentetSko;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
-                else
+                catch (Exception feil)
                 {
                     return null;
                 }
