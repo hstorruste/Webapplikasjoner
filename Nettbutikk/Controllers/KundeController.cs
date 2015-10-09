@@ -31,8 +31,10 @@ namespace Nettbutikk.Controllers
                     nyKunde.Passord = passordDb;
                     db.Kunder.Add(nyKunde);
                     db.SaveChanges();
+                    
+                    //Tror man ska ändra session här om man ska bli inloggad när man har registrert en kunde.
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Hjem");
                 }
                 catch (Exception feil)
                 {
@@ -64,7 +66,7 @@ namespace Nettbutikk.Controllers
                     return View();
                 }
             }
-            return RedirectToAction("");
+            return RedirectToAction("LoggInn");
         }
     }
 }

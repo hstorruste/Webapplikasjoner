@@ -11,6 +11,16 @@ namespace Nettbutikk.Controllers
     {
         public ActionResult Hjem()
         {
+            if (Session["LoggetInn"] == null)
+            {
+                Session["LoggetInn"] = false;
+                ViewBag.Innlogget = false;
+            }
+            else
+            {
+                ViewBag.Innlogget = (bool)Session["LoggetInn"];
+            }
+
             var skoene = DbSko.hentAlleSko();
             return View(skoene);
         }
