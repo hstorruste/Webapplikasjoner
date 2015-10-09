@@ -15,11 +15,11 @@
             <div class="col-md-6">
                 <div class="col-md-12">
                     @if (Model != null)
-            {
-                foreach (var bilde in Model.bilder)
-                {
-                    if (bilde.BildeUrl.Contains("/Stor/"))
                     {
+                        foreach (var bilde in Model.bilder)
+                        {
+                            if (bilde.BildeUrl.Contains("/Stor/"))
+                            {
                                 <img src="@Html.DisplayFor(modelItem => bilde.BildeUrl)" class="img-responsive" />
                                 break;
                             }
@@ -30,11 +30,11 @@
 
             <div class="col-md-2">
                 @if (Model != null)
-            {
-                foreach (var bilde in Model.bilder)
                 {
-                    if (bilde.BildeUrl.Contains("/Medium/"))
+                    foreach (var bilde in Model.bilder)
                     {
+                        if (bilde.BildeUrl.Contains("/Medium/"))
+                        {
                             <div class="col-md-12">
                                 <img src="@Html.DisplayFor(modelItem => bilde.BildeUrl)" class="img-responsive" />
                             </div>
@@ -48,7 +48,7 @@
                 <p><b>@Html.DisplayNameFor(modelItem => Model.beskrivelse):</b></p>
                 <p>@Model.beskrivelse</p><p><b>@Html.DisplayNameFor(modelItem => Model.storlekar):</b></p>
 
-                @Html.DropDownListFor(modelItem => Model.storlekar, new SelectList(Model.storlekar,"StorlekId","Storlek"))
+                @Html.DropDownListFor(modelItem => Model.storlekar, new SelectList(Model.storlekar, "StorlekId", "Storlek"))
                 <br /><br />
                 <button type="button" class="btn btn-success">Legg i handlevogn</button>
             </div>
