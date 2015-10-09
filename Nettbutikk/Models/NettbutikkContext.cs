@@ -24,9 +24,9 @@ namespace Nettbutikk.Models
         public DbSet<Merker> Merker { get; set; }
         public DbSet<Bilder> Bilder { get; set; }
         public DbSet<Storlekar> Storlekar { get; set; }
-        public DbSet<Order> Order { get; set; }
-        public DbSet<OrderDetaljer> OrderDetaljer { get; set; }
-        public DbSet<Kundevogn> Kundevogn { get; set; }
+        public DbSet<Ordrer> Ordrer { get; set; }
+        public DbSet<OrdreDetaljer> OrdreDetaljer { get; set; }
+        public DbSet<Kundevogner> Kundevogner { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -119,11 +119,10 @@ namespace Nettbutikk.Models
         public Sko Sko { get; set; }
     }
     
-    //Finns det ett ord för många order på noska?
-    public class Order
+    public class Ordrer
     {
-        public int OrderId { get; set; }
-        public System.DateTime OrderDatum { get; set; }
+        public int OrdreId { get; set; }
+        public System.DateTime OrdreDato { get; set; }
         public int KundeId { get; set; }
         public decimal TotalBelop { get; set; }
 
@@ -131,28 +130,29 @@ namespace Nettbutikk.Models
 
     }
     
-    public class OrderDetaljer
+    public class OrdreDetaljer
     {
-        public int OrderDetaljerId { get; set; }
-        public int OrderId { get; set; }
+        public int OrdreDetaljerId { get; set; }
+        public int OrdreId { get; set; }
         public int SkoId { get; set; }
-        public int Antal { get; set; }
+        public int Antall { get; set; }
         public decimal Pris { get; set; }
         public int Storlek { get; set; }
         
         public virtual Sko Sko { get; set; }
-        public virtual Order Order { get; set; }
+        public virtual Ordrer Ordre { get; set; }
 
     }
 
-    public class Kundevogn
+    public class Kundevogner
     {
+        [Key]
         public int KundevognId {get; set;}
-        public int KundeId { get; set; }
+        public string KundeId { get; set; } //Er egentlig session-id
         public int SkoId { get; set; }
         public int Storlek { get; set; }
         //Antal
-        public System.DateTime Datum { get; set; }
+        public System.DateTime Dato { get; set; }
 
         public virtual Kunder Kunde { get; set; }
         public virtual Sko Sko { get; set; }

@@ -174,14 +174,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DbHandlevogn.cs" />
     <Compile Include="Controllers\DbKunder.cs" />
     <Compile Include="Controllers\DbSko.cs" />
+    <Compile Include="Controllers\HandlevognController.cs" />
     <Compile Include="Controllers\KundeController.cs" />
     <Compile Include="Controllers\NettbutikkController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Eksempeldata.cs" />
+    <Compile Include="Models\Handlevogn.cs" />
     <Compile Include="Models\KundeModeller.cs" />
     <Compile Include="Models\NettbutikkContext.cs" />
     <Compile Include="Controllers\SkoController.cs" />
@@ -207,6 +210,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Handlevogn\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
