@@ -48,5 +48,23 @@ namespace Nettbutikk.Controllers
             return View(enKunde);
              
         }
+
+        public ActionResult LoggInn()
+        {
+            return View();
+        }
+
+        public ActionResult InnLogetSide()
+        {
+            if (Session["LoggetInn"] != null)
+            {
+                bool loggetInn = (bool)Session["LoggetInn"];
+                if (loggetInn)
+                {
+                    return View();
+                }
+            }
+            return RedirectToAction("");
+        }
     }
 }
