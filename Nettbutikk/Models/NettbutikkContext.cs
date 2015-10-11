@@ -121,6 +121,7 @@ namespace Nettbutikk.Models
     
     public class Ordrer
     {
+        [Key]
         public int OrdreId { get; set; }
         public System.DateTime OrdreDato { get; set; }
         public int KundeId { get; set; }
@@ -132,6 +133,7 @@ namespace Nettbutikk.Models
     
     public class OrdreDetaljer
     {
+        [Key]
         public int OrdreDetaljerId { get; set; }
         public int OrdreId { get; set; }
         public int SkoId { get; set; }
@@ -154,7 +156,7 @@ namespace Nettbutikk.Models
         //Antal
         public System.DateTime Dato { get; set; }
 
-        public virtual Kunder Kunde { get; set; }
+        //public virtual Kunder Kunde { get; set; }
         public virtual Sko Sko { get; set; }
     }
 }

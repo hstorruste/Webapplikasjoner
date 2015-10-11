@@ -6,6 +6,31 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Liste</title>
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnLeggTil').click(function () {
+
+                var id = $('#lblSkoId').data('skoid');
+                var str = parseInt($('#storlekar').find(":selected").text());
+
+                $.ajax({
+                    url: '@Url.Action("LeggTil", "Handlevogn")',
+                    data: { skoId: id, skoStr: str },
+                    success: function (){
+                        setResultat("Lagt til i handlevogn");
+                    },
+                    error: function () {
+                        setResultat("Feil under legging i handlevogn!");
+                    }
+                });
+            });
+        });
+
+        function setResultat(tekst){
+            $('#Resultat').text(tekst);
+        }
+    </script>
 </head>
 <body style="margin-top: 60px">
     <div>
@@ -43,6 +68,7 @@
                 }
             </div>
             <div class="col-md-4">
+                <label id="lblSkoId" data-skoid="@Model.skoId"></label>
                 <h2><b>@Model.pris ,-</b></h2>
                 <h3>@Model.merke</h3>
                 <p><b>@Html.DisplayNameFor(modelItem => Model.beskrivelse):</b></p>
@@ -50,7 +76,9 @@
 
                 @Html.DropDownListFor(modelItem => Model.storlekar, new SelectList(Model.storlekar, "StorlekId", "Storlek"))
                 <br /><br />
-                <button type="button" class="btn btn-success">Legg i handlevogn</button>
+                <button id="btnLeggTil" type="button" class="btn btn-success">Legg i handlevogn</button>
+                <br />
+                <label id="Resultat" class="text-danger"></label>
             </div>
         </div>
     </div>

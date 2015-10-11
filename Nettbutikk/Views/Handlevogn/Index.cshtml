@@ -1,0 +1,30 @@
+﻿@model Nettbutikk.Models.Handlevogn
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <h4>Handlevogn</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.totalbelop)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.totalbelop)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Gå til kassen", "", Model) |
+        @Html.ActionLink("Fortsett å handle", "Hjem", "Nettbutikk")
+    </p>
+</body>
+</html>

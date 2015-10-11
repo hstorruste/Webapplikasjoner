@@ -39,5 +39,22 @@ namespace Nettbutikk.Controllers
             
         }
 
+        public static bool leggTilVare(Kundevogner vare)
+        {
+            using(var db = new NettbutikkContext())
+            {
+                try
+                {
+                    db.Kundevogner.Add(vare);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception feil)
+                {
+                    return false;
+                }
+            }
+        }
+
     }
 }

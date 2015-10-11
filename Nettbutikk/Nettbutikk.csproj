@@ -201,6 +201,7 @@
     <Content Include="Views\Nettbutikk\Hjem.cshtml" />
     <Content Include="Views\Nettbutikk\ListePartial.cshtml" />
     <Content Include="Views\Sko\Detaljer.cshtml" />
+    <Content Include="Views\Handlevogn\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -210,7 +211,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Handlevogn\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
