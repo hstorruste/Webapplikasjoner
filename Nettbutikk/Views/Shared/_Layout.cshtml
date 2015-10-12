@@ -23,22 +23,22 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Handlevogn</a></li>
-                    @if (Session["LoggetInn"] != null && (bool)Session["LoggetInn"] == true)
+                    <li><a href="@Url.Action("Index","Handlevogn")"><span class="glyphicon glyphicon-shopping-cart"></span> Handlevogn</a></li>
+                    @if (Session["LoggetInn"] != null && (bool)Session["LoggetInn"])
                     {
-                        <li><a @Html.ActionLink("Rediger Kunde","RedigerKunde", new{ id = Session["InnloggetKundeId"] })><span class="glyphicon glyphicon-user"></span></a></li>
+                        <li><a href="@Url.Action("RedigerKunde","Kunde", new{ id = Session["InnloggetKundeId"] })"><span class="glyphicon glyphicon-user"></span>Rediger profil</a></li>
                     }
                     else
                     {
-                        <li><a href="Kunde/RegistrerKunde"><span class="glyphicon glyphicon-user"></span> Registrer deg</a></li>
+                        <li><a href="@Url.Action("RegistrerKunde","Kunde")"><span class="glyphicon glyphicon-user"></span> Registrer deg</a></li>
                     }
-                    @if (Session["LoggetInn"] != null && (bool)Session["LoggetInn"] == true)
+                    @if (Session["LoggetInn"] != null && (bool)Session["LoggetInn"])
                     {
-                        <li><a href="Kunde/LoggUtKunde"><span class="glyphicon glyphicon-log-out"></span> Logg av</a></li>
+                        <li><a href="@Url.Action("LoggUtKunde","Kunde")"><span class="glyphicon glyphicon-log-out"></span> Logg av</a></li>
                     }
                     else
                     {
-                        <li><a href="Kunde/LoggInnKunde"><span class="glyphicon glyphicon-log-in"></span> Logg på</a></li>
+                        <li><a href="@Url.Action("LoggInnKunde","Kunde")"><span class="glyphicon glyphicon-log-in"></span> Logg på</a></li>
                     }
                 </ul>
             </div>
