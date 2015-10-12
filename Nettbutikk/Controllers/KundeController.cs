@@ -52,7 +52,8 @@ namespace Nettbutikk.Controllers
             {
                 using (var db = new NettbutikkContext()) {
                     Kunder kunde = db.Kunder.FirstOrDefault(k => k.Epost == innKunde.Epost);
-                    ViewBag.Kundenavn = kunde.Fornavn + " " + kunde.Etternavn;
+                    Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
+                    Session["InnloggetKundeId"] = kunde.Id;
                 };
                 Session["LoggetInn"] = true;
                 ViewBag.Innlogget = true;

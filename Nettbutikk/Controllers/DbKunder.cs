@@ -39,35 +39,43 @@ namespace Nettbutikk.Controllers
             {
                 try
                 {
-                    var nyKunde = new Kunder();
-                    nyKunde.Fornavn = innKunde.fornavn;
-                    nyKunde.Etternavn = innKunde.etternavn;
-                    nyKunde.Adresse = innKunde.adresse;
-                    nyKunde.Postnr = innKunde.postnr;
-                    var eksisterandePostnr = db.Poststeder.Find(innKunde.postnr);
-                    if(eksisterandePostnr == null)
+                    //Test för att göra Email unikt. Vet inte om detta är det bästa sättet.
+                    var finnesKunde = db.Kunder.FirstOrDefault(k => k.Epost == innKunde.epost);
+                    if (finnesKunde == null)
                     {
-                        var nyttPoststed = new Poststeder()
+                        var nyKunde = new Kunder();
+                        nyKunde.Fornavn = innKunde.fornavn;
+                        nyKunde.Etternavn = innKunde.etternavn;
+                        nyKunde.Adresse = innKunde.adresse;
+                        nyKunde.Postnr = innKunde.postnr;
+                        var eksisterandePostnr = db.Poststeder.Find(innKunde.postnr);
+                        if (eksisterandePostnr == null)
                         {
-                            Postnr = innKunde.postnr,
-                            Poststed = innKunde.poststed
-                        };
-                        nyKunde.Poststeder = nyttPoststed;
+                            var nyttPoststed = new Poststeder()
+                            {
+                                Postnr = innKunde.postnr,
+                                Poststed = innKunde.poststed
+                            };
+                            nyKunde.Poststeder = nyttPoststed;
+                        }
+                        nyKunde.Epost = innKunde.epost;
+                        byte[] passordDb = DbKunder.lagHash(innKunde.passord);
+                        nyKunde.Passord = passordDb;
+                        db.Kunder.Add(nyKunde);
+                        db.SaveChanges();
+
+                        return true;
                     }
-                    nyKunde.Epost = innKunde.epost;
-                    byte[] passordDb = DbKunder.lagHash(innKunde.passord);
-                    nyKunde.Passord = passordDb;
-                    db.Kunder.Add(nyKunde);
-                    db.SaveChanges();
-                    
-                    return true;
+                    else
+                    {
+                        return false;
+                    }
                 }
                 catch (Exception feil)
                 {
                     return false;
                 }
             }
-            return true;
         }
 
         public static byte[] lagHash(string innPassord)

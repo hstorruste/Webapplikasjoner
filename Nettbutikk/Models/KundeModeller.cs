@@ -100,7 +100,8 @@ namespace Nettbutikk.Models
         [Display(Name = "Passord")]
         public string passord { get; set; }
 
+        /* Funderar på om jag ska ta bort denna. Har inte användt den än.
         [Display(Name = "Husk meg?")]
-        public bool huskMeg { get; set; }
+        public bool huskMeg { get; set; }*/
     }
 }
