@@ -15,20 +15,32 @@ namespace Nettbutikk.Controllers
             vogn.varer = getAlleKundevognvarer(session);
             foreach(var vare in vogn.varer)
             {
-                vogn.totalbelop += vare.Sko.Pris;
+                vogn.totalbelop += vare.pris;
             }
             
             return vogn;
         }
 
-        public static List<Kundevogner> getAlleKundevognvarer(HttpSessionStateBase session)
+        public static List<HandlevognVare> getAlleKundevognvarer(HttpSessionStateBase session)
         {
             var id = session.SessionID;
             using (var db = new NettbutikkContext())
             {
                 try
                 {
-                    List<Kundevogner> alleVarer = db.Kundevogner.Include("Sko").Where(k => k.KundeId == id).ToList();
+                    
+                    List<HandlevognVare> alleVarer = db.Kundevogner.Include("Sko").Include("Merke")
+                        .Where(k => k.SessionId == id).Select(k => new HandlevognVare{
+                            vognId = k.KundevognId,
+                            skoId = k.SkoId,
+                            storlek = k.Storlek,
+                            skoNavn = k.Sko.Navn,
+                            merke = k.Sko.Merke.Navn,
+                            farge = k.Sko.Farge,
+                            pris = k.Sko.Pris,
+                            bildeUrl = k.Sko.Bilder.Where( b => b.BildeUrl.Contains("/Medium/")).FirstOrDefault().BildeUrl
+                    }).ToList();
+
                     return alleVarer;
                 }
                 catch (Exception feil)

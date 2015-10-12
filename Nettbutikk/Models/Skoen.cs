@@ -8,7 +8,6 @@ namespace Nettbutikk.Models
 {
     public class Skoen
     {
-        //[Display(Name = "Sko Id")]
         [ScaffoldColumn(false)]
         public int skoId { get; set; }
         [Display(Name = "Navn")]

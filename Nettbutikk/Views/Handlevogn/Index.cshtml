@@ -11,16 +11,39 @@
     <div>
         <h4>Handlevogn</h4>
         <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.totalbelop)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.totalbelop)
-            </dd>
-    
-        </dl>
+        <div class="panel panel-default">
+            <table class="table">
+
+                <tr class="panel-heading">
+                    <th>@Html.DisplayNameFor(modelItem => Model.varer[0].bildeUrl)</th>
+                    <th>@Html.DisplayNameFor(modelItem => Model.varer[0].skoNavn)</th>
+                    <th>@Html.DisplayNameFor(modelItem => Model.varer[0].merke)</th>
+                    <th>@Html.DisplayNameFor(modelItem => Model.varer[0].farge)</th>
+                    <th>@Html.DisplayNameFor(modelItem => Model.varer[0].storlek)</th>
+                    <th>@Html.DisplayNameFor(modelItem => Model.varer[0].pris)</th>
+                </tr>
+
+                @foreach (var vare in Model.varer)
+                {
+                    <tr>
+                        <td><img src="@Html.DisplayFor(modelItem => vare.bildeUrl)" class="img-responsive"/></td>
+                        <td>@Html.DisplayFor(modelItem => vare.skoNavn)</td>
+                        <td>@Html.DisplayFor(modelItem => vare.merke)</td>
+                        <td>@Html.DisplayFor(modelItem => vare.farge)</td>
+                        <td>@Html.DisplayFor(modelItem => vare.storlek)</td>
+                        <td>@Html.DisplayFor(modelItem => vare.pris)</td>
+                    </tr>
+                }
+
+                <tr class="panel-footer clearfix">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>@Html.DisplayNameFor(model => model.totalbelop)</td>
+                    <td>@Html.DisplayFor(model => model.totalbelop)</td>
+                </tr>
+
+            </table>
     </div>
     <p>
         @Html.ActionLink("Gå til kassen", "", Model) |

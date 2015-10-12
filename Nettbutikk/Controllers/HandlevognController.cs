@@ -20,7 +20,7 @@ namespace Nettbutikk.Controllers
         {
             Kundevogner nyVare = new Kundevogner()
             {
-                KundeId = Session.SessionID,
+                SessionId = Session.SessionID,
                 Dato = DateTime.Now,
                 SkoId = skoId,
                 Storlek = skoStr

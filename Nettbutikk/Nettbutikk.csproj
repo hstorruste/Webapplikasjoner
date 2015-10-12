@@ -189,6 +189,7 @@
     <Compile Include="Models\NettbutikkContext.cs" />
     <Compile Include="Controllers\SkoController.cs" />
     <Compile Include="Models\Skoen.cs" />
+    <Compile Include="Models\HandlevognVare.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
