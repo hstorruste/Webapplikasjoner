@@ -22,7 +22,7 @@ namespace Nettbutikk.Models
         [Display(Name = "Postnr")]
         [Required(ErrorMessage = "Postnr må oppgis")]
         [RegularExpression(@"[0-9]{4}", ErrorMessage = "Postnr må være 4 siffer")]
-        public int postnr { get; set; }
+        public string postnr { get; set; }
         [Display(Name = "Poststed")]
         [Required(ErrorMessage = "Poststed må oppgis")]
         public string poststed { get; set; }
@@ -60,7 +60,7 @@ namespace Nettbutikk.Models
         [Display(Name = "Postnr")]
         [Required(ErrorMessage = "Postnr må oppgis")]
         [RegularExpression(@"[0-9]{4}", ErrorMessage = "Postnr må være 4 siffer")]
-        public int postnr { get; set; }
+        public string postnr { get; set; }
         [Display(Name = "Poststed")]
         [Required(ErrorMessage = "Poststed må oppgis")]
         public string poststed { get; set; }
@@ -100,7 +100,8 @@ namespace Nettbutikk.Models
         [Display(Name = "Passord")]
         public string passord { get; set; }
 
+        /* Funderar på om jag ska ta bort denna. Har inte användt den än.
         [Display(Name = "Husk meg?")]
-        public bool huskMeg { get; set; }
+        public bool huskMeg { get; set; }*/
     }
 }
