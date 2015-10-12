@@ -9,7 +9,7 @@ namespace Nettbutikk.Models
     public class Handlevogn
     {
         [Display(Name ="Varer")]
-        public List<Kundevogner> varer { get; set; }
+        public List<HandlevognVare> varer { get; set; }
         [Display(Name = "Totalbeløp")]
         public decimal totalbelop { get; set; }
     }

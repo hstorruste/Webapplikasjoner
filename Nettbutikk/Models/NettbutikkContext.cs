@@ -150,13 +150,12 @@ namespace Nettbutikk.Models
     {
         [Key]
         public int KundevognId {get; set;}
-        public string KundeId { get; set; } //Er egentlig session-id
+        public string SessionId { get; set; } //Er egentlig session-id
         public int SkoId { get; set; }
         public int Storlek { get; set; }
         //Antal
         public System.DateTime Dato { get; set; }
-
-        //public virtual Kunder Kunde { get; set; }
+        
         public virtual Sko Sko { get; set; }
     }
 }
