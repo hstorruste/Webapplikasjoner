@@ -33,6 +33,43 @@ namespace Nettbutikk.Controllers
             }
         }
 
+        public static bool registrerKunde(RegistrerKundeModell innKunde)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    var nyKunde = new Kunder();
+                    nyKunde.Fornavn = innKunde.fornavn;
+                    nyKunde.Etternavn = innKunde.etternavn;
+                    nyKunde.Adresse = innKunde.adresse;
+                    nyKunde.Postnr = innKunde.postnr;
+                    var eksisterandePostnr = db.Poststeder.Find(innKunde.postnr);
+                    if(eksisterandePostnr == null)
+                    {
+                        var nyttPoststed = new Poststeder()
+                        {
+                            Postnr = innKunde.postnr,
+                            Poststed = innKunde.poststed
+                        };
+                        nyKunde.Poststeder = nyttPoststed;
+                    }
+                    nyKunde.Epost = innKunde.epost;
+                    byte[] passordDb = DbKunder.lagHash(innKunde.passord);
+                    nyKunde.Passord = passordDb;
+                    db.Kunder.Add(nyKunde);
+                    db.SaveChanges();
+                    
+                    return true;
+                }
+                catch (Exception feil)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public static byte[] lagHash(string innPassord)
         {
             byte[] innData, utData;
@@ -42,7 +79,7 @@ namespace Nettbutikk.Controllers
             return utData;
         }
 
-        public static bool Bruker_i_DB(LoggInnModell innKunde)
+        public static bool Kunde_i_DB(LoggInnModell innKunde)
         {
             using (var db = new NettbutikkContext())
             {

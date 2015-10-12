@@ -202,6 +202,7 @@
     <Content Include="Views\Nettbutikk\ListePartial.cshtml" />
     <Content Include="Views\Sko\Detaljer.cshtml" />
     <Content Include="Views\Handlevogn\Index.cshtml" />
+    <Content Include="Views\Kunde\LoggInnKunde.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

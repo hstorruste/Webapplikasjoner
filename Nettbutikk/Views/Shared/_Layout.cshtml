@@ -24,14 +24,21 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Handlevogn</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Registrer deg</a></li>
                     @if (ViewBag.Innlogget != null && ViewBag.Innlogget)
-            {
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logg av</a></li>
+                    {
+                        <li><a href="Kunde/InfoKunde"><span class="glyphicon glyphicon-user"></span>@ViewBag.Kundenavn</a></li>
                     }
                     else
                     {
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logg på</a></li>
+                        <li><a href="Kunde/RegistrerKunde"><span class="glyphicon glyphicon-user"></span> Registrer deg</a></li>
+                    }
+                    @if (ViewBag.Innlogget != null && ViewBag.Innlogget)
+                    {
+                        <li><a href="Kunde/LoggUtKunde"><span class="glyphicon glyphicon-log-out"></span> Logg av</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="Kunde/LoggInnKunde"><span class="glyphicon glyphicon-log-in"></span> Logg på</a></li>
                     }
                 </ul>
             </div>

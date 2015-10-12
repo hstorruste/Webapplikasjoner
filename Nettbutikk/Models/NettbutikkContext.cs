@@ -41,7 +41,7 @@ namespace Nettbutikk.Models
         public string Fornavn { get; set; }
         public string Etternavn { get; set; }
         public string Adresse { get; set; }
-        public int Postnr { get; set; }
+        public string Postnr { get; set; }
         public string Epost { get; set; }
         public byte[] Passord { get; set; }
 
@@ -52,7 +52,7 @@ namespace Nettbutikk.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Postnr { get; set; }
+        public string Postnr { get; set; }
         public string Poststed { get; set; }
 
         public virtual List<Kunder> Kunder { get; set; }
