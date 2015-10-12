@@ -28,7 +28,7 @@ namespace Nettbutikk.Controllers
             {
                 try
                 {
-                    List<Kundevogner> alleVarer = db.Kundevogner.Where(k => k.KundeId == id).ToList();
+                    List<Kundevogner> alleVarer = db.Kundevogner.Include("Sko").Where(k => k.KundeId == id).ToList();
                     return alleVarer;
                 }
                 catch (Exception feil)
