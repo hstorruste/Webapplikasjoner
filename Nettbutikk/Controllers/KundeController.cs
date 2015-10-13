@@ -23,6 +23,12 @@ namespace Nettbutikk.Controllers
             }
             if (DbKunder.registrerKunde(innKunde))
             {
+                using (var db = new NettbutikkContext())
+                {
+                    Kunder kunde = db.Kunder.FirstOrDefault(k => k.Epost == innKunde.epost);
+                    Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
+                    Session["InnloggetKundeId"] = kunde.Id;
+                };
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
                 return RedirectToAction("Hjem","Nettbutikk");
@@ -47,8 +53,7 @@ namespace Nettbutikk.Controllers
             {
                 return View();
             }
-
-
+            return View();
         }
 
         public ActionResult LoggInnKunde()
