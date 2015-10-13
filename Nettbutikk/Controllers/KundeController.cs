@@ -40,7 +40,7 @@ namespace Nettbutikk.Controllers
             return View(enKunde);  
         }
 
-        [HttpPost]
+       [HttpPost]
         public ActionResult RedigerKunde()
         {
             if (!ModelState.IsValid)
