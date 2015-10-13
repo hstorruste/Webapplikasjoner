@@ -11,11 +11,14 @@
         <div class="panel-group col-md-12">
             <!-- Legger inn listePartials med sko. -->
             <div>
-                @foreach (var sko in Model)
-                { 
-                    <div class="col-md-3" style="padding:0px">
+                @if (Model != null)
+                {
+                    foreach (var sko in Model)
+                    {
+                        <div class="col-md-3" style="padding:0px">
                             @Html.Partial("ListePartial", sko)
-                    </div>
+                        </div>
+                    }
                 }
             </div>
         </div>
