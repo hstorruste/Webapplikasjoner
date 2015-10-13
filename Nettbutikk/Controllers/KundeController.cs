@@ -31,10 +31,12 @@ namespace Nettbutikk.Controllers
                 };
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
+                Session["EmailFinnes"] = false;
                 return RedirectToAction("Hjem","Nettbutikk");
             }
             else
             {
+                Session["EmailFinnes"] = true;
                 return View();
             }
         }
@@ -47,13 +49,28 @@ namespace Nettbutikk.Controllers
         }
 
        [HttpPost]
-        public ActionResult RedigerKunde()
+        public ActionResult RedigerKunde(RedigerKundeModell innKunde)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
-            return View();
+            if (DbKunder.redigerKunde(innKunde))
+            {
+                using (var db = new NettbutikkContext())
+                {
+                    Kunder kunde = db.Kunder.FirstOrDefault(k => k.Epost == innKunde.epost);
+                    Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
+                    Session["InnloggetKundeId"] = kunde.Id;
+                };
+                ViewBag.innLogget = true;
+                Session["LoggetInn"] = true;
+                return RedirectToAction("Hjem", "Nettbutikk");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult LoggInnKunde()

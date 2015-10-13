@@ -33,6 +33,46 @@ namespace Nettbutikk.Controllers
             }
         }
 
+        public static bool redigerKunde(RedigerKundeModell innKunde)
+        {
+            bool sparadKunde = false;
+
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    var upKunde = db.Kunder.Where(k => k.Id == innKunde.id).SingleOrDefault();
+
+                    if (upKunde != null)
+                    {
+                        upKunde.Fornavn = innKunde.fornavn;
+                        upKunde.Etternavn = innKunde.etternavn;
+                        upKunde.Adresse = innKunde.adresse;
+                        upKunde.Postnr = innKunde.postnr;
+                        var eksisterandePostnr = db.Poststeder.Find(innKunde.postnr);
+                        if (eksisterandePostnr == null)
+                        {
+                            var nyttPoststed = new Poststeder()
+                            {
+                                Postnr = innKunde.postnr,
+                                Poststed = innKunde.poststed
+                            };
+                            upKunde.Poststeder = nyttPoststed;
+                        }
+                        upKunde.Epost = innKunde.epost;
+                        db.SaveChanges();
+
+                        sparadKunde = true;
+                    }
+                }
+                catch
+                {
+                    sparadKunde = false;
+                }
+                return sparadKunde;
+            }
+        }
+
         public static bool registrerKunde(RegistrerKundeModell innKunde)
         {
             using (var db = new NettbutikkContext())
@@ -67,7 +107,7 @@ namespace Nettbutikk.Controllers
                         return true;
                     }
                     else
-                    {
+                    {  
                         return false;
                     }
                 }
