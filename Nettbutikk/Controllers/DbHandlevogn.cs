@@ -68,5 +68,22 @@ namespace Nettbutikk.Controllers
             }
         }
 
+        public static bool fjernVare(int vareId)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    db.Kundevogner.Remove(db.Kundevogner.Find(vareId));
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception feil)
+                {
+                    return false;
+                }
+            }
+        }
+
     }
 }

@@ -27,5 +27,10 @@ namespace Nettbutikk.Controllers
             };
             return DbHandlevogn.leggTilVare(nyVare);
         }
+
+        public bool FjernVare(int vareId)
+        {
+            return DbHandlevogn.fjernVare(vareId);
+        }
     }
 }

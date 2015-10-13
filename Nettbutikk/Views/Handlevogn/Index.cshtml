@@ -6,19 +6,40 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('a[data-slett=true]').click(function () {
+                var id = $(this).data('vareid');
+                var label = "label[data-vareid=" + id + "]";
+
+                $.ajax({
+                    url: '@Url.Action("FjernVare", "Handlevogn")',
+                    data: { vareId: id },
+                    success: function () {
+                        console.log("suksess");
+                        window.location.reload();
+                    },
+                    error: function () {
+                        $(label).text("Feil! Kunne ikke fjerne varen");
+                    }
+                });
+            });
+        });
+
+    </script>
 </head>
 <body>
     <div>
         <h4>Handlevogn</h4>
-        <hr />
         <div class="panel panel-default">
+            @if(Model.varer != null && Model.varer.Count > 0) { 
             <table class="table">
 
                 <tr class="panel-heading">
                     <th>@Html.DisplayNameFor(modelItem => Model.varer[0].bildeUrl)</th>
-                    <th>@Html.DisplayNameFor(modelItem => Model.varer[0].skoNavn)</th>
-                    <th>@Html.DisplayNameFor(modelItem => Model.varer[0].merke)</th>
-                    <th>@Html.DisplayNameFor(modelItem => Model.varer[0].farge)</th>
+                    <th>Produktinformasjon</th>
+
                     <th>@Html.DisplayNameFor(modelItem => Model.varer[0].storlek)</th>
                     <th>@Html.DisplayNameFor(modelItem => Model.varer[0].pris)</th>
                 </tr>
@@ -26,27 +47,41 @@
                 @foreach (var vare in Model.varer)
                 {
                     <tr>
-                        <td><img src="@Html.DisplayFor(modelItem => vare.bildeUrl)" class="img-responsive"/></td>
-                        <td>@Html.DisplayFor(modelItem => vare.skoNavn)</td>
-                        <td>@Html.DisplayFor(modelItem => vare.merke)</td>
-                        <td>@Html.DisplayFor(modelItem => vare.farge)</td>
+                        <td><a href="@Url.Action("Detaljer","Sko", new { skoId=vare.skoId })"><img src="@Html.DisplayFor(modelItem => vare.bildeUrl)" class="img-responsive" /></a></td>
+                        <td>
+                            <a href="@Url.Action("Detaljer","Sko", new { skoId=vare.skoId })"><strong>@Html.DisplayFor(modelItem => vare.skoNavn)</strong></a>
+                            <br />@Html.DisplayFor(modelItem => vare.merke)
+                            <br /><i>@Html.DisplayFor(modelItem => vare.farge)</i>
+                        </td>
                         <td>@Html.DisplayFor(modelItem => vare.storlek)</td>
                         <td>@Html.DisplayFor(modelItem => vare.pris)</td>
+                        <td>
+                            <a href="#" data-slett="true" data-vareid="@vare.vognId">
+                                <span class="glyphicon glyphicon-trash"></span> Ta bort
+                            </a>
+                            <br />
+                            <label class="text-danger" data-vareid="@vare.vognId"></label>
+                        </td>
                     </tr>
                 }
 
-                <tr class="panel-footer clearfix">
+                <tr class="panel-footer">
                     <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
                     <td>@Html.DisplayNameFor(model => model.totalbelop)</td>
                     <td>@Html.DisplayFor(model => model.totalbelop)</td>
+                    <td>@Html.ActionLink("Gå til kassen", "", new { vognId = Model.varer[0].vognId }, new { @class = "btn btn-success" })</td>
                 </tr>
 
             </table>
+            }
+            else
+            {
+                <div class="text-center"><h3><b>Du har ingen varer i handlevogna!</b></h3></div>
+            }
+        </div>
     </div>
     <p>
-        @Html.ActionLink("Gå til kassen", "", Model) |
         @Html.ActionLink("Fortsett å handle", "Hjem", "Nettbutikk")
     </p>
 </body>
