@@ -127,6 +127,7 @@ namespace Nettbutikk.Models
         public int KundeId { get; set; }
         public decimal TotalBelop { get; set; }
 
+        public virtual List<OrdreDetaljer> OrdreDetaljer { get; set; }
         public virtual Kunder Kunder { get; set; }
 
     }
@@ -150,7 +151,7 @@ namespace Nettbutikk.Models
     {
         [Key]
         public int KundevognId {get; set;}
-        public string SessionId { get; set; } //Er egentlig session-id
+        public string SessionId { get; set; } 
         public int SkoId { get; set; }
         public int Storlek { get; set; }
         //Antal
