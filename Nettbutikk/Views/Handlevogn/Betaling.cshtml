@@ -1,9 +1,5 @@
 ﻿@model Nettbutikk.Models.Ordre
 
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 
 <html>
@@ -13,62 +9,111 @@
 </head>
 <body>
     <div>
-        <h4>Ordre</h4>
+        <h3>Velkommen til kassen</h3>
         <hr />
+        <h4>Kontaktinformasjon</h4>
         <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.ordreDato)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.ordreDato)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.totalBelop)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.totalBelop)
-            </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.kundeNavn)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.kundeNavn)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.adresse)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.adresse)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.postnr)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.postnr)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.poststed)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.poststed)
             </dd>
-    
+
         </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ordreId }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
+        <hr />
+
+        <h4>Velg betalingsmåte: </h4><!--Eneste faktura siden den ikke skal være knyttet opp mot noen betalingstjeneste.-->
+        <input type="radio" name="faktura" value="Faktura" />
+        <label for="faktura">Faktura</label>
+
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.ordreDato)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ordreDato)
+        </dd>
+        <div class="panel panel-default">
+            @if (Model.varer != null && Model.varer.Count > 0)
+            {
+                <table class="table">
+                    <tr class="panel-heading">
+                        <th>@Html.DisplayNameFor(modelItem => Model.varer[0].bildeUrl)</th>
+                        <th>Produktinformasjon</th>
+
+                        <th>@Html.DisplayNameFor(modelItem => Model.varer[0].storlek)</th>
+                        <th>@Html.DisplayNameFor(modelItem => Model.varer[0].pris)</th>
+                    </tr>
+
+                    @foreach (var vare in Model.varer)
+                    {
+                        <tr>
+                            <td><a href="@Url.Action("Detaljer", "Sko", new { skoId = vare.skoId })"><img src="@Html.DisplayFor(modelItem => vare.bildeUrl)" class="img-responsive" /></a></td>
+                            <td>
+                                <a href="@Url.Action("Detaljer", "Sko", new { skoId = vare.skoId })"><strong>@Html.DisplayFor(modelItem => vare.skoNavn)</strong></a>
+                                <br />@Html.DisplayFor(modelItem => vare.merke)
+                                <br /><i>@Html.DisplayFor(modelItem => vare.farge)</i>
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => vare.storlek)</td>
+                            <td>@Html.DisplayFor(modelItem => vare.pris)</td>
+
+                        </tr>
+                    }
+                    
+                    <tr class="panel-footer">
+                        <td></td>
+                        <td></td>
+                        <td>@Html.DisplayNameFor(model => model.totalBelop)</td>
+                        <td>@Html.DisplayFor(model => model.totalBelop)</td>
+
+                    </tr>
+                    <tr class="panel-footer">
+                        <td></td>
+                        <td></td>
+                        <td><small>Herav mva:</small></td>
+                        <td>@{decimal mva = Model.totalBelop - System.Decimal.Divide(Model.totalBelop, 1.25M); }
+                            <small>@mva</small></td>
+                      </tr>
+                  </table>
+
+            }
+            else
+            {
+                <div class="text-center"><h3><b>Du har ingen varer i handlevogna!</b></h3></div>
+
+            }
+        </div>
+        <div class="row pull-right">
+            @Html.ActionLink("Tilbake til handlevognen", "Index", new { }, new {@class = "btn btn-default" })
+            @Html.ActionLink("Send", "Betaling", new { }, new { @class = "btn btn-success" })
+        </div>
+        </div>
+    </body>
 </html>

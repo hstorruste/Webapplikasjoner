@@ -18,7 +18,7 @@ namespace Nettbutikk.Controllers
 
         public ActionResult Betaling()
         {
-            if (!(bool)Session["LoggetInn"])
+            if (Session["LoggetInn"] == null || !(bool)Session["LoggetInn"])
             {
                 return RedirectToAction("LoggInnKunde", "Kunde"); //Må finne en måte å returnere til betaling etter man er logget inn eller registrert.
             }

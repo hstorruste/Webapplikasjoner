@@ -136,5 +136,10 @@ namespace Nettbutikk.Controllers
 
             return RedirectToAction("Hjem","NettButikk");
         }
+
+        public ActionResult DetaljerKunde()
+        {
+            return View();
+        }
     }
 }
