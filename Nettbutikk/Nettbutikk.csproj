@@ -204,6 +204,8 @@
     <Content Include="Views\Sko\Detaljer.cshtml" />
     <Content Include="Views\Handlevogn\Index.cshtml" />
     <Content Include="Views\Kunde\LoggInnKunde.cshtml" />
+    <Content Include="Views\Kunde\DetaljerKunde.cshtml" />
+    <Content Include="Views\Kunde\RedigerKundePassord.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
