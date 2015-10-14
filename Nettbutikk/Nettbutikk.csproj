@@ -188,6 +188,7 @@
     <Compile Include="Models\KundeModeller.cs" />
     <Compile Include="Models\NettbutikkContext.cs" />
     <Compile Include="Controllers\SkoController.cs" />
+    <Compile Include="Models\Ordre.cs" />
     <Compile Include="Models\Skoen.cs" />
     <Compile Include="Models\HandlevognVare.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -204,6 +205,7 @@
     <Content Include="Views\Sko\Detaljer.cshtml" />
     <Content Include="Views\Handlevogn\Index.cshtml" />
     <Content Include="Views\Kunde\LoggInnKunde.cshtml" />
+    <Content Include="Views\Handlevogn\Betaling.cshtml" />
     <Content Include="Views\Kunde\DetaljerKunde.cshtml" />
     <Content Include="Views\Kunde\RedigerKundePassord.cshtml" />
     <None Include="Web.Debug.config">
