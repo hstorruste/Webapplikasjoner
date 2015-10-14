@@ -34,7 +34,6 @@ namespace Nettbutikk.Models
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
-        public System.Data.Entity.DbSet<Nettbutikk.Models.RedigerKundeModell> RedigerKundeModells { get; set; }
     }
 
     public class Kunder
