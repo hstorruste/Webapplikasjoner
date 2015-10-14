@@ -8,6 +8,56 @@ namespace Nettbutikk.Controllers
 {
     public class DbKunder
     {
+        public static bool registrerKunde(RegistrerKundeModell innKunde)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    //Test för att göra Email unikt. Vet inte om detta är det bästa sättet.
+                   var finnesKunde = db.Kunder.FirstOrDefault(k => k.Epost == innKunde.epost);
+                    if (finnesKunde == null)
+                    {
+                        var nyKunde = new Kunder();
+                        nyKunde.Fornavn = innKunde.fornavn;
+                        nyKunde.Etternavn = innKunde.etternavn;
+                        nyKunde.Adresse = innKunde.adresse;
+                        nyKunde.Postnr = innKunde.postnr;
+                        var eksisterandePostnr = db.Poststeder.Find(innKunde.postnr);
+                        if (eksisterandePostnr == null)
+                        {
+                            var nyttPoststed = new Poststeder()
+                            {
+                                Postnr = innKunde.postnr,
+                                Poststed = innKunde.poststed
+                            };
+                            nyKunde.Poststeder = nyttPoststed;
+                        }
+                        nyKunde.Epost = innKunde.epost;
+                        byte[] passordDb = lagHash(innKunde.passord);
+                        var passord = new Passorden()
+                        {
+                            Passord = passordDb,
+                            Kunde = nyKunde,
+                        };
+                        nyKunde.Passorden = passord;
+                        db.Kunder.Add(nyKunde);
+                        db.SaveChanges();
+
+                        return true;
+                    }
+                    else
+                    {  
+                        return false;
+                    }
+                }
+                catch (Exception feil)
+                {
+                    return false;
+                }
+            }
+        }
+
         public static RedigerKundeModell hentEnKunde(int id)
         {
             using (var db = new NettbutikkContext())
@@ -73,48 +123,49 @@ namespace Nettbutikk.Controllers
             }
         }
 
-        public static bool registrerKunde(RegistrerKundeModell innKunde)
+        public static RedigerKundePassordModell hentEnKundePassord(int id)
         {
+            using (var db = new NettbutikkContext())
+            {
+                var enDbKundePassord = db.Passorden.Find(id);
+
+                if (enDbKundePassord == null)
+                    return null;
+                else
+                {
+                    var utKundePassord = new RedigerKundePassordModell()
+                    {
+                        PassordId = enDbKundePassord.PassordId
+                    };
+                    return utKundePassord;
+                }
+            }
+        }
+        public static bool redigerKundePassord(RedigerKundePassordModell innPassord)
+        {
+            bool sparadPassord = false;
+
             using (var db = new NettbutikkContext())
             {
                 try
                 {
-                    //Test för att göra Email unikt. Vet inte om detta är det bästa sättet.
-                    var finnesKunde = db.Kunder.FirstOrDefault(k => k.Epost == innKunde.epost);
-                    if (finnesKunde == null)
+                    var upPassord = db.Passorden.Where(p => p.PassordId == innPassord.PassordId).SingleOrDefault();
+
+                    if (upPassord != null)
                     {
-                        var nyKunde = new Kunder();
-                        nyKunde.Fornavn = innKunde.fornavn;
-                        nyKunde.Etternavn = innKunde.etternavn;
-                        nyKunde.Adresse = innKunde.adresse;
-                        nyKunde.Postnr = innKunde.postnr;
-                        var eksisterandePostnr = db.Poststeder.Find(innKunde.postnr);
-                        if (eksisterandePostnr == null)
-                        {
-                            var nyttPoststed = new Poststeder()
-                            {
-                                Postnr = innKunde.postnr,
-                                Poststed = innKunde.poststed
-                            };
-                            nyKunde.Poststeder = nyttPoststed;
-                        }
-                        nyKunde.Epost = innKunde.epost;
-                        byte[] passordDb = DbKunder.lagHash(innKunde.passord);
-                        nyKunde.Passord = passordDb;
-                        db.Kunder.Add(nyKunde);
+                        byte[] passordDb = lagHash(innPassord.nyttPassord);
+                        upPassord.Passord = passordDb;
+                        
                         db.SaveChanges();
 
-                        return true;
-                    }
-                    else
-                    {  
-                        return false;
+                        sparadPassord = true;
                     }
                 }
-                catch (Exception feil)
+                catch
                 {
-                    return false;
+                    sparadPassord = false;
                 }
+                return sparadPassord;
             }
         }
 
@@ -133,7 +184,7 @@ namespace Nettbutikk.Controllers
             {
                 byte[] passordDb = lagHash(innKunde.passord);
                 Kunder funnetKunde = db.Kunder.FirstOrDefault
-                    (k => k.Passord == passordDb && k.Epost == innKunde.Epost);
+                    (k => k.Passorden.Passord == passordDb && k.Epost == innKunde.Epost);
                 if (funnetKunde == null)
                 {
                     return false;

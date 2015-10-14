@@ -18,6 +18,7 @@ namespace Nettbutikk.Models
 
         public DbSet<Kunder> Kunder { get; set; }
         public DbSet<Poststeder> Poststeder { get; set; }
+        public DbSet<Passorden> Passorden { get; set; }
         public DbSet<Sko> Sko { get; set; }
         public DbSet<For> For { get; set; }
         public DbSet<Kategorier> Kategorier { get; set; }
@@ -33,6 +34,7 @@ namespace Nettbutikk.Models
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
+        public System.Data.Entity.DbSet<Nettbutikk.Models.RedigerKundeModell> RedigerKundeModells { get; set; }
     }
 
     public class Kunder
@@ -43,9 +45,10 @@ namespace Nettbutikk.Models
         public string Adresse { get; set; }
         public string Postnr { get; set; }
         public string Epost { get; set; }
-        public byte[] Passord { get; set; }
+        public int PassordId { get; set; }
 
         public virtual Poststeder Poststeder { get; set; }
+        public virtual Passorden Passorden { get; set; }
     }
 
     public class Poststeder
@@ -56,6 +59,14 @@ namespace Nettbutikk.Models
         public string Poststed { get; set; }
 
         public virtual List<Kunder> Kunder { get; set; }
+    }
+
+    public class Passorden
+    {
+        [Key, ForeignKey("Kunde")]
+        public int PassordId { get; set; }
+        public byte[] Passord { get; set; }
+        public Kunder Kunde { get; set; }
     }
 
     public class Sko
