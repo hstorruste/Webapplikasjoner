@@ -9,6 +9,7 @@ namespace Nettbutikk.Models
     public class Ordre
     {
         [ScaffoldColumn(false)]
+        [Display(Name = "Ordrenummer")]
         public int ordreId { get; set; }
         [ScaffoldColumn(false)]
         public int kundeId { get; set; }

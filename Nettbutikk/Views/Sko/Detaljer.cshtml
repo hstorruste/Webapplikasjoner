@@ -18,18 +18,16 @@
                     url: '@Url.Action("LeggTil", "Handlevogn")',
                     data: { skoId: id, skoStr: str },
                     success: function (){
-                        setResultat("Lagt til i handlevogn");
+                        $('#Resultat').text("Lagt til i handlevogn");
                     },
                     error: function () {
-                        setResultat("Feil under legging i handlevogn!");
+                        $('#Resultat').addClass("text-danger")
+                        $('#Resultat').text("Feil under legging i handlevogn!");
                     }
                 });
             });
         });
 
-        function setResultat(tekst){
-            $('#Resultat').text(tekst);
-        }
     </script>
 </head>
 <body>
@@ -78,7 +76,7 @@
                 <br /><br />
                 <button id="btnLeggTil" type="button" class="btn btn-success">Legg i handlevogn</button>
                 <br />
-                <label id="Resultat" class="text-danger"></label>
+                <label id="Resultat" ></label>
             </div>
         </div>
     </div>

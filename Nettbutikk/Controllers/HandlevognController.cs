@@ -96,7 +96,7 @@ namespace Nettbutikk.Controllers
             var kundeId = (int)Session["InnloggetKundeId"];
             var nyOrdre = DbHandlevogn.lagOrdre(Session.SessionID, kundeId);
             var ok = DbHandlevogn.arkiverOrdre(nyOrdre);
-
+           
             return ok;
         }
 
