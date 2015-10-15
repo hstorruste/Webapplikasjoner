@@ -73,7 +73,7 @@
                 <h3>@Model.merke</h3>
                 <p><b>@Html.DisplayNameFor(modelItem => Model.beskrivelse):</b></p>
                 <p>@Model.beskrivelse</p><p><b>@Html.DisplayNameFor(modelItem => Model.storlekar):</b></p>
-
+                <!--TODO - Sett en defaultverdi som ikke er godkjent. Legg inn sjekk for om man har valgt ett skonummer og gi tilbakemelding.-->
                 @Html.DropDownListFor(modelItem => Model.storlekar, new SelectList(Model.storlekar, "StorlekId", "Storlek"))
                 <br /><br />
                 <button id="btnLeggTil" type="button" class="btn btn-success">Legg i handlevogn</button>

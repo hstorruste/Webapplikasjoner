@@ -1,0 +1,82 @@
+﻿@model Nettbutikk.Models.Ordre
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Kvittering</title>
+</head>
+<body>
+    <div>
+        <h3>Kvittering</h3>
+        <hr />
+        <div class="row">
+            <div class="pull-left">
+                <strong>
+                    Bestillingsdato
+                </strong>
+                @Html.DisplayFor(model => model.ordreDato)
+            </div>
+            <div class="pull-right">
+                <strong>
+                    @Html.DisplayNameFor(model => model.ordreId)
+                </strong>
+                @Html.DisplayFor(model => model.ordreId)
+            </div>
+        </div>
+        <hr />
+        <h4>Leveringsadresse</h4>
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.kundeNavn)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.kundeNavn)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.adresse)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.adresse)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.postnr)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.postnr)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.poststed)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.poststed)
+            </dd>
+
+        </dl>
+        <hr />
+
+        <h4>Velg betalingsmåte: </h4><!--Eneste faktura som er mulig å velge siden den ikke er knyttet opp mot noen betalingstjeneste.-->
+        <input id="faktura" type="radio" name="betalingsmåte" value="Faktura" checked />
+        <label for="faktura">Faktura</label><br />
+        <input id="visa" type="radio" name="betalingsmåte" value="Visa" disabled />
+        <label for="visa">Visa</label>
+
+        <hr />
+
+
+        @Html.Partial("OrdreVarer", Model)
+    </div>
+    <p>
+        @Html.ActionLink("Fortsett å handle", "Hjem","Nettbutikk")
+    </p>
+</body>
+</html>

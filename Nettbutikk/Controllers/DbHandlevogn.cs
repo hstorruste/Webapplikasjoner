@@ -127,7 +127,9 @@ namespace Nettbutikk.Controllers
             {
                 try
                 {
-                    var temp = db.Kundevogner.Include("Sko.Merke").Include("Sko.Bilder")
+                    //Måtte dele opp databasekallet og laging av new OrdreDetaljer. 
+                    //Det var ikke lov å opprette OrdreDetaljer i entity til Linq forespørsel.
+                    List<Kundevogner> temp = db.Kundevogner.Include("Sko.Merke").Include("Sko.Bilder")
                         .Where(k => k.SessionId == sessionId).ToList();
 
                     List<OrdreDetaljer> enkeltVarer = temp.Select( v => new OrdreDetaljer
@@ -169,7 +171,64 @@ namespace Nettbutikk.Controllers
             {
                 try
                 {
+                    //Må sette relasjonene i ordrer og ordredetaljer til entiteter i databasen ellers forsøkes sko og kunde å lagres på nytt i databasen.
+                    foreach(var detalj in nyOrdre.OrdreDetaljer)
+                    {
+                        detalj.Sko = db.Sko.Find(detalj.SkoId);
+                    }
+                    nyOrdre.Kunder = db.Kunder.Find(nyOrdre.KundeId);
+
                     db.Ordrer.Add(nyOrdre);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception feil)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static List<Ordrer> finnAlleOrdre(int KundeId)
+        {
+            using( var db = new NettbutikkContext())
+            {
+                try
+                {
+                    List<Ordrer> alleOrdre = db.Ordrer.Where(o => o.KundeId == KundeId).ToList();
+                    return alleOrdre;
+                }
+                catch (Exception feil)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static Ordrer finnSisteOrdre(int KundeId)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    Ordrer sisteOrdre = db.Ordrer.Include("OrdreDetaljer.Sko.Merke").Include("OrdreDetaljer.Sko.Bilder").Include("Kunder.Poststeder")
+                        .Where(o => o.KundeId == KundeId).OrderByDescending(o => o.OrdreDato).FirstOrDefault();
+                    return sisteOrdre;
+                }
+                catch (Exception feil)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static bool slettAlleHandlevognVarer(string sessionId)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    db.Kundevogner.RemoveRange(db.Kundevogner.Where(k => k.SessionId == sessionId));
                     db.SaveChanges();
                     return true;
                 }

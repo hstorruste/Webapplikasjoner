@@ -6,9 +6,27 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Betaling</title>
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnSend').click(function () {
+                $.ajax({
+                    url: '@Url.Action("SendOrdre", "Handlevogn")',
+                    success: function () {
+                        window.location.replace("@Url.Action("Kvittering","Handlevogn")");
+                    },
+                    error: function () {
+                        $('#lblError').text("NOE GIKK GALT! Kunne ikke sende ordre.");
+                    }
+                });
+            });
+        });
+
+    </script>
 </head>
 <body>
     <div>
+        <label id="lblError" class="text-center text-danger"></label>
         <h3>Velkommen til kassen</h3>
         <hr />
         <h4>Kontaktinformasjon</h4>
@@ -49,70 +67,20 @@
         </dl>
         <hr />
 
-        <h4>Velg betalingsmåte: </h4><!--Eneste faktura siden den ikke skal være knyttet opp mot noen betalingstjeneste.-->
-        <input type="radio" name="faktura" value="Faktura" />
-        <label for="faktura">Faktura</label>
+        <h4>Velg betalingsmåte: </h4><!--Eneste faktura som er mulig å velge siden den ikke er knyttet opp mot noen betalingstjeneste.-->
+        <input id="faktura" type="radio" name="betalingsmåte" value="Faktura" checked/>
+        <label for="faktura">Faktura</label><br />
+        <input id="visa" type="radio" name="betalingsmåte" value="Visa" disabled/>
+        <label for="visa">Visa</label>
 
         <hr />
-        <dt>
-            @Html.DisplayNameFor(model => model.ordreDato)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ordreDato)
-        </dd>
-        <div class="panel panel-default">
-            @if (Model.varer != null && Model.varer.Count > 0)
-            {
-                <table class="table">
-                    <tr class="panel-heading">
-                        <th>@Html.DisplayNameFor(modelItem => Model.varer[0].bildeUrl)</th>
-                        <th>Produktinformasjon</th>
-
-                        <th>@Html.DisplayNameFor(modelItem => Model.varer[0].storlek)</th>
-                        <th>@Html.DisplayNameFor(modelItem => Model.varer[0].pris)</th>
-                    </tr>
-
-                    @foreach (var vare in Model.varer)
-                    {
-                        <tr>
-                            <td><a href="@Url.Action("Detaljer", "Sko", new { skoId = vare.skoId })"><img src="@Html.DisplayFor(modelItem => vare.bildeUrl)" class="img-responsive" /></a></td>
-                            <td>
-                                <a href="@Url.Action("Detaljer", "Sko", new { skoId = vare.skoId })"><strong>@Html.DisplayFor(modelItem => vare.skoNavn)</strong></a>
-                                <br />@Html.DisplayFor(modelItem => vare.merke)
-                                <br /><i>@Html.DisplayFor(modelItem => vare.farge)</i>
-                            </td>
-                            <td>@Html.DisplayFor(modelItem => vare.storlek)</td>
-                            <td>@Html.DisplayFor(modelItem => vare.pris)</td>
-
-                        </tr>
-                    }
-                    
-                    <tr class="panel-footer">
-                        <td></td>
-                        <td></td>
-                        <td>@Html.DisplayNameFor(model => model.totalBelop)</td>
-                        <td>@Html.DisplayFor(model => model.totalBelop)</td>
-
-                    </tr>
-                    <tr class="panel-footer">
-                        <td></td>
-                        <td></td>
-                        <td><small>Herav mva:</small></td>
-                        <td>@{decimal mva = Model.totalBelop - System.Decimal.Divide(Model.totalBelop, 1.25M); }
-                            <small>@mva</small></td>
-                      </tr>
-                  </table>
-
-            }
-            else
-            {
-                <div class="text-center"><h3><b>Du har ingen varer i handlevogna!</b></h3></div>
-
-            }
-        </div>
+        
+        <strong>@Html.DisplayNameFor(model => model.ordreDato)</strong>
+        @Html.DisplayFor(model => model.ordreDato)
+        @Html.Partial("OrdreVarer", Model)
         <div class="row pull-right">
             @Html.ActionLink("Tilbake til handlevognen", "Index", new { }, new {@class = "btn btn-default" })
-            @Html.ActionLink("Send", "Betaling", new { }, new { @class = "btn btn-success" })
+            <a id="btnSend" href="#" class="btn btn-success">Send</a>
         </div>
         </div>
     </body>

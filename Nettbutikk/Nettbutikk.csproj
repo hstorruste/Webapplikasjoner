@@ -198,7 +198,6 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Sko\Registrer.cshtml" />
-    <Content Include="Views\Sko\Liste.cshtml" />
     <Content Include="Views\Kunde\RedigerKunde.cshtml" />
     <Content Include="Views\Nettbutikk\Hjem.cshtml" />
     <Content Include="Views\Nettbutikk\ListePartial.cshtml" />
@@ -208,6 +207,8 @@
     <Content Include="Views\Handlevogn\Betaling.cshtml" />
     <Content Include="Views\Kunde\DetaljerKunde.cshtml" />
     <Content Include="Views\Kunde\RedigerKundePassord.cshtml" />
+    <Content Include="Views\Handlevogn\OrdreVarer.cshtml" />
+    <Content Include="Views\Handlevogn\Kvittering.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

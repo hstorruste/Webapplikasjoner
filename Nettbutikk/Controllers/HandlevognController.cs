@@ -44,10 +44,69 @@ namespace Nettbutikk.Controllers
                 totalBelop = tempOrdre.TotalBelop
             }; 
             
-            //TODO - Må lage ett view som mottar en Ordre.
             return View(ordre);
         }
 
+        //Partial view
+        public ActionResult OrdreVarer(Ordre ordre)
+        {
+            return View(ordre);
+        }
+
+        public ActionResult Kvittering()
+        {
+            if (Session["LoggetInn"] == null || !(bool)Session["LoggetInn"])
+            {
+                return RedirectToAction("LoggInnKunde", "Kunde");
+            }
+            var kundeId = (int)Session["InnloggetKundeId"];
+
+            var sisteOrdre = DbHandlevogn.finnSisteOrdre(kundeId);
+            var ordre = new Ordre()
+            {
+                ordreId = sisteOrdre.OrdreId,
+                ordreDato = sisteOrdre.OrdreDato,
+                kundeId = sisteOrdre.KundeId,
+                kundeNavn = sisteOrdre.Kunder.Fornavn + " " + sisteOrdre.Kunder.Etternavn,
+                adresse = sisteOrdre.Kunder.Adresse,
+                postnr = sisteOrdre.Kunder.Postnr,
+                poststed = sisteOrdre.Kunder.Poststeder.Poststed,
+                varer = sisteOrdre.OrdreDetaljer.Select(d => new HandlevognVare
+                {
+                    skoId = d.Sko.SkoId,
+                    skoNavn = d.Sko.Navn,
+                    merke = d.Sko.Merke.Navn,
+                    farge = d.Sko.Farge,
+                    storlek = d.Storlek,
+                    pris = d.Pris,
+                    bildeUrl = d.Sko.Bilder.Where(b => b.BildeUrl.Contains("/Medium/")).FirstOrDefault().BildeUrl,
+                }).ToList(),
+                totalBelop = sisteOrdre.TotalBelop
+            };
+
+            return View(ordre);
+        }
+
+        //Kalles med ajax fra Handlevogn/Betaling-View
+        public bool SendOrdre()
+        {
+            if (Session["LoggetInn"] == null || !(bool)Session["LoggetInn"])
+                return false;
+
+            var kundeId = (int)Session["InnloggetKundeId"];
+            var nyOrdre = DbHandlevogn.lagOrdre(Session.SessionID, kundeId);
+            var ok = DbHandlevogn.arkiverOrdre(nyOrdre);
+
+            return ok;
+        }
+
+        //Kalles med ajax fra Handlevogn/Kvittering-View
+        public bool SlettHandlevognVarer()
+        {
+            return DbHandlevogn.slettAlleHandlevognVarer(Session.SessionID);
+        }
+
+        //Kalles med ajax fra Sko/Detaljer-View
         public bool LeggTil(int skoId, int skoStr)
         {
             Kundevogner nyVare = new Kundevogner()
@@ -60,6 +119,7 @@ namespace Nettbutikk.Controllers
             return DbHandlevogn.leggTilVare(nyVare);
         }
 
+        //Kalles med ajax fra Handlevogn/Index-View
         public bool FjernVare(int vareId)
         {
             return DbHandlevogn.fjernVare(vareId);
