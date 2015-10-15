@@ -12,13 +12,11 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>@Session["Kundenavn"]</h4>
-            <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             
             <div class="form-group">
                 @Html.LabelFor(model => model.gammeltPassord, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-8">
                     @Html.EditorFor(model => model.gammeltPassord, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.gammeltPassord, "", new { @class = "text-danger" })
                 </div>
@@ -26,7 +24,7 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.nyttPassord, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-8">
                     @Html.EditorFor(model => model.nyttPassord, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.nyttPassord, "", new { @class = "text-danger" })
                 </div>
@@ -34,15 +32,15 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.bekreftPassord, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-8">
                     @Html.EditorFor(model => model.bekreftPassord, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.bekreftPassord, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Registrer" class="btn btn-default" />
+                <div class="col-md-offset-2 col-md-8">
+                    <input type="submit" value="Lagre" class="btn btn-success" />
                 </div>
             </div>
         </div>

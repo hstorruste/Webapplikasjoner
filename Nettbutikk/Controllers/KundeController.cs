@@ -28,6 +28,7 @@ namespace Nettbutikk.Controllers
                     Kunder kunde = db.Kunder.FirstOrDefault(k => k.Epost == innKunde.epost);
                     Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
                     Session["InnloggetKundeId"] = kunde.Id;
+                    Session["InnloggetKundePassordId"] = kunde.PassordId;
                 };
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
@@ -65,17 +66,21 @@ namespace Nettbutikk.Controllers
                 };
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
-                return RedirectToAction("Hjem", "Nettbutikk");
+                Session["EmailFinnes"] = false;
+                return View();
             }
             else
             {
+                Session["EmailFinnes"] = true;
                 return View();
             }
         }
 
-        public ActionResult RedigerKundePassord(int PassordId)
+        public ActionResult RedigerKundePassord(int passordId)
         {
-            return View();
+            RedigerKundePassordModell enKundePassord = DbKunder.hentEnKundePassord(passordId);
+
+            return View(enKundePassord);
         }
 
         [HttpPost]
@@ -94,7 +99,7 @@ namespace Nettbutikk.Controllers
                 };
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
-                return RedirectToAction("Hjem", "Nettbutikk");
+                return View();
             }
             else
             {
@@ -116,6 +121,7 @@ namespace Nettbutikk.Controllers
                     Kunder kunde = db.Kunder.FirstOrDefault(k => k.Epost == innKunde.Epost);
                     Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
                     Session["InnloggetKundeId"] = kunde.Id;
+                    Session["InnloggetKundePassordId"] = kunde.PassordId;
                 };
                 Session["LoggetInn"] = true;
                 ViewBag.Innlogget = true;

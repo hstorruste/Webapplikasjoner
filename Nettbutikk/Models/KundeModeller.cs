@@ -85,7 +85,7 @@ namespace Nettbutikk.Models
         [Required(ErrorMessage = "Passord må oppgis")]
         [MembershipPassword()]
         public string nyttPassord { get; set; }
-        [Compare("passord", ErrorMessage = "Passordet er ikke likt")]
+        [Compare("nyttPassord", ErrorMessage = "Passordet er ikke likt")]
         [DataType(DataType.Password)]
         [StringLength(255, MinimumLength = 8, ErrorMessage = "Passord må være mellom 8 og 255 tegn")]
         [Display(Name = "Bekreft Passord")]
