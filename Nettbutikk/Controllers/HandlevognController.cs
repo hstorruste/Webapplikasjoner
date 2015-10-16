@@ -20,8 +20,10 @@ namespace Nettbutikk.Controllers
         {
             if (Session["LoggetInn"] == null || !(bool)Session["LoggetInn"])
             {
+                Session["FraBetaling"] = true;
                 return RedirectToAction("LoggInnKunde", "Kunde"); //Må finne en måte å returnere til betaling etter man er logget inn eller registrert.
             }
+            Session["FraBetaling"] = false;
             var kundeId = (int) Session["InnloggetKundeId"];
             var tempOrdre = DbHandlevogn.lagOrdre(Session.SessionID, kundeId); //Ny ordre ikke ennå lagret i databasen.
             var ordre = new Ordre() {

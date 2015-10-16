@@ -23,17 +23,22 @@ namespace Nettbutikk.Controllers
             }
             if (DbKunder.registrerKunde(innKunde))
             {
-                using (var db = new NettbutikkContext())
-                {
-                    Kunder kunde = db.Kunder.FirstOrDefault(k => k.Epost == innKunde.epost);
-                    Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
-                    Session["InnloggetKundeId"] = kunde.Id;
-                    Session["InnloggetKundePassordId"] = kunde.PassordId;
-                };
+                Kunder kunde = DbKunder.getKunde(innKunde.epost);    
+            
+                Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
+                Session["InnloggetKundeId"] = kunde.Id;
+                Session["InnloggetKundePassordId"] = kunde.PassordId;
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
                 Session["EmailFinnes"] = false;
-                return RedirectToAction("Hjem","Nettbutikk");
+                if ((bool)Session["fraBetaling"] == true)
+                {
+                    return RedirectToAction("Betaling", "Handlevogn");
+                }
+                else
+                {
+                    return RedirectToAction("Hjem", "Nettbutikk");
+                }
             }
             else
             {
@@ -42,6 +47,7 @@ namespace Nettbutikk.Controllers
             }
         }
 
+        [ChildActionOnly]
         public ActionResult RedigerKunde(int id)
         {
             RedigerKundeModell enKunde = DbKunder.hentEnKunde(id);
@@ -76,6 +82,7 @@ namespace Nettbutikk.Controllers
             }
         }
 
+        [ChildActionOnly]
         public ActionResult RedigerKundePassord(int passordId)
         {
             RedigerKundePassordModell enKundePassord = DbKunder.hentEnKundePassord(passordId);
@@ -107,6 +114,12 @@ namespace Nettbutikk.Controllers
             }
         }
 
+        public ActionResult seAlleKundeOrdre(int id)
+        {
+            var kundeOrdre = DbHandlevogn.finnAlleOrdre(id);
+            return View(kundeOrdre);
+        }
+
         public ActionResult LoggInnKunde()
         {
             return View();
@@ -117,15 +130,22 @@ namespace Nettbutikk.Controllers
         {
             if (DbKunder.Kunde_i_DB(innKunde))
             {
-                using (var db = new NettbutikkContext()) {
-                    Kunder kunde = db.Kunder.FirstOrDefault(k => k.Epost == innKunde.Epost);
-                    Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
-                    Session["InnloggetKundeId"] = kunde.Id;
-                    Session["InnloggetKundePassordId"] = kunde.PassordId;
-                };
+                Kunder kunde = DbKunder.getKunde(innKunde.Epost);
+
+                Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
+                Session["InnloggetKundeId"] = kunde.Id;
+                Session["InnloggetKundePassordId"] = kunde.PassordId;
                 Session["LoggetInn"] = true;
                 ViewBag.Innlogget = true;
-                return RedirectToAction("Hjem", "NettButikk");
+
+                if ((bool)Session["fraBetaling"] == true)
+                {
+                    return RedirectToAction("Betaling", "Handlevogn");
+                }
+                else
+                {
+                    return RedirectToAction("Hjem", "Nettbutikk");
+                }
             }
             else
             {
@@ -145,6 +165,10 @@ namespace Nettbutikk.Controllers
 
         public ActionResult DetaljerKunde()
         {
+            if(Session["LoggetInn"] == null || !(bool)Session["LoggetInn"])
+            {
+                return RedirectToAction("Hjem", "NettButikk");
+            } 
             return View();
         }
     }

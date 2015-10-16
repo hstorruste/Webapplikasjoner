@@ -8,6 +8,14 @@ namespace Nettbutikk.Controllers
 {
     public class DbKunder
     {
+        public static Kunder getKunde(string epost)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                return db.Kunder.FirstOrDefault(k => k.Epost == epost);
+            }
+        }
+
         public static bool registrerKunde(RegistrerKundeModell innKunde)
         {
             using (var db = new NettbutikkContext())
