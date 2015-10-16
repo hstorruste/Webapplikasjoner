@@ -87,6 +87,13 @@ namespace Nettbutikk.Controllers
             return View(ordre);
         }
 
+        [ChildActionOnly]
+        public ActionResult AntallVarer()
+        {
+            ViewData["VareAntall"] = DbHandlevogn.antallHandlevognVarer(Session.SessionID);
+            return PartialView("AntallVarer");
+        }
+
         //Kalles med ajax fra Handlevogn/Betaling-View
         public bool SendOrdre()
         {
