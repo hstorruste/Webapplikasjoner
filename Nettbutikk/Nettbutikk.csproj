@@ -209,6 +209,7 @@
     <Content Include="Views\Kunde\RedigerKundePassord.cshtml" />
     <Content Include="Views\Handlevogn\OrdreVarer.cshtml" />
     <Content Include="Views\Handlevogn\Kvittering.cshtml" />
+    <Content Include="Views\Handlevogn\AntallVarer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

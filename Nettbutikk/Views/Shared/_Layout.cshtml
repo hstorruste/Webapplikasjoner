@@ -24,7 +24,7 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="@Url.Action("Index","Handlevogn")"><span class="glyphicon glyphicon-shopping-cart"></span> Handlevogn</a></li>
+                    <li>@{Html.RenderAction("AntallVarer", "Handlevogn");}</li>
                     @if (Session["LoggetInn"] != null && (bool)Session["LoggetInn"])
                     {
                         <li><a href="@Url.Action("DetaljerKunde","Kunde")"><span class="glyphicon glyphicon-user"></span> @Session["Kundenavn"]</a></li>

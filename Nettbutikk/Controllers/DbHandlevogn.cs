@@ -238,6 +238,28 @@ namespace Nettbutikk.Controllers
                 }
             }
         }
+
+        public static int antallHandlevognVarer(string sessionId)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    int antall = 0;
+                    var varer = db.Kundevogner.Where(k => k.SessionId == sessionId).ToList();
+                    foreach(var vare in varer)
+                    {
+                        antall++;
+                    }
+
+                    return antall;
+                }
+                catch (Exception feil)
+                {
+                    return -1;
+                }
+            }
+        }
         //TODO - lag en metode som sletter alle "gamle kundevogner"- de som har utløpt på dato.
     }
 }
