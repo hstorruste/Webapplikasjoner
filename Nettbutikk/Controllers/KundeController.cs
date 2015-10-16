@@ -31,7 +31,7 @@ namespace Nettbutikk.Controllers
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
                 Session["EmailFinnes"] = false;
-                if ((bool)Session["fraBetaling"] == true)
+                if (Session["fraBetaling"] != null && (bool)Session["fraBetaling"] == true)
                 {
                     return RedirectToAction("Betaling", "Handlevogn");
                 }
@@ -138,7 +138,7 @@ namespace Nettbutikk.Controllers
                 Session["LoggetInn"] = true;
                 ViewBag.Innlogget = true;
 
-                if ((bool)Session["fraBetaling"] == true)
+                if (Session["fraBetaling"] != null && (bool)Session["fraBetaling"] == true)
                 {
                     return RedirectToAction("Betaling", "Handlevogn");
                 }
