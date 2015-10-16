@@ -15,7 +15,7 @@ namespace Nettbutikk.Controllers
                 try
                 {
                     //Test för att göra Email unikt. Vet inte om detta är det bästa sättet.
-                   var finnesKunde = db.Kunder.FirstOrDefault(k => k.Epost == innKunde.epost);
+                    var finnesKunde = db.Kunder.FirstOrDefault(k => k.Epost == innKunde.epost);
                     if (finnesKunde == null)
                     {
                         var nyKunde = new Kunder();
@@ -92,8 +92,14 @@ namespace Nettbutikk.Controllers
                 try
                 {
                     var upKunde = db.Kunder.Where(k => k.Id == innKunde.id).SingleOrDefault();
+                    var finnesKunde = db.Kunder.FirstOrDefault(k => k.Epost == innKunde.epost);
 
-                    if (upKunde != null)
+                    if (finnesKunde.Id == innKunde.id)
+                    {
+                        finnesKunde = null;
+                    }
+
+                    if (finnesKunde == null && upKunde != null)
                     {
                         upKunde.Fornavn = innKunde.fornavn;
                         upKunde.Etternavn = innKunde.etternavn;
@@ -123,11 +129,11 @@ namespace Nettbutikk.Controllers
             }
         }
 
-        public static RedigerKundePassordModell hentEnKundePassord(int id)
+        public static RedigerKundePassordModell hentEnKundePassord(int passordId)
         {
             using (var db = new NettbutikkContext())
             {
-                var enDbKundePassord = db.Passorden.Find(id);
+                var enDbKundePassord = db.Passorden.Find(passordId);
 
                 if (enDbKundePassord == null)
                     return null;
