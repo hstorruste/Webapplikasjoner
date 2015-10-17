@@ -32,8 +32,8 @@ namespace Nettbutikk.Models
                 new Merker { Navn = "B&CO" },
                 new Merker { Navn = "Sanita" },
                 new Merker { Navn = "Duffy" },
-                new Merker { Navn = "ECCO" }
-
+                new Merker { Navn = "ECCO" },
+                new Merker { Navn = "Skofus" }
             };
 
             var skoene = new List<Sko>
@@ -47,7 +47,9 @@ namespace Nettbutikk.Models
                 new Sko { Navn = "Odiin 1625500150", Beskrivelse = "Tøff snøresko til herre i marineblått nubuckskinn. Skoen har et perforert mønster unntatt på hælkappen, som er i glatt brunt skinn. Den har en brun skinndetalj på pløsen og detaljer på yttersiden. Den har dekksåle og fôr i tekstil. Den hvite gummisålen gjør den tøff og ungdommelig. ",
                         Merke = merker.Single( m => m.Navn == "Odiin") ,Farge = "Blå", Pris = 999.00M, ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
                 new Sko { Navn = "ECCO 634504 HAROLD", Beskrivelse = "Flott Ecco snøresko til herre i lekkert konjakkfarget skinn. Skoen har dekksåle i skinn samt meshfôr og skinnfôr i bakkappen. Den har stikninger på sidene. Sålen er i PU. Modellen fås også i sort. ",
-                        Merke = merker.Single( m => m.Navn == "ECCO"), Farge = "Brun", Pris = 999.00M, ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")}
+                        Merke = merker.Single( m => m.Navn == "ECCO"), Farge = "Brun", Pris = 999.00M, ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
+                new Sko { Navn = "Skofus 7615110953", Beskrivelse = "Superkule Skofus fritidssko, i blått ruskinn med blå netting og fine detaljer. Skoen har to borrelåsremmer, slik at den er lett å ta på. Den har smarte limegrønne og grå detaljer på remmene, sidene og hælen. Den har dekksåle i skinn og limegrønt meshfôr. Den har en hvit fleksibel såle med limegrønne kontraster. Den leveres med lys.",
+                        Merke = merker.Single( m => m.Navn == "Skofus"), Farge = "Blå", Pris = 449.00M, ForHvem = forHvem.Single( f => f.Navn == "Barn"), Kategori = kategorier.Single( k => k.Navn == "Sko")}
             };
             
             skoene.ForEach(s => context.Sko.Add(s));
@@ -92,7 +94,14 @@ namespace Nettbutikk.Models
                 new Storlekar { Sko = skoene.Single(s => s.Navn == "ECCO 634504 HAROLD"),  Storlek = 44  },
                 new Storlekar { Sko = skoene.Single(s => s.Navn == "ECCO 634504 HAROLD"),  Storlek = 45  },
                 new Storlekar { Sko = skoene.Single(s => s.Navn == "ECCO 634504 HAROLD"),  Storlek = 46  },
-                new Storlekar { Sko = skoene.Single(s => s.Navn == "ECCO 634504 HAROLD"),  Storlek = 47  }
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "ECCO 634504 HAROLD"),  Storlek = 47  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"),  Storlek = 20  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"),  Storlek = 21  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"),  Storlek = 22  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"),  Storlek = 23  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"),  Storlek = 24  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"),  Storlek = 25  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"),  Storlek = 26  }
 
             }.ForEach(s => context.Storlekar.Add(s));
 
@@ -137,8 +146,15 @@ namespace Nettbutikk.Models
                 new Bilder { Sko = skoene.Single(s => s.Navn == "ECCO 634504 HAROLD"), BildeUrl = "/Pictures/Sko/Stor/1225520531_1.jpg" },
                 new Bilder { Sko = skoene.Single(s => s.Navn == "ECCO 634504 HAROLD"), BildeUrl = "/Pictures/Sko/Stor/1225520531_2.jpg" },
                 new Bilder { Sko = skoene.Single(s => s.Navn == "ECCO 634504 HAROLD"), BildeUrl = "/Pictures/Sko/Stor/1225520531_4.jpg" },
-                new Bilder { Sko = skoene.Single(s => s.Navn == "ECCO 634504 HAROLD"), BildeUrl = "/Pictures/Sko/Stor/1225520531_6.jpg" }
-
+                new Bilder { Sko = skoene.Single(s => s.Navn == "ECCO 634504 HAROLD"), BildeUrl = "/Pictures/Sko/Stor/1225520531_6.jpg" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"), BildeUrl = "/Pictures/Sko/Medium/7615110953_1.jpg" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"), BildeUrl = "/Pictures/Sko/Medium/7615110953_2.png" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"), BildeUrl = "/Pictures/Sko/Medium/7615110953_4.png" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"), BildeUrl = "/Pictures/Sko/Medium/7615110953_6.png" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"), BildeUrl = "/Pictures/Sko/Stor/7615110953_1.jpg" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"), BildeUrl = "/Pictures/Sko/Stor/7615110953_2.png" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"), BildeUrl = "/Pictures/Sko/Stor/7615110953_4.png" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"), BildeUrl = "/Pictures/Sko/Stor/7615110953_6.png" }
 
             }.ForEach(b => context.Bilder.Add(b));
         }
