@@ -27,7 +27,7 @@ namespace Nettbutikk.Controllers
             
                 Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
                 Session["InnloggetKundeId"] = kunde.Id;
-                Session["InnloggetKundePassordId"] = kunde.PassordId;
+                Session["InnloggetKundePassordId"] = kunde.Passorden.PassordId;
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
                 Session["EmailFinnes"] = false;
@@ -60,25 +60,23 @@ namespace Nettbutikk.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return PartialView();
             }
             if (DbKunder.redigerKunde(innKunde))
             {
-                using (var db = new NettbutikkContext())
-                {
-                    Kunder kunde = db.Kunder.FirstOrDefault(k => k.Epost == innKunde.epost);
-                    Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
-                    Session["InnloggetKundeId"] = kunde.Id;
-                };
+                Kunder kunde = DbKunder.getKunde(innKunde.epost);
+
+                Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
+                Session["InnloggetKundeId"] = kunde.Id;
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
                 Session["EmailFinnes"] = false;
-                return View();
+                return PartialView();
             }
             else
             {
                 Session["EmailFinnes"] = true;
-                return View();
+                return PartialView();
             }
         }
 
@@ -87,30 +85,27 @@ namespace Nettbutikk.Controllers
         {
             RedigerKundePassordModell enKundePassord = DbKunder.hentEnKundePassord(passordId);
 
-            return View(enKundePassord);
+            return PartialView(enKundePassord);
         }
 
         [HttpPost]
-        public ActionResult RedigerKundePassord(RedigerKundePassordModell innPassord)
+        public bool RedigerKundePassord(RedigerKundePassordModell innPassord)
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return false;
             }
             if (DbKunder.redigerKundePassord(innPassord))
             {
-                using (var db = new NettbutikkContext())
-                {
-                    Passorden passord = db.Passorden.FirstOrDefault(p => p.PassordId == innPassord.PassordId);
-                    Session["InnloggetKundePassordId"] = passord.PassordId;
-                };
+                Passorden passord = DbKunder.getKundePassord(innPassord.passordId);
+                Session["InnloggetKundePassordId"] = passord.PassordId;
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
-                return View();
+                return true;
             }
             else
             {
-                return View();
+                return false;
             }
         }
 
@@ -134,7 +129,7 @@ namespace Nettbutikk.Controllers
 
                 Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
                 Session["InnloggetKundeId"] = kunde.Id;
-                Session["InnloggetKundePassordId"] = kunde.PassordId;
+                Session["InnloggetKundePassordId"] = kunde.Passorden.PassordId;
                 Session["LoggetInn"] = true;
                 ViewBag.Innlogget = true;
 

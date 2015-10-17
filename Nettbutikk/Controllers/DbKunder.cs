@@ -12,7 +12,15 @@ namespace Nettbutikk.Controllers
         {
             using (var db = new NettbutikkContext())
             {
-                return db.Kunder.FirstOrDefault(k => k.Epost == epost);
+                return db.Kunder.Include("Passorden").FirstOrDefault(k => k.Epost == epost);
+            }
+        }
+
+        public static Passorden getKundePassord(int innPassordId)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                return db.Passorden.FirstOrDefault(p => p.PassordId == innPassordId);
             }
         }
 
@@ -129,7 +137,7 @@ namespace Nettbutikk.Controllers
                         sparadKunde = true;
                     }
                 }
-                catch
+                catch (Exception feil)
                 {
                     sparadKunde = false;
                 }
@@ -149,7 +157,7 @@ namespace Nettbutikk.Controllers
                 {
                     var utKundePassord = new RedigerKundePassordModell()
                     {
-                        PassordId = enDbKundePassord.PassordId
+                        passordId = enDbKundePassord.PassordId
                     };
                     return utKundePassord;
                 }
@@ -163,7 +171,7 @@ namespace Nettbutikk.Controllers
             {
                 try
                 {
-                    var upPassord = db.Passorden.Where(p => p.PassordId == innPassord.PassordId).SingleOrDefault();
+                    var upPassord = db.Passorden.Where(p => p.PassordId == innPassord.passordId).SingleOrDefault();
 
                     if (upPassord != null)
                     {
@@ -175,7 +183,7 @@ namespace Nettbutikk.Controllers
                         sparadPassord = true;
                     }
                 }
-                catch
+                catch(Exception feil)
                 {
                     sparadPassord = false;
                 }

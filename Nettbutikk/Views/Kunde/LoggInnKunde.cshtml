@@ -35,7 +35,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Logg inn" class="btn btn-success"/>
-                    <p class="btn btn-default">@Html.ActionLink("Registrer", "RegistrerKunde", "Kunde")</p>
+                    @Html.ActionLink("Registrer", "RegistrerKunde", "Kunde", new { }, new { @class="btn btn-default"})
                 </div>
             </div>
         </div>

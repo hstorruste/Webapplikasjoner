@@ -6,6 +6,7 @@
 
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.passordId)
             
         <div class="form-group">
             @Html.LabelFor(model => model.gammeltPassord, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -33,9 +34,16 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-8">
-                <input type="submit" value="Lagre" class="btn btn-success" />
+                <input id="endrePassord" type="submit" value="Lagre" class="btn btn-success" />
             </div>
         </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+                <p id="labelPassord"></p>
+            </div>
+        </div>
+
     </div>
 }
 

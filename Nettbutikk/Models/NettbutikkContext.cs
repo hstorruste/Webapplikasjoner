@@ -44,6 +44,7 @@ namespace Nettbutikk.Models
         public string Adresse { get; set; }
         public string Postnr { get; set; }
         public string Epost { get; set; }
+        [ForeignKey("Passorden")]
         public int PassordId { get; set; }
 
         public virtual Poststeder Poststeder { get; set; }

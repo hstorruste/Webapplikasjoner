@@ -2,18 +2,31 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+    <meta name="viewport" content="width=device-width" />   
     <title>DetaljerKunde</title>
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#endrePassord').click(function () {
+                var id = $('#lblPassordId').data('passordId');
+
+                $.ajax({
+                    type: "POST ",
+                    url: '@Url.Action("RedigerKundePassord", "Kunde")',
+                    data: { passordId: id },
+                    success: function (data) {
+                        window.location.reload();
+                        $(labelPassord).text("Passordet er endret");
+                    },
+                    error: function () {
+                        $(labelPassord).text("Feil! Kunne ikke endre passord");
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-    <!--Kasnke inte är det bästa sättet att lösa detta på (F)-->
-    @if (Session["InnloggetKundeId"] == null)
-    {
-        @Html.Action("Hjem", "Nettbutikk")
-    }
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -40,7 +53,8 @@
                     </div>
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
-                            @Html.Action("RedigerKundePassord", "Kunde", new { passordId = Session["InnloggetKundePassordId"] })    
+                            @Html.Action("RedigerKundePassord", "Kunde", new { passordId = Session["InnloggetKundePassordId"] })
+                            <label id="lblPassordId" data-passordId="@Session["InnloggetKundePassordId"]"></label>
                         </div>
                     </div>
                 </div>

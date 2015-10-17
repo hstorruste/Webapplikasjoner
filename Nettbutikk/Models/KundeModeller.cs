@@ -73,7 +73,7 @@ namespace Nettbutikk.Models
 
     public class RedigerKundePassordModell
     {
-        public int PassordId { get; set; }
+        public int passordId { get; set; }
         [DataType(DataType.Password)]
         [StringLength(255, MinimumLength = 8, ErrorMessage = "Passord må være mellom 8 og 255 tegn")]
         [Display(Name = "Gammelt passord")]
