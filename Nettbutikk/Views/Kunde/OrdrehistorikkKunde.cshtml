@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Nettbutikk.Models.Ordrer>
+<table class="table">
+    <tr>
+        <th>
+            Ordrenummer
+        </th>
+        <th>
+            Dato
+        </th>
+        <th>
+            Beløp
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrdreId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrdreDato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalBelop)
+            </td>
+        </tr>
+    }
+
+</table>

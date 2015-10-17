@@ -104,9 +104,17 @@ namespace Nettbutikk.Models
         [DataType(DataType.Password)]
         [Display(Name = "Passord")]
         public string passord { get; set; }
+    }
 
-        /* Funderar på om jag ska ta bort denna. Har inte användt den än.
-        [Display(Name = "Husk meg?")]
-        public bool huskMeg { get; set; }*/
+    public class OrdreKundeModell
+    {
+        [Display(Name = "Ordrenummer")]
+        public int OrdreId { get; set; }
+        [ScaffoldColumn(false)]
+        public int kundeId { get; set; }
+        [Display(Name = "Dato")]
+        public System.DateTime ordreDato { get; set; }
+        [Display(Name = "Totalt")]
+        public decimal totalBelop { get; set; }
     }
 }

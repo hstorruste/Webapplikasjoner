@@ -215,6 +215,8 @@
     <Content Include="Views\Nettbutikk\ForHvem.cshtml" />
     <Content Include="Views\Nettbutikk\KategoriPartial.cshtml" />
     <Content Include="Views\Nettbutikk\Kategori.cshtml" />
+    <Content Include="Views\Kunde\OrdreDetaljerKunde.cshtml" />
+    <Content Include="Views\Kunde\OrdrehistorikkKunde.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

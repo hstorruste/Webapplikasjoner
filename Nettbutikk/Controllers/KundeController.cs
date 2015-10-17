@@ -109,10 +109,15 @@ namespace Nettbutikk.Controllers
             }
         }
 
-        public ActionResult seAlleKundeOrdre(int id)
+        public ActionResult OrdrehistorikkKunde(int id)
         {
             var kundeOrdre = DbHandlevogn.finnAlleOrdre(id);
             return View(kundeOrdre);
+        }
+
+        public ActionResult OrdreDetaljerKunde()
+        {
+            return View();
         }
 
         public ActionResult LoggInnKunde()

@@ -1,0 +1,22 @@
+﻿@model Nettbutikk.Models.Ordre
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Betaling</title>
+</head>
+<body>
+    <div>
+        <strong>@Html.DisplayNameFor(model => model.ordreDato)</strong>
+        @Html.DisplayFor(model => model.ordreDato)
+        @Html.Partial("OrdreVarer", Model)
+        <div class="row pull-right">
+            @Html.ActionLink("Tilbake kunde detaljer", "Kunde", new { }, new { @class = "btn btn-default" })
+            <a id="btnSend" href="#" class="btn btn-success">Send</a>
+        </div>
+    </div>
+</body>
+</html>
+
