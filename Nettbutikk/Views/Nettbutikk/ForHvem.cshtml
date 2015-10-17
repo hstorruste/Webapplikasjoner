@@ -19,7 +19,7 @@
                 @item.Navn
             </h3>
             <hr />
-            @{Html.RenderAction("KategoriPartial","Nettbutikk", new { forHvemId = ViewData["ForHvemId"], kategoriId = item.KategoriId});}
+            Html.RenderAction("KategoriPartial","Nettbutikk", new { forHvemId = ViewData["ForHvemId"], kategoriId = item.KategoriId});
         }
     </div>
 </body>

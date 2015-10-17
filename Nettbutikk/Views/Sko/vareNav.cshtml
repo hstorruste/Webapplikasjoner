@@ -3,8 +3,8 @@
 <ul class="nav navbar-nav">
     @foreach (var item in Model)
     {
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="@Url.Action("ForHvem", "Nettbutikk", new { forHvemId = item.ForId } )">@item.Navn <span class="caret"></span></a>
+        <li class="dropdown" >
+            <a class="dropdown-toggle" data-toggle="dropdown" href=""><div onclick="klikketForHvem(@item.ForId)">@item.Navn <span class="caret"></span></div></a>
             @{Html.RenderAction("vareNavKategorier", "Sko", new { forHvem = item.ForId });}
         </li>
     }
