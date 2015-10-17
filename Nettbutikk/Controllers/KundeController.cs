@@ -89,11 +89,11 @@ namespace Nettbutikk.Controllers
         }
 
         [HttpPost]
-        public bool RedigerKundePassord(RedigerKundePassordModell innPassord)
+        public int RedigerKundePassord(RedigerKundePassordModell innPassord)
         {
             if (!ModelState.IsValid)
             {
-                return false;
+                return 0;
             }
             if (DbKunder.redigerKundePassord(innPassord))
             {
@@ -101,11 +101,11 @@ namespace Nettbutikk.Controllers
                 Session["InnloggetKundePassordId"] = passord.PassordId;
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
-                return true;
+                return 1;
             }
             else
             {
-                return false;
+                return 0;
             }
         }
 

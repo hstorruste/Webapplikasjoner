@@ -175,7 +175,14 @@ namespace Nettbutikk.Controllers
 
                     if (upPassord != null)
                     {
+                        byte[] gammeltpassordDb = lagHash(innPassord.gammeltPassord);
                         byte[] passordDb = lagHash(innPassord.nyttPassord);
+                        //Sjekker om det er skrevet riktig gammelt passord.
+                        if (!gammeltpassordDb.SequenceEqual(upPassord.Passord))
+                        {
+                            return false;
+                        }
+
                         upPassord.Passord = passordDb;
                         
                         db.SaveChanges();

@@ -8,17 +8,35 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#endrePassord').click(function () {
-                var id = $('#lblPassordId').data('passordId');
+                var id = $('#passordId').val();
+                var gammel = $('#gammeltPassord').val();
+                var nytt = $('#nyttPassord').val();
+                var bekreft = $('#bekreftPassord').val();
 
                 $.ajax({
-                    type: "POST ",
+                    type: "POST",
                     url: '@Url.Action("RedigerKundePassord", "Kunde")',
-                    data: { passordId: id },
+                    data: {
+                        passordId: id,
+                        gammeltPassord: gammel,
+                        nyttPassord: nytt,
+                        bekreftPassord: bekreft
+                    },
                     success: function (data) {
-                        window.location.reload();
-                        $(labelPassord).text("Passordet er endret");
+                        if (data > 0) {
+                            $(labelPassord).removeClass("text-danger");
+                            $(labelPassord).text("Passordet er endret");
+                            $('#gammeltPassord').val("");
+                            $('#nyttPassord').val("");
+                            $('#bekreftPassord').val("");
+                        }
+                        else {
+                            $(labelPassord).addClass("text-danger");
+                            $(labelPassord).text("Gammelt passord ikke gyldig! Passord ble ikke endret");
+                        }
                     },
                     error: function () {
+                        $(labelPassord).addClass("text-danger");
                         $(labelPassord).text("Feil! Kunne ikke endre passord");
                     }
                 });
