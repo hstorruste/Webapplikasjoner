@@ -224,7 +224,7 @@ namespace Nettbutikk.Models
                 new Bilder { Sko = skoene.Single(s => s.Navn == "Skofus 7615110953"), BildeUrl = "/Pictures/Sko/Stor/7615110953_6.png" },
 
                 new Bilder { Sko = skoene.Single(s => s.Navn == "Adidas Adistar Racer J"), BildeUrl = "/Pictures/Sko/Medium/7615410310_1.jpg" },
-                new Bilder { Sko = skoene.Single(s => s.Navn == "Adidas Adistar Racer J"), BildeUrl = "/Pictures/Sko/Medium/7615410310_2,png" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Adidas Adistar Racer J"), BildeUrl = "/Pictures/Sko/Medium/7615410310_2.png" },
                 new Bilder { Sko = skoene.Single(s => s.Navn == "Adidas Adistar Racer J"), BildeUrl = "/Pictures/Sko/Medium/7615410310_4.png" },
                 new Bilder { Sko = skoene.Single(s => s.Navn == "Adidas Adistar Racer J"), BildeUrl = "/Pictures/Sko/Medium/7615410310_6.png" },
                 new Bilder { Sko = skoene.Single(s => s.Navn == "Adidas Adistar Racer J"), BildeUrl = "/Pictures/Sko/Stor/7615410310_1.jpg" },
