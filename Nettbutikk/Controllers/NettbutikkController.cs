@@ -25,5 +25,32 @@ namespace Nettbutikk.Controllers
             return View(skoene);
         }
 
+        public ActionResult ForHvem(int forHvemId)
+        {
+            List<Kategorier> kategorier = DbSko.hentAlleKategorierForHvem(forHvemId);
+            ViewData["ForHvemId"] = forHvemId;
+            ViewData["ForHvem"] = DbSko.getFor(forHvemId).Navn;
+            return View(kategorier);
+        }
+
+        public ActionResult Kategori(int forHvemId, int kategoriId)
+        {
+            ViewData["ForHvemId"] = forHvemId;
+            ViewData["ForHvem"] = DbSko.getFor(forHvemId).Navn;
+            Kategorier kategori = DbSko.getKategori(kategoriId);
+            return View(kategori);
+        }
+
+        public ActionResult KategoriPartial(int forHvemId, int kategoriId)
+        {
+            List<Skoen> skoene = DbSko.hentAlleSkoFor(forHvemId, kategoriId);
+            return PartialView(skoene);
+        }
+
+        public ActionResult ListePartial(Skoen sko)
+        {
+            return PartialView(sko);
+        }
+
     }
 }

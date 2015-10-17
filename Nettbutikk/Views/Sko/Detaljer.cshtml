@@ -18,7 +18,7 @@
                     url: '@Url.Action("LeggTil", "Handlevogn")',
                     data: { skoId: id, skoStr: str },
                     success: function (){
-                        $('#Resultat').text("Lagt til i handlevogn");
+                        window.location.replace("@Url.Action("Index","Handlevogn")");
                     },
                     error: function () {
                         $('#Resultat').addClass("text-danger")

@@ -65,7 +65,7 @@
                 }
 
                 <tr class="panel-footer">
-                    <td></td>
+                    <td>@Html.ActionLink("Fortsett å handle", "Hjem", "Nettbutikk", new { }, new { @class = "btn btn-default" })</td>
                     <td>
                     <td>@Html.DisplayNameFor(model => model.totalbelop)</td>
                     <td>@Html.DisplayFor(model => model.totalbelop)</td>
@@ -80,8 +80,6 @@
             }
         </div>
     </div>
-    <p>
-        @Html.ActionLink("Fortsett å handle", "Hjem", "Nettbutikk")
-    </p>
+    
 </body>
 </html>

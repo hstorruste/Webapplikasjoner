@@ -210,6 +210,11 @@
     <Content Include="Views\Handlevogn\OrdreVarer.cshtml" />
     <Content Include="Views\Handlevogn\Kvittering.cshtml" />
     <Content Include="Views\Handlevogn\AntallVarer.cshtml" />
+    <Content Include="Views\Sko\vareNav.cshtml" />
+    <Content Include="Views\Sko\vareNavKategorier.cshtml" />
+    <Content Include="Views\Nettbutikk\ForHvem.cshtml" />
+    <Content Include="Views\Nettbutikk\KategoriPartial.cshtml" />
+    <Content Include="Views\Nettbutikk\Kategori.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

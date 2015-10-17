@@ -23,5 +23,20 @@ namespace Nettbutikk.Controllers
             var ensko = DbSko.hentEnSko(skoId);
             return View(ensko);
         }
+
+        [ChildActionOnly]
+        public ActionResult vareNav()
+        {
+            List<For> forHvem = DbSko.hentAlleForHvem();
+            return PartialView(forHvem);
+        }
+
+        [ChildActionOnly]
+        public ActionResult vareNavKategorier(int forHvem)
+        {
+            ViewData["ForHvemId"] = forHvem;
+            List<Kategorier> kategorier = DbSko.hentAlleKategorierForHvem(forHvem);
+            return PartialView(kategorier);
+        }
     }
 }

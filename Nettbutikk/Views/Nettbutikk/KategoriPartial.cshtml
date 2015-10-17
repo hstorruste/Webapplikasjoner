@@ -1,0 +1,18 @@
+﻿@model List<Nettbutikk.Models.Skoen>
+
+
+<div class="panel-group col-md-12">
+    <!-- Legger inn listePartials med sko. -->
+    <div>
+        @if (Model != null)
+        {
+            foreach (var sko in Model)
+            {
+                <div class="col-md-3" style="padding:0px">
+                    @{Html.RenderAction("ListePartial", sko);}
+                </div>
+            }
+        }
+    </div>
+</div>
+

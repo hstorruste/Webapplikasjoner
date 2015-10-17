@@ -17,12 +17,7 @@
 
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="navbar navbar-nav">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-
-                </ul>
+                @{Html.RenderAction("vareNav", "Sko"); }
                 <ul class="nav navbar-nav navbar-right">
                     <li>@{Html.RenderAction("AntallVarer", "Handlevogn");}</li>
                     @if (Session["LoggetInn"] != null && (bool)Session["LoggetInn"])
@@ -44,11 +39,13 @@
                 </ul>
             </div>
         </div>
+        
     </div>
+    
     <div class="container body-content">
         @RenderBody()
         
-        <footer class="navbar navbar-fixed-bottom" style="background-color: #fff; border-top-color: #ddd">
+        <footer class="navbar navbar-default navbar-fixed-bottom" >
             <p><center>&copy;Mappeoppgave i Webaplikasjoner for Adrian Westlund og Hallbjørn Storruste</center></p>
         </footer>
     </div>

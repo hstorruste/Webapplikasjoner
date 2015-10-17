@@ -1,0 +1,26 @@
+﻿@model List<Nettbutikk.Models.Kategorier>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Skobutikken</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">
+            @ViewData["ForHvem"]
+        </h2>
+        <hr />
+        @foreach (var item in Model)
+        {
+            <h3 class="text-center">
+                @item.Navn
+            </h3>
+            <hr />
+            @{Html.RenderAction("KategoriPartial","Nettbutikk", new { forHvemId = ViewData["ForHvemId"], kategoriId = item.KategoriId});}
+        }
+    </div>
+</body>
+</html>
