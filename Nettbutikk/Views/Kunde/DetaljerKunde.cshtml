@@ -4,7 +4,6 @@
 <head>
     <meta name="viewport" content="width=device-width" />   
     <title>DetaljerKunde</title>
-    <script src="~/Scripts/jquery-1.9.1.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#endrePassord').click(function () {
@@ -41,6 +40,18 @@
                     }
                 });
             });
+
+            $('a[data-ordreId]').click(function(){
+                var id = $(this).text();
+                var url = "@Url.Action("getOrdreDetaljer", "Kunde")" + "?ordreId=" + id;
+                console.log(url);
+                $('#detaljModal').load(url,lastModal());
+                
+            });
+
+            function lastModal() {
+                $('#modalTrigger').click();
+            }
         });
     </script>
 </head>
@@ -86,6 +97,7 @@
                         <div class="panel-body">
                             @Html.Action("OrdrehistorikkKunde", "Kunde", new { id = Session["InnloggetKundeId"] })
                         </div>
+                        <div id="test"></div>
                     </div>
                 </div>
             </div>

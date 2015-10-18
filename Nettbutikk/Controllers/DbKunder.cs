@@ -224,5 +224,22 @@ namespace Nettbutikk.Controllers
                 }
             }
         }
+
+        public static Ordrer getOrdre(int ordreId)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    Ordrer enOrdre = db.Ordrer.Include("OrdreDetaljer.Sko.Merke").Include("OrdreDetaljer.Sko.Bilder").Include("Kunder.Poststeder")
+                        .SingleOrDefault(o => o.OrdreId == ordreId);
+                    return enOrdre;
+                }
+                catch (Exception feil)
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

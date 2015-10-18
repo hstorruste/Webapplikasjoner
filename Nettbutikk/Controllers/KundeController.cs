@@ -52,7 +52,7 @@ namespace Nettbutikk.Controllers
         {
             RedigerKundeModell enKunde = DbKunder.hentEnKunde(id);
 
-            return View(enKunde);  
+            return PartialView(enKunde);  
         }
 
        [HttpPost]
@@ -112,12 +112,12 @@ namespace Nettbutikk.Controllers
         public ActionResult OrdrehistorikkKunde(int id)
         {
             var kundeOrdre = DbHandlevogn.finnAlleOrdre(id);
-            return View(kundeOrdre);
+            return PartialView(kundeOrdre);
         }
 
         public ActionResult OrdreDetaljerKunde()
         {
-            return View();
+            return PartialView();
         }
 
         public ActionResult LoggInnKunde()
@@ -170,6 +170,36 @@ namespace Nettbutikk.Controllers
                 return RedirectToAction("Hjem", "NettButikk");
             } 
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult getOrdreDetaljer(int ordreId)
+        {
+            var tempOrdre = DbKunder.getOrdre(ordreId);
+
+            var ordre = new Ordre()
+            {
+                ordreId = tempOrdre.OrdreId,
+                ordreDato = tempOrdre.OrdreDato,
+                kundeId = tempOrdre.KundeId,
+                kundeNavn = tempOrdre.Kunder.Fornavn + " " + tempOrdre.Kunder.Etternavn,
+                adresse = tempOrdre.Kunder.Adresse,
+                postnr = tempOrdre.Kunder.Postnr,
+                poststed = tempOrdre.Kunder.Poststeder.Poststed,
+                varer = tempOrdre.OrdreDetaljer.Select(d => new HandlevognVare
+                {
+                    skoId = d.Sko.SkoId,
+                    skoNavn = d.Sko.Navn,
+                    merke = d.Sko.Merke.Navn,
+                    farge = d.Sko.Farge,
+                    storlek = d.Storlek,
+                    pris = d.Pris,
+                    bildeUrl = d.Sko.Bilder.Where(b => b.BildeUrl.Contains("/Medium/")).FirstOrDefault().BildeUrl,
+                }).ToList(),
+                totalBelop = tempOrdre.TotalBelop
+            };
+
+            return PartialView("OrdreDetaljerKunde", ordre);
         }
     }
 }

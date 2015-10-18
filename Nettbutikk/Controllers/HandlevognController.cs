@@ -52,7 +52,7 @@ namespace Nettbutikk.Controllers
         //Partial view
         public ActionResult OrdreVarer(Ordre ordre)
         {
-            return View(ordre);
+            return PartialView(ordre);
         }
 
         public ActionResult Kvittering()

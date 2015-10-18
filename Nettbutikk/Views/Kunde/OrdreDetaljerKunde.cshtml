@@ -1,22 +1,72 @@
 ﻿@model Nettbutikk.Models.Ordre
 
-<!DOCTYPE html>
+<div class="modal-dialog modal-lg">
+    <div class="modal-content container">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title text-center">Kvittering</h4>
+        </div>
+        <div class="modal-body">
+            <div>
+                <div class="row">
+                    <div class="col-md-6 text-left">
+                        <strong>
+                            Bestillingsdato :
+                        </strong>
+                        @Html.DisplayFor(model => model.ordreDato)
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <strong>
+                            @Html.DisplayNameFor(model => model.ordreId) :
+                        </strong>
+                        @Html.DisplayFor(model => model.ordreId)
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <h4>Leveringsadresse</h4>
+                    <dl class="dl-horizontal">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Betaling</title>
-</head>
-<body>
-    <div>
-        <strong>@Html.DisplayNameFor(model => model.ordreDato)</strong>
-        @Html.DisplayFor(model => model.ordreDato)
-        @Html.Partial("OrdreVarer", Model)
-        <div class="row pull-right">
-            @Html.ActionLink("Tilbake kunde detaljer", "Kunde", new { }, new { @class = "btn btn-default" })
-            <a id="btnSend" href="#" class="btn btn-success">Send</a>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.kundeNavn)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.kundeNavn)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.adresse)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.adresse)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.postnr)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.postnr)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.poststed)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.poststed)
+                        </dd>
+
+                    </dl>
+                </div>
+                <hr />
+                @{Html.RenderAction("OrdreVarer", "Handlevogn", new { ordre = Model });}
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left col-md-offset-5 col-md-2" data-dismiss="modal">Lukk</button>
         </div>
     </div>
-</body>
-</html>
-
+</div>
