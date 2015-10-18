@@ -62,7 +62,7 @@
             </div>
         </div>
 
-        @if (Session["EmailFinnes"] != null && (bool)Session["EmailFinnes"] == true)
+        @if (ViewData["EmailFinnes"] != null && (bool)ViewData["EmailFinnes"] == true)
         {
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -70,7 +70,7 @@
                 </div>
             </div>
         }
-        @if (Session["EmailFinnes"] != null && (bool)Session["EmailFinnes"] == false)
+        @if (ViewData["EmailFinnes"] != null && (bool)ViewData["EmailFinnes"] == false)
         {
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

@@ -13,6 +13,13 @@
 
                 var id = $('#lblSkoId').data('skoid');
                 var str = parseInt($('#storlekar').find(":selected").text());
+                console.log($('#storlekar').val());
+
+                if ($("#storlekar").val() == "") {
+                    $('#Resultat').addClass("text-danger");
+                    $('#Resultat').text("Du må velge skostørrelse!");
+                    return;
+                }
 
                 $.ajax({
                     url: '@Url.Action("LeggTil", "Handlevogn")',
@@ -72,7 +79,7 @@
                 <p><b>@Html.DisplayNameFor(modelItem => Model.beskrivelse):</b></p>
                 <p>@Model.beskrivelse</p><p><b>@Html.DisplayNameFor(modelItem => Model.storlekar):</b></p>
                 <!--TODO - Sett en defaultverdi som ikke er godkjent. Legg inn sjekk for om man har valgt ett skonummer og gi tilbakemelding.-->
-                @Html.DropDownListFor(modelItem => Model.storlekar, new SelectList(Model.storlekar, "StorlekId", "Storlek"))
+                @Html.DropDownListFor(modelItem => Model.storlekar, new SelectList(Model.storlekar, "StorlekId", "Storlek"),"Velg størrelse")
                 <br /><br />
                 <button id="btnLeggTil" type="button" class="btn btn-success">Legg i handlevogn</button>
                 <br />

@@ -70,12 +70,12 @@ namespace Nettbutikk.Controllers
                 Session["InnloggetKundeId"] = kunde.Id;
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
-                Session["EmailFinnes"] = false;
+                ViewData["EmailFinnes"] = false;
                 return PartialView();
             }
             else
             {
-                Session["EmailFinnes"] = true;
+                ViewData["EmailFinnes"] = true;
                 return PartialView();
             }
         }
