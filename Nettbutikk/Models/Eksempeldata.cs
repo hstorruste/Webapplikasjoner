@@ -38,7 +38,8 @@ namespace Nettbutikk.Models
                 new Merker { Navn = "Cult" },
                 new Merker { Navn = "Bronx" },
                 new Merker { Navn = "Tamaris" },
-                new Merker { Navn = "Reebok" }
+                new Merker { Navn = "Reebok" },
+                new Merker { Navn = "Spiler" }
             };
 
             var skoene = new List<Sko>
@@ -67,7 +68,6 @@ namespace Nettbutikk.Models
                         Merke = merker.Single( m => m.Navn == "Cult"), Farge = "Brun", Pris = 899.00M, ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "TEX-membran")},
                 new Sko { Navn = "Odiin 1225502411", Beskrivelse = "Flott sort snøresko til herre i lekkert semsket skinn. Skoen har dekksåle i skinn med ekstra fotbuestøtte og skinnfôr. Den har flotte sømmer på sider og bakkappe. Den har lyse kantsømmer langs sålekanten. Sålen er i PU.",
                         Merke = merker.Single( m => m.Navn == "Odiin"), Farge = "Sort", Pris = 999.00M, ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
-
                 new Sko { Navn = "Skofus 8415501151", Beskrivelse = "Smart blå Skofus gummistøvle med bil motiver i forskellige farver. Støvlen har en ensfarvet sort nylon kant øverst på skaftet, samt en kraftig profileret gummisål.",
                         Merke = merker.Single( m => m.Navn == "Skofus"), Farge = "Blå", Pris = 349.00M, ForHvem = forHvem.Single( f => f.Navn == "Barn"), Kategori = kategorier.Single( k => k.Navn == "Gummistøvler")},
                 new Sko { Navn = "Skofus 8415500165", Beskrivelse = "Smart rød Skofus gummistøvle. Støvlen har flotte detaljer på skaftet. Den har en strop bag på skaftet, så den er let at få på.",
@@ -79,7 +79,11 @@ namespace Nettbutikk.Models
                 new Sko { Navn = "Reebok Franconia Ridge", Beskrivelse = "Flott Reebok damesneaker i rød tekstil med besetninger i annet materiale. Skoen har rød og sorte lisser. Den har hvite stikninger som dekorasjon samt detaljer på yttersiden. Skoen har tekstilfôr samt en Gore-Tex, som holder den vanntett. Yttersålen er i gummi. Modellen fås også i sort til herrer.",
                         Merke = merker.Single( m => m.Navn == "Reebok"), Farge = "Rød", Pris = 1299.00M, ForHvem = forHvem.Single( f => f.Navn == "Dame"), Kategori = kategorier.Single( k => k.Navn == "TEX-membran")},
                 new Sko { Navn = "Adidas Gazelle OG W", Beskrivelse = "Klassisk blå adidas Gazelle sneaker med hvite skinnbesetninger, lisser og hvitt skinnfôr. Logo og gulldetalj på hæl.",
-                        Merke = merker.Single( m => m.Navn == "Adidas"), Farge = "Blå", Pris = 899.00M, ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sneakers")}
+                        Merke = merker.Single( m => m.Navn == "Adidas"), Farge = "Blå", Pris = 899.00M, ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sneakers")},
+                new Sko { Navn = "Spiler 8425500952", Beskrivelse = "",
+                        Merke = merker.Single( m => m.Navn == "Spiler"), Farge = "Blå", Pris = 299.00M, ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Gummistøvler")},
+                new Sko { Navn = "ECCO 241123 Aimee", Beskrivelse = "Aktuell damesneaker fra Ecco i sort skinn. Skoen har lyse lisser og en lys gummisåle. Behagelig modell til gåturen.",
+                        Merke = merker.Single( m => m.Navn == "ECCO"), Farge = "Sort", Pris = 899.00M, ForHvem = forHvem.Single( f => f.Navn == "Dame"), Kategori = kategorier.Single( k => k.Navn == "Sko")}
             };
             
             skoene.ForEach(s => context.Sko.Add(s));
@@ -240,7 +244,27 @@ namespace Nettbutikk.Models
                 new Storlekar { Sko = skoene.Single(s => s.Navn == "Adidas Gazelle OG W"),  Storlek = 41  },
                 new Storlekar { Sko = skoene.Single(s => s.Navn == "Adidas Gazelle OG W"),  Storlek = 42  },
                 new Storlekar { Sko = skoene.Single(s => s.Navn == "Adidas Gazelle OG W"),  Storlek = 43  },
-                new Storlekar { Sko = skoene.Single(s => s.Navn == "Adidas Gazelle OG W"),  Storlek = 44  }
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Adidas Gazelle OG W"),  Storlek = 44  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"),  Storlek = 35  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"),  Storlek = 36  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"),  Storlek = 37  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"),  Storlek = 38  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"),  Storlek = 39  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"),  Storlek = 40  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"),  Storlek = 41  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"),  Storlek = 42  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"),  Storlek = 43  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"),  Storlek = 44  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"),  Storlek = 45  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"),  Storlek = 46  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"),  Storlek = 47  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"),  Storlek = 36  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"),  Storlek = 37  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"),  Storlek = 38  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"),  Storlek = 39  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"),  Storlek = 40  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"),  Storlek = 41  },
+                new Storlekar { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"),  Storlek = 42  }
 
             }.ForEach(s => context.Storlekar.Add(s));
 
@@ -406,7 +430,25 @@ namespace Nettbutikk.Models
                 new Bilder { Sko = skoene.Single(s => s.Navn == "Adidas Gazelle OG W"), BildeUrl = "/Pictures/Sko/Stor/7625811150_1.jpg" },
                 new Bilder { Sko = skoene.Single(s => s.Navn == "Adidas Gazelle OG W"), BildeUrl = "/Pictures/Sko/Stor/7625811150_2.jpg" },
                 new Bilder { Sko = skoene.Single(s => s.Navn == "Adidas Gazelle OG W"), BildeUrl = "/Pictures/Sko/Stor/7625811150_4.jpg" },
-                new Bilder { Sko = skoene.Single(s => s.Navn == "Adidas Gazelle OG W"), BildeUrl = "/Pictures/Sko/Stor/7625811150_6.jpg" }
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Adidas Gazelle OG W"), BildeUrl = "/Pictures/Sko/Stor/7625811150_6.jpg" },
+
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"), BildeUrl = "/Pictures/Sko/Medium/8425500952_1.jpg" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"), BildeUrl = "/Pictures/Sko/Medium/8425500952_2.png" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"), BildeUrl = "/Pictures/Sko/Medium/8425500952_4.png" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"), BildeUrl = "/Pictures/Sko/Medium/8425500952_6.png" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"), BildeUrl = "/Pictures/Sko/Stor/8425500952_1.jpg" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"), BildeUrl = "/Pictures/Sko/Stor/8425500952_2.png" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"), BildeUrl = "/Pictures/Sko/Stor/8425500952_4.png" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "Spiler 8425500952"), BildeUrl = "/Pictures/Sko/Stor/8425500952_6.png" },
+
+                new Bilder { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"), BildeUrl = "/Pictures/Sko/Medium/2455525011_1.jpg" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"), BildeUrl = "/Pictures/Sko/Medium/2455525011_2.jpg" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"), BildeUrl = "/Pictures/Sko/Medium/2455525011_4.jpg" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"), BildeUrl = "/Pictures/Sko/Medium/2455525011_6.jpg" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"), BildeUrl = "/Pictures/Sko/Stor/2455525011_1.jpg" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"), BildeUrl = "/Pictures/Sko/Stor/2455525011_2.jpg" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"), BildeUrl = "/Pictures/Sko/Stor/2455525011_4.jpg" },
+                new Bilder { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"), BildeUrl = "/Pictures/Sko/Stor/2455525011_6.jpg" }
 
             }.ForEach(b => context.Bilder.Add(b));
         }

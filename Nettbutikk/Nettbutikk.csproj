@@ -133,6 +133,10 @@
     <Content Include="Pictures\Sko\Medium\2455100311_2.jpg" />
     <Content Include="Pictures\Sko\Medium\2455100311_4.jpg" />
     <Content Include="Pictures\Sko\Medium\2455100311_6.jpg" />
+    <Content Include="Pictures\Sko\Medium\2455525011_1.jpg" />
+    <Content Include="Pictures\Sko\Medium\2455525011_2.jpg" />
+    <Content Include="Pictures\Sko\Medium\2455525011_4.jpg" />
+    <Content Include="Pictures\Sko\Medium\2455525011_6.jpg" />
     <Content Include="Pictures\Sko\Medium\5435525011_1.jpg" />
     <Content Include="Pictures\Sko\Medium\5435525011_2.jpg" />
     <Content Include="Pictures\Sko\Medium\5435525011_4.jpg" />
@@ -173,6 +177,10 @@
     <Content Include="Pictures\Sko\Medium\8425500460_2.png" />
     <Content Include="Pictures\Sko\Medium\8425500460_4.png" />
     <Content Include="Pictures\Sko\Medium\8425500460_6.png" />
+    <Content Include="Pictures\Sko\Medium\8425500952_1.jpg" />
+    <Content Include="Pictures\Sko\Medium\8425500952_2.png" />
+    <Content Include="Pictures\Sko\Medium\8425500952_4.png" />
+    <Content Include="Pictures\Sko\Medium\8425500952_6.png" />
     <Content Include="Pictures\Sko\Medium\8435550140_1.jpg" />
     <Content Include="Pictures\Sko\Medium\8435550140_2.png" />
     <Content Include="Pictures\Sko\Medium\8435550140_4.png" />
@@ -205,6 +213,10 @@
     <Content Include="Pictures\Sko\Stor\2455100311_2.jpg" />
     <Content Include="Pictures\Sko\Stor\2455100311_4.jpg" />
     <Content Include="Pictures\Sko\Stor\2455100311_6.jpg" />
+    <Content Include="Pictures\Sko\Stor\2455525011_1.jpg" />
+    <Content Include="Pictures\Sko\Stor\2455525011_2.jpg" />
+    <Content Include="Pictures\Sko\Stor\2455525011_4.jpg" />
+    <Content Include="Pictures\Sko\Stor\2455525011_6.jpg" />
     <Content Include="Pictures\Sko\Stor\5435525011_1.jpg" />
     <Content Include="Pictures\Sko\Stor\5435525011_2.jpg" />
     <Content Include="Pictures\Sko\Stor\5435525011_4.jpg" />
@@ -245,6 +257,10 @@
     <Content Include="Pictures\Sko\Stor\8425500460_2.png" />
     <Content Include="Pictures\Sko\Stor\8425500460_4.png" />
     <Content Include="Pictures\Sko\Stor\8425500460_6.png" />
+    <Content Include="Pictures\Sko\Stor\8425500952_1.jpg" />
+    <Content Include="Pictures\Sko\Stor\8425500952_2.png" />
+    <Content Include="Pictures\Sko\Stor\8425500952_4.png" />
+    <Content Include="Pictures\Sko\Stor\8425500952_6.png" />
     <Content Include="Pictures\Sko\Stor\8435550140_1.jpg" />
     <Content Include="Pictures\Sko\Stor\8435550140_2.png" />
     <Content Include="Pictures\Sko\Stor\8435550140_4.png" />
