@@ -49,6 +49,10 @@
                 
             });
 
+            $('.detaljer').click(function () {
+                $( this ).parent().parent().find('a').click()
+            });
+
             function lastModal() {
                 $('#modalTrigger').click();
             }
