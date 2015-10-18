@@ -241,5 +241,62 @@ namespace Nettbutikk.Controllers
                 }
             }
         }
+
+        public static bool arkiverOrdre(Ordrer nyOrdre)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    //Må sette relasjonene i ordrer og ordredetaljer til entiteter i databasen ellers forsøkes sko og kunde å lagres på nytt i databasen.
+                    foreach (var detalj in nyOrdre.OrdreDetaljer)
+                    {
+                        detalj.Sko = db.Sko.Find(detalj.SkoId);
+                    }
+                    nyOrdre.Kunder = db.Kunder.Find(nyOrdre.KundeId);
+
+                    db.Ordrer.Add(nyOrdre);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception feil)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static List<Ordrer> finnAlleOrdre(int KundeId)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    List<Ordrer> alleOrdre = db.Ordrer.Where(o => o.KundeId == KundeId).ToList();
+                    return alleOrdre;
+                }
+                catch (Exception feil)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static Ordrer finnSisteOrdre(int KundeId)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    Ordrer sisteOrdre = db.Ordrer.Include("OrdreDetaljer.Sko.Merke").Include("OrdreDetaljer.Sko.Bilder").Include("Kunder.Poststeder")
+                        .Where(o => o.KundeId == KundeId).OrderByDescending(o => o.OrdreDato).FirstOrDefault();
+                    return sisteOrdre;
+                }
+                catch (Exception feil)
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

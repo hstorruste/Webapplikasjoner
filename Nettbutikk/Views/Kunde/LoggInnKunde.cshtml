@@ -36,6 +36,7 @@
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Logg inn" class="btn btn-success"/>
                     @Html.ActionLink("Registrer", "RegistrerKunde", "Kunde", new { }, new { @class="btn btn-default"})
+                    <label class="text-danger">@ViewData["FeilPassord"]</label>
                 </div>
             </div>
         </div>

@@ -111,7 +111,7 @@ namespace Nettbutikk.Controllers
 
         public ActionResult OrdrehistorikkKunde(int id)
         {
-            var kundeOrdre = DbHandlevogn.finnAlleOrdre(id);
+            var kundeOrdre = DbKunder.finnAlleOrdre(id);
             return PartialView(kundeOrdre);
         }
 
@@ -150,6 +150,7 @@ namespace Nettbutikk.Controllers
             else
             {
                 Session["LoggetInn"] = false;
+                ViewData["FeilPassord"] = "Feil epost eller passord!";
                 ViewBag.Innlogget = false;
                 return View();
             }

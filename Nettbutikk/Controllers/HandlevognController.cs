@@ -63,7 +63,7 @@ namespace Nettbutikk.Controllers
             }
             var kundeId = (int)Session["InnloggetKundeId"];
 
-            var sisteOrdre = DbHandlevogn.finnSisteOrdre(kundeId);
+            var sisteOrdre = DbKunder.finnSisteOrdre(kundeId);
             var ordre = new Ordre()
             {
                 ordreId = sisteOrdre.OrdreId,
@@ -104,7 +104,7 @@ namespace Nettbutikk.Controllers
 
             var kundeId = (int)Session["InnloggetKundeId"];
             var nyOrdre = DbHandlevogn.lagOrdre(Session.SessionID, kundeId);
-            var ok = DbHandlevogn.arkiverOrdre(nyOrdre);
+            var ok = DbKunder.arkiverOrdre(nyOrdre);
            
             return ok;
         }
