@@ -45,19 +45,19 @@ namespace Nettbutikk.Models
             var skoene = new List<Sko>
             {
                 new Sko { Navn = "B&CO 2455100311", Beskrivelse= "Tøff B&CO damesko med lisser. Skoen er i tekstil med små metall nitter. Den har sort kantbånd rundt lisser stykket og langs kanten. Skoen er sort med brune flammer. Den har canvas dekksåle og canvas fôr. Gummisålen er tofarget hvit og sort.",
-                        Merke = merker.Single( m => m.Navn == "B&CO"), Farge = "Sort", Pris = 499.00M,  ForHvem = forHvem.Single( f => f.Navn == "Dame"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
+                        Merke = merker.Single( m => m.Navn == "B&CO"), Farge = "Sort", ForHvem = forHvem.Single( f => f.Navn == "Dame"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
                 new Sko { Navn = "Sanita 538665", Beskrivelse = "" ,
-                        Merke = merker.Single( m => m.Navn == "Sanita"), Farge = "Grønn", Pris = 249.00M , ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Gummistøvler")},
+                        Merke = merker.Single( m => m.Navn == "Sanita"), Farge = "Grønn", ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Gummistøvler")},
                 new Sko { Navn = "92-98024", Beskrivelse= "",
-                        Merke = merker.Single( m => m.Navn == "Duffy"), Farge = "Sort", Pris = 399.00M, ForHvem = forHvem.Single( f => f.Navn == "Dame"), Kategori = kategorier.Single( k => k.Navn == "Gummistøvler")},
+                        Merke = merker.Single( m => m.Navn == "Duffy"), Farge = "Sort", ForHvem = forHvem.Single( f => f.Navn == "Dame"), Kategori = kategorier.Single( k => k.Navn == "Gummistøvler")},
                 new Sko { Navn = "Odiin 1625500150", Beskrivelse = "Tøff snøresko til herre i marineblått nubuckskinn. Skoen har et perforert mønster unntatt på hælkappen, som er i glatt brunt skinn. Den har en brun skinndetalj på pløsen og detaljer på yttersiden. Den har dekksåle og fôr i tekstil. Den hvite gummisålen gjør den tøff og ungdommelig.",
-                        Merke = merker.Single( m => m.Navn == "Odiin") ,Farge = "Blå", Pris = 999.00M, ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
+                        Merke = merker.Single( m => m.Navn == "Odiin") ,Farge = "Blå", ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
                 new Sko { Navn = "ECCO 634504 HAROLD", Beskrivelse = "Flott Ecco snøresko til herre i lekkert konjakkfarget skinn. Skoen har dekksåle i skinn samt meshfôr og skinnfôr i bakkappen. Den har stikninger på sidene. Sålen er i PU. Modellen fås også i sort. ",
-                        Merke = merker.Single( m => m.Navn == "ECCO"), Farge = "Brun", Pris = 999.00M, ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
+                        Merke = merker.Single( m => m.Navn == "ECCO"), Farge = "Brun", ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
                 new Sko { Navn = "Skofus 7615110953", Beskrivelse = "Superkule Skofus fritidssko, i blått ruskinn med blå netting og fine detaljer. Skoen har to borrelåsremmer, slik at den er lett å ta på. Den har smarte limegrønne og grå detaljer på remmene, sidene og hælen. Den har dekksåle i skinn og limegrønt meshfôr. Den har en hvit fleksibel såle med limegrønne kontraster. Den leveres med lys.",
-                        Merke = merker.Single( m => m.Navn == "Skofus"), Farge = "Blå", Pris = 449.00M, ForHvem = forHvem.Single( f => f.Navn == "Barn"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
+                        Merke = merker.Single( m => m.Navn == "Skofus"), Farge = "Blå", ForHvem = forHvem.Single( f => f.Navn == "Barn"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
                 new Sko { Navn = "Adidas Adistar Racer J", Beskrivelse = "Smart adidas-tennissko med snøre. Flotte rosa kontraststriper, for og innersåle. ",
-                        Merke = merker.Single( m => m.Navn == "Adidas"), Farge = "Sort", Pris = 499.00M, ForHvem = forHvem.Single( f => f.Navn == "Barn"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
+                        Merke = merker.Single( m => m.Navn == "Adidas"), Farge = "Sort", ForHvem = forHvem.Single( f => f.Navn == "Barn"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
                 new Sko { Navn = "CULT 7625500711", Beskrivelse = "Flott Cult damesneaker i sort tekstil med grå mønster i annet materiale. Skoen har sorte lisser. Den har en rosa detalj på pløs samt rosa fôr og dekksåle i rosa memory foam. Memory foam former seg etter fotens form, gir støtte og avlaster fotsålen. Det lindrer trykkpunkter og forebygger blemmer. Den har en meget fleksibel lettvektssåle. God modell til gåturen.",
                         Merke = merker.Single( m => m.Navn == "Cult"), Farge = "Sort", Pris = 499.00M, ForHvem = forHvem.Single( f => f.Navn == "Dame"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
                 new Sko { Navn = "Bronx 65278-D", Beskrivelse = "",
@@ -87,6 +87,18 @@ namespace Nettbutikk.Models
             };
             
             skoene.ForEach(s => context.Sko.Add(s));
+
+            new List<Priser>
+            {
+                new Priser { Pris = 499.00M , Dato = System.DateTime.Now, Sko = skoene.Single(s => s.Navn == "B&CO 2455100311")},
+                new Priser { Pris = 249.00M , Dato = System.DateTime.Now, Sko = skoene.Single(s => s.Navn == "Sanita 538665")},
+                new Priser { Pris = 399.00M , Dato = System.DateTime.Now, Sko = skoene.Single(s => s.Navn == "92-98024")},
+                new Priser { Pris = 999.00M , Dato = System.DateTime.Now, Sko = skoene.Single(s => s.Navn == "Odiin 1625500150")},
+                new Priser { Pris = 999.00M , Dato = System.DateTime.Now, Sko = skoene.Single(s => s.Navn == "ECCO 634504 HAROLD")},
+                new Priser { Pris = 449.00M , Dato = System.DateTime.Now, Sko = skoene.Single(s => s.Navn == "Skofus 7615110953")},
+                new Priser { Pris = 499.00M , Dato = System.DateTime.Now, Sko = skoene.Single(s => s.Navn == "Adidas Adistar Racer J")},
+
+            }.ForEach(p => context.Priser.Add(p));
 
             new List<Storlekar>
             {
