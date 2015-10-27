@@ -146,16 +146,16 @@ namespace Nettbutikk.Controllers
                     foreach (var vare in enkeltVarer)
                         total += vare.Pris * vare.Antall;
 
-                    Ordrer nyOrdre = new Ordrer()
+                    Ordrer tempOrdre = new Ordrer()
                     {
                         KundeId = kundeId,
                         OrdreDato = DateTime.Now,
                         OrdreDetaljer = enkeltVarer,
                         TotalBelop = total
                     };
-                    nyOrdre.Kunder = db.Kunder.Include("Poststeder").FirstOrDefault(k => k.Id == nyOrdre.KundeId);
-
-                    return nyOrdre;
+                    tempOrdre.Kunder = db.Kunder.Include("Poststeder").FirstOrDefault(k => k.Id == tempOrdre.KundeId);
+                    
+                    return tempOrdre;
                 }
                 catch (Exception feil)
                 {
@@ -163,6 +163,32 @@ namespace Nettbutikk.Controllers
                 }
             }
 
+        }
+
+        public static Ordre lagTempOrdre(string sessionId, int kundeId)
+        {
+            var tempOrdre = lagOrdre(sessionId, kundeId);
+            var nyOrdre = new Ordre()
+            {
+                ordreDato = tempOrdre.OrdreDato,
+                kundeId = tempOrdre.KundeId,
+                kundeNavn = tempOrdre.Kunder.Fornavn + " " + tempOrdre.Kunder.Etternavn,
+                adresse = tempOrdre.Kunder.Adresse,
+                postnr = tempOrdre.Kunder.Postnr,
+                poststed = tempOrdre.Kunder.Poststeder.Poststed,
+                varer = tempOrdre.OrdreDetaljer.Select(d => new HandlevognVare
+                {
+                    skoId = d.Sko.SkoId,
+                    skoNavn = d.Sko.Navn,
+                    merke = d.Sko.Merke.Navn,
+                    farge = d.Sko.Farge,
+                    storlek = d.Storlek,
+                    pris = d.Pris,
+                    bildeUrl = d.Sko.Bilder.Where(b => b.BildeUrl.Contains("/Medium/")).FirstOrDefault().BildeUrl,
+                }).ToList(),
+                totalBelop = tempOrdre.TotalBelop
+            };
+            return nyOrdre;
         }
 
         public static bool slettAlleHandlevognVarer(string sessionId)

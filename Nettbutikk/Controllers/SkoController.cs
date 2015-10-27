@@ -27,7 +27,7 @@ namespace Nettbutikk.Controllers
         [ChildActionOnly]
         public ActionResult vareNav()
         {
-            List<For> forHvem = DbSko.hentAlleForHvem();
+            List<ForHvem> forHvem = DbSko.hentAlleForHvem();
             return PartialView(forHvem);
         }
 
@@ -35,7 +35,7 @@ namespace Nettbutikk.Controllers
         public ActionResult vareNavKategorier(int forHvem)
         {
             ViewData["ForHvemId"] = forHvem;
-            List<Kategorier> kategorier = DbSko.hentAlleKategorierForHvem(forHvem);
+            List<Kategori> kategorier = DbSko.hentAlleKategorierForHvem(forHvem);
             return PartialView(kategorier);
         }
     }

@@ -1,4 +1,4 @@
-﻿@model Nettbutikk.Models.Kategorier
+﻿@model Nettbutikk.Models.Kategori
 
 <!DOCTYPE html>
 
@@ -14,10 +14,10 @@
         </h2>
         <hr />
         <h3 class="text-center">
-            @Model.Navn
+            @Model.navn
         </h3>
         <hr />
-        @{Html.RenderAction("KategoriPartial", "Nettbutikk", new { forHvemId = ViewData["ForHvemId"], kategoriId = Model.KategoriId });}
+        @{Html.RenderAction("KategoriPartial", "Nettbutikk", new { forHvemId = ViewData["ForHvemId"], kategoriId = Model.kategoriId });}
     </div>
 </body>
 </html>

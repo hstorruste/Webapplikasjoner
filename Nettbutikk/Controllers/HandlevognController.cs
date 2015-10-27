@@ -25,27 +25,7 @@ namespace Nettbutikk.Controllers
             }
             Session["FraBetaling"] = false;
             var kundeId = (int) Session["InnloggetKundeId"];
-            var tempOrdre = DbHandlevogn.lagOrdre(Session.SessionID, kundeId); //Ny ordre ikke ennå lagret i databasen.
-            var ordre = new Ordre() {
-                ordreDato = tempOrdre.OrdreDato,
-                kundeId = tempOrdre.KundeId,
-                kundeNavn = tempOrdre.Kunder.Fornavn + " " + tempOrdre.Kunder.Etternavn,
-                adresse = tempOrdre.Kunder.Adresse,
-                postnr = tempOrdre.Kunder.Postnr,
-                poststed = tempOrdre.Kunder.Poststeder.Poststed,
-                varer = tempOrdre.OrdreDetaljer.Select(d => new HandlevognVare
-                {
-                    skoId = d.Sko.SkoId,
-                    skoNavn = d.Sko.Navn,
-                    merke = d.Sko.Merke.Navn,
-                    farge = d.Sko.Farge,
-                    storlek = d.Storlek,
-                    pris = d.Pris,
-                    bildeUrl = d.Sko.Bilder.Where(b => b.BildeUrl.Contains("/Medium/")).FirstOrDefault().BildeUrl,
-                }).ToList(),
-                totalBelop = tempOrdre.TotalBelop
-            }; 
-            
+            var ordre = DbHandlevogn.lagTempOrdre(Session.SessionID, kundeId); //Ny ordre ikke ennå lagret i databasen.
             return View(ordre);
         }
 
@@ -103,8 +83,7 @@ namespace Nettbutikk.Controllers
                 return false;
 
             var kundeId = (int)Session["InnloggetKundeId"];
-            var nyOrdre = DbHandlevogn.lagOrdre(Session.SessionID, kundeId);
-            var ok = DbKunder.arkiverOrdre(nyOrdre);
+            var ok = DbKunder.arkiverOrdre(Session.SessionID, kundeId);
            
             return ok;
         }

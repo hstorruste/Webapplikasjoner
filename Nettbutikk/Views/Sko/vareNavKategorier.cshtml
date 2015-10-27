@@ -1,10 +1,10 @@
-﻿@model List<Nettbutikk.Models.Kategorier>
+﻿@model List<Nettbutikk.Models.Kategori>
 
 
 <ul class="dropdown-menu">
     @foreach (var item in Model)
     {
-        <li><a href="@Url.Action("Kategori", "Nettbutikk", new { forHvemId = ViewData["ForHvemId"], kategoriId = item.KategoriId} )">@item.Navn</a></li>
+        <li><a href="@Url.Action("Kategori", "Nettbutikk", new { forHvemId = ViewData["ForHvemId"], kategoriId = item.kategoriId} )">@item.navn</a></li>
     }
 
 </ul>

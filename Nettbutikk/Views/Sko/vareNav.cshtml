@@ -1,4 +1,4 @@
-﻿@model List<Nettbutikk.Models.For>
+﻿@model List<Nettbutikk.Models.ForHvem>
 
 <ul class="nav navbar-nav">
     @if (Model != null)
@@ -6,8 +6,8 @@
         foreach (var item in Model)
         {
         <li class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown" href=""><div onclick="klikketForHvem(@item.ForId)">@item.Navn <span class="caret"></span></div></a>
-            @{Html.RenderAction("vareNavKategorier", "Sko", new { forHvem = item.ForId });}
+            <a class="dropdown-toggle" data-toggle="dropdown" href=""><div onclick="klikketForHvem(@item.forId)">@item.navn <span class="caret"></span></div></a>
+            @{Html.RenderAction("vareNavKategorier", "Sko", new { forHvem = item.forId });}
         </li>
         }
     }

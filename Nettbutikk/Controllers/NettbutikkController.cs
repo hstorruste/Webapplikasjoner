@@ -27,17 +27,17 @@ namespace Nettbutikk.Controllers
 
         public ActionResult ForHvem(int forHvemId)
         {
-            List<Kategorier> kategorier = DbSko.hentAlleKategorierForHvem(forHvemId);
+            List<Kategori> kategorier = DbSko.hentAlleKategorierForHvem(forHvemId);
             ViewData["ForHvemId"] = forHvemId;
-            ViewData["ForHvem"] = DbSko.getFor(forHvemId).Navn;
+            ViewData["ForHvem"] = DbSko.getFor(forHvemId).navn;
             return View(kategorier);
         }
 
         public ActionResult Kategori(int forHvemId, int kategoriId)
         {
             ViewData["ForHvemId"] = forHvemId;
-            ViewData["ForHvem"] = DbSko.getFor(forHvemId).Navn;
-            Kategorier kategori = DbSko.getKategori(kategoriId);
+            ViewData["ForHvem"] = DbSko.getFor(forHvemId).navn;
+            Kategori kategori = DbSko.getKategori(kategoriId);
             return View(kategori);
         }
 

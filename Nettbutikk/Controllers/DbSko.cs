@@ -138,13 +138,16 @@ namespace Nettbutikk.Controllers
             }
         }
 
-        public static List<For> hentAlleForHvem()
+        public static List<ForHvem> hentAlleForHvem()
         {
             using (var db = new NettbutikkContext())
             {
                 try
                 {
-                    List<For> forHvem= db.For.ToList();
+                    List<ForHvem> forHvem= db.For.Select( f => new ForHvem() {
+                        forId = f.ForId,
+                        navn = f.Navn
+                    }).ToList();
 
                     return forHvem;
                 }
@@ -155,14 +158,17 @@ namespace Nettbutikk.Controllers
             }
         }
 
-        public static List<Kategorier> hentAlleKategorierForHvem(int forHvemId)
+        public static List<Kategori> hentAlleKategorierForHvem(int forHvemId)
         {
             using (var db = new NettbutikkContext())
             {
                 try
                 {
-                    List<Kategorier> kategorier = db.Sko.Where(s => s.ForId == forHvemId)
-                        .Select( s => s.Kategori).Distinct().ToList();
+                    List<Kategori> kategorier = db.Sko.Where(s => s.ForId == forHvemId)
+                        .Select( s => s.Kategori).Distinct().Select( k => new Kategori() {
+                            kategoriId = k.KategoriId,
+                            navn = k.Navn
+                        }).ToList();
 
                     return kategorier;
                 }
@@ -173,13 +179,18 @@ namespace Nettbutikk.Controllers
             }
         }
 
-        public static For getFor(int forId)
+        public static ForHvem getFor(int forId)
         {
             using (var db = new NettbutikkContext())
             {
                 try
                 {
-                    For forHvem = db.For.Find(forId);
+                    For temp = db.For.Find(forId);
+                    ForHvem forHvem = new ForHvem()
+                    {
+                        forId = temp.ForId,
+                        navn = temp.Navn
+                    };
 
                     return forHvem;
                 }
@@ -189,14 +200,18 @@ namespace Nettbutikk.Controllers
                 }
             }
         }
-        public static Kategorier getKategori(int kategoriId)
+        public static Kategori getKategori(int kategoriId)
         {
             using (var db = new NettbutikkContext())
             {
                 try
                 {
-                    Kategorier kategori = db.Kategorier.Find(kategoriId);
-
+                    Kategorier temp = db.Kategorier.Find(kategoriId);
+                    Kategori kategori = new Kategori()
+                    {
+                        kategoriId = temp.KategoriId,
+                        navn = temp.Navn
+                    };
                     return kategori;
                 }
                 catch (Exception feil)

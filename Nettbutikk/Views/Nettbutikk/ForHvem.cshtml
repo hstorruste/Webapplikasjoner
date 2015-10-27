@@ -1,4 +1,4 @@
-﻿@model List<Nettbutikk.Models.Kategorier>
+﻿@model List<Nettbutikk.Models.Kategori>
 
 <!DOCTYPE html>
 
@@ -16,10 +16,10 @@
         @foreach (var item in Model)
         {
             <h3 class="text-center">
-                @item.Navn
+                @item.navn
             </h3>
             <hr />
-            Html.RenderAction("KategoriPartial","Nettbutikk", new { forHvemId = ViewData["ForHvemId"], kategoriId = item.KategoriId});
+            Html.RenderAction("KategoriPartial","Nettbutikk", new { forHvemId = ViewData["ForHvemId"], kategoriId = item.kategoriId});
         }
     </div>
 </body>

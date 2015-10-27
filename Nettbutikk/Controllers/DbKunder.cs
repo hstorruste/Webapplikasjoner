@@ -242,8 +242,9 @@ namespace Nettbutikk.Controllers
             }
         }
 
-        public static bool arkiverOrdre(Ordrer nyOrdre)
+        public static bool arkiverOrdre(string sessionId, int kundeId)
         {
+            var nyOrdre = DbHandlevogn.lagOrdre(sessionId, kundeId);
             using (var db = new NettbutikkContext())
             {
                 try
