@@ -97,8 +97,8 @@ namespace Nettbutikk.Controllers
             }
             if (DbKunder.redigerKundePassord(innPassord))
             {
-                Passorden passord = DbKunder.getKundePassord(innPassord.passordId);
-                Session["InnloggetKundePassordId"] = passord.PassordId;
+                int passord = DbKunder.getKundePassord(innPassord.passordId);
+                Session["InnloggetKundePassordId"] = passord;
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
                 return 1;
