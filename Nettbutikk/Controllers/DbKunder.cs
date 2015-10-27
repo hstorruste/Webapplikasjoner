@@ -16,11 +16,11 @@ namespace Nettbutikk.Controllers
             }
         }
 
-        public static Passorden getKundePassord(int innPassordId)
+        public static int getKundePassord(int innPassordId)
         {
             using (var db = new NettbutikkContext())
             {
-                return db.Passorden.FirstOrDefault(p => p.PassordId == innPassordId);
+                return db.Passorden.FirstOrDefault(p => p.PassordId == innPassordId).PassordId;
             }
         }
 

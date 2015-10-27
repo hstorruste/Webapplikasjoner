@@ -7,6 +7,7 @@ namespace Nettbutikk.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Collections.Generic;
+    using System.ComponentModel;
 
     public class NettbutikkContext : DbContext
     {
@@ -20,6 +21,7 @@ namespace Nettbutikk.Models
         public DbSet<Poststeder> Poststeder { get; set; }
         public DbSet<Passorden> Passorden { get; set; }
         public DbSet<Sko> Sko { get; set; }
+        public DbSet<Priser> Priser { get; set; }
         public DbSet<For> For { get; set; }
         public DbSet<Kategorier> Kategorier { get; set; }
         public DbSet<Merker> Merker { get; set; }
@@ -76,15 +78,28 @@ namespace Nettbutikk.Models
         public string Navn { get; set; }
         public int ForId { get; set; }
         public int KategoriId { get; set; }
-        public decimal Pris { get; set; }
         public string Farge { get; set; }
         public string Beskrivelse { get; set; }
+        [DefaultValue(false)]
+        public bool Slettet { get; set; }
 
+        public virtual List<Priser> Pris { get; set; }
         public virtual For ForHvem { get; set; }
         public virtual Kategorier Kategori { get; set; }
         public virtual Merker Merke { get; set; }
         public virtual List<Bilder> Bilder { get; set; }
         public virtual List<Storlekar> Storlekar { get; set; }
+    }
+
+    public class Priser
+    {
+        [Key, ForeignKey("Sko")]
+        public int SkoId { get; set; }
+        [Key]
+        public System.DateTime Dato { get; set; }
+        public decimal Pris { get; set; }
+
+        public virtual Sko Sko { get; set; }
     }
 
     public class For
@@ -128,6 +143,7 @@ namespace Nettbutikk.Models
         public int StorlekId { get; set; }
         public int Storlek { get; set; }
         public Sko Sko { get; set; }
+        public int Antall { get; set; }
     }
     
     public class Ordrer
