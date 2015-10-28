@@ -93,9 +93,9 @@ namespace Nettbutikk.DAL
 
     public class Priser
     {
-        [Key]
+        [Key, ForeignKey("Sko")]
         [Column(Order = 0)]
-        public int PrisId { get; set; }
+        public int SkoId { get; set; }
         [Key]
         [Column(Order = 1)]
         public DateTime Dato { get; set; }

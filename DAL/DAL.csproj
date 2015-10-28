@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbHandlevogn.cs" />
+    <Compile Include="DbInitializer.cs" />
     <Compile Include="DbKunder.cs" />
     <Compile Include="DbSko.cs" />
     <Compile Include="Eksempeldata.cs" />

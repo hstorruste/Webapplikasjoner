@@ -12,7 +12,8 @@ namespace Nettbutikk
     {
         protected void Application_Start()
         {
-            InitializerBLL.Initialize();
+            var init = new InitializerBLL();
+            init.Initialize();
 
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);

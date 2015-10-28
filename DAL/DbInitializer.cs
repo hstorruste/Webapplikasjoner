@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Nettbutikk.DAL;
 
-namespace BLL
+namespace Nettbutikk.DAL
 {
-    public class InitializerBLL
+    public class DbInitializer
     {
-        private DbInitializer _init;
         public void Initialize()
         {
-            _init = new DbInitializer();
-            _init.Initialize();
+            System.Data.Entity.Database.SetInitializer(new Eksempeldata());
         }
     }
 }

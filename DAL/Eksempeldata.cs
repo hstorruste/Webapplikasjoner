@@ -8,10 +8,6 @@ namespace Nettbutikk.DAL
 {
     public class Eksempeldata : CreateDatabaseIfNotExists<NettbutikkContext>
     {
-        public Eksempeldata()
-        {
-            System.Data.Entity.Database.SetInitializer(this);
-        }
         protected override void Seed(NettbutikkContext context)
         {
             var forHvem = new List<For>
@@ -55,7 +51,7 @@ namespace Nettbutikk.DAL
                 new Sko { Navn = "92-98024", Beskrivelse= "",
                         Merke = merker.Single( m => m.Navn == "Duffy"), Farge = "Sort", ForHvem = forHvem.Single( f => f.Navn == "Dame"), Kategori = kategorier.Single( k => k.Navn == "Gummistøvler")},
                 new Sko { Navn = "Odiin 1625500150", Beskrivelse = "Tøff snøresko til herre i marineblått nubuckskinn. Skoen har et perforert mønster unntatt på hælkappen, som er i glatt brunt skinn. Den har en brun skinndetalj på pløsen og detaljer på yttersiden. Den har dekksåle og fôr i tekstil. Den hvite gummisålen gjør den tøff og ungdommelig.",
-                        Merke = merker.Single( m => m.Navn == "Odiin") ,Farge = "Blå", ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
+                        Merke = merker.Single( m => m.Navn == "Odiin"), Farge = "Blå", ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
                 new Sko { Navn = "ECCO 634504 HAROLD", Beskrivelse = "Flott Ecco snøresko til herre i lekkert konjakkfarget skinn. Skoen har dekksåle i skinn samt meshfôr og skinnfôr i bakkappen. Den har stikninger på sidene. Sålen er i PU. Modellen fås også i sort. ",
                         Merke = merker.Single( m => m.Navn == "ECCO"), Farge = "Brun", ForHvem = forHvem.Single( f => f.Navn == "Herre"), Kategori = kategorier.Single( k => k.Navn == "Sko")},
                 new Sko { Navn = "Skofus 7615110953", Beskrivelse = "Superkule Skofus fritidssko, i blått ruskinn med blå netting og fine detaljer. Skoen har to borrelåsremmer, slik at den er lett å ta på. Den har smarte limegrønne og grå detaljer på remmene, sidene og hælen. Den har dekksåle i skinn og limegrønt meshfôr. Den har en hvit fleksibel såle med limegrønne kontraster. Den leveres med lys.",
@@ -113,7 +109,7 @@ namespace Nettbutikk.DAL
                 new Priser { Pris = 1299.00M , Dato = System.DateTime.Now, Sko = skoene.Single(s => s.Navn == "Reebok Franconia Ridge")},
                 new Priser { Pris = 899.00M , Dato = System.DateTime.Now, Sko = skoene.Single(s => s.Navn == "Adidas Gazelle OG W")},
                 new Priser { Pris = 299.00M , Dato = System.DateTime.Now, Sko = skoene.Single(s => s.Navn == "Spiler 8425500952")},
-                new Priser { Pris = 899.00M , Dato = System.DateTime.Now, Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee")},
+                new Priser { Pris = 899.00M , Dato = System.DateTime.Now, Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee")}
 
             }.ForEach(p => context.Priser.Add(p));
 
@@ -480,6 +476,7 @@ namespace Nettbutikk.DAL
                 new Bilder { Sko = skoene.Single(s => s.Navn == "ECCO 241123 Aimee"), BildeUrl = "/Pictures/Sko/Stor/2455525011_6.jpg" }
 
             }.ForEach(b => context.Bilder.Add(b));
+
         }
     }
 }
