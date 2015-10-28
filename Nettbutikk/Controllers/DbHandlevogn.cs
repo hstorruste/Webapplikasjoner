@@ -36,7 +36,7 @@ namespace Nettbutikk.Controllers
                             skoNavn = k.Sko.Navn,
                             merke = k.Sko.Merke.Navn,
                             farge = k.Sko.Farge,
-                            pris = k.Sko.Pris.Where(p => p.SkoId == k.SkoId).Last().Pris,
+                            pris = k.Sko.Pris.OrderByDescending(p => p.Dato).FirstOrDefault().Pris,
                             bildeUrl = k.Sko.Bilder.Where( b => b.BildeUrl.Contains("/Medium/")).FirstOrDefault().BildeUrl
                     }).ToList();
 
@@ -110,7 +110,7 @@ namespace Nettbutikk.Controllers
                     decimal total = 0;
                     foreach(var vare in db.Kundevogner.Include("Sko").Where(k => k.SessionId == sessionId))
                     {
-                        total += vare.Sko.Pris.Where(p => p.SkoId == vare.SkoId).Last().Pris;
+                        total += vare.Sko.Pris.OrderByDescending(p => p.Dato).FirstOrDefault().Pris;
                     }
                     return total;
                 }
@@ -137,7 +137,7 @@ namespace Nettbutikk.Controllers
                         Antall = 1,
                         SkoId = v.SkoId,
                         Sko = v.Sko,
-                        Pris = v.Sko.Pris.Where(p => p.SkoId == v.SkoId).Last().Pris,
+                        Pris = v.Sko.Pris.OrderByDescending(p => p.Dato).FirstOrDefault().Pris,
                         Storlek = v.Storlek
 
                     }).ToList();

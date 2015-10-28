@@ -93,10 +93,12 @@ namespace Nettbutikk.Models
 
     public class Priser
     {
-        [Key, ForeignKey("Sko")]
-        public int SkoId { get; set; }
         [Key]
-        public System.DateTime Dato { get; set; }
+        [Column(Order = 0)]
+        public int PrisId { get; set; }
+        [Key]
+        [Column(Order = 1)]
+        public DateTime Dato { get; set; }
         public decimal Pris { get; set; }
 
         public virtual Sko Sko { get; set; }
@@ -150,7 +152,7 @@ namespace Nettbutikk.Models
     {
         [Key]
         public int OrdreId { get; set; }
-        public System.DateTime OrdreDato { get; set; }
+        public DateTime OrdreDato { get; set; }
         public int KundeId { get; set; }
         public decimal TotalBelop { get; set; }
 
@@ -182,7 +184,7 @@ namespace Nettbutikk.Models
         public int SkoId { get; set; }
         public int Storlek { get; set; }
         //Antal
-        public System.DateTime Dato { get; set; }
+        public DateTime Dato { get; set; }
         
         public virtual Sko Sko { get; set; }
     }
