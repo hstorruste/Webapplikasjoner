@@ -1,14 +1,14 @@
-namespace Nettbutikk.Models
-{
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
-    using System.Data.Entity.ModelConfiguration.Conventions;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Collections.Generic;
-    using System.ComponentModel;
+using System;
+using System.Data.Entity;
+using System.Linq;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
+using System.ComponentModel;
 
+namespace Nettbutikk.DAL
+{
     public class NettbutikkContext : DbContext
     {
         

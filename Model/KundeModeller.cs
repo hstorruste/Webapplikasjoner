@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 
-namespace Nettbutikk.Models
+namespace Nettbutikk.Model
 {
     public class RegistrerKundeModell
     {

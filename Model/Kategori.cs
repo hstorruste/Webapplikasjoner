@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Nettbutikk.Models
+namespace Nettbutikk.Model
 {
     public class Kategori
     {

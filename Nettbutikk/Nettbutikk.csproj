@@ -294,25 +294,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DbHandlevogn.cs" />
-    <Compile Include="Controllers\DbKunder.cs" />
-    <Compile Include="Controllers\DbSko.cs" />
     <Compile Include="Controllers\HandlevognController.cs" />
     <Compile Include="Controllers\KundeController.cs" />
     <Compile Include="Controllers\NettbutikkController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Eksempeldata.cs" />
-    <Compile Include="Models\ForHvem.cs" />
-    <Compile Include="Models\Handlevogn.cs" />
-    <Compile Include="Models\Kategori.cs" />
-    <Compile Include="Models\KundeModeller.cs" />
-    <Compile Include="Models\NettbutikkContext.cs" />
     <Compile Include="Controllers\SkoController.cs" />
-    <Compile Include="Models\Ordre.cs" />
-    <Compile Include="Models\Skoen.cs" />
-    <Compile Include="Models\HandlevognVare.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -348,10 +336,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{3e1e7c26-1da8-41c4-9cf9-268100ad152e}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{d635108b-42cc-4bca-b7bd-371928c45992}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

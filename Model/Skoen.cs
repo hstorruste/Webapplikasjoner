@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Nettbutikk.Models
+namespace Nettbutikk.Model
 {
     public class Skoen
     {
@@ -29,8 +29,8 @@ namespace Nettbutikk.Models
         public string beskrivelse { get; set; }
 
         [Display(Name = "Bilder")]
-        public List<Bilder> bilder { get; set; }
+        public List<Bilde> bilder { get; set; }
         [Display(Name = "Størrelser")]
-        public List<Storlekar> storlekar { get; set; }
+        public List<Storlek> storlekar { get; set; }
     }
 }

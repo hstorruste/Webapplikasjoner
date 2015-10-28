@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Nettbutikk.Models;
+using Nettbutikk.Model;
+using BLL;
 
 namespace Nettbutikk.Controllers
 {
     public class KundeController : Controller
     {
+        IHandlevognLogikk _handlevognBLL;
+        IKundeLogikk _kunderBLL;
+
+        public KundeController()
+        {
+            _handlevognBLL = new HandlevognBLL();
+            _kunderBLL = new KunderBLL();
+        }
         public ActionResult RegistrerKunde()
         {
             return View();
@@ -21,9 +30,9 @@ namespace Nettbutikk.Controllers
             {
                 return View();
             }
-            if (DbKunder.registrerKunde(innKunde))
+            if (_kunderBLL.registrerKunde(innKunde))
             {
-                Kunder kunde = DbKunder.getKunde(innKunde.epost);    
+                Kunder kunde = _kunderBLL.getKunde(innKunde.epost);    
             
                 Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
                 Session["InnloggetKundeId"] = kunde.Id;
@@ -50,7 +59,7 @@ namespace Nettbutikk.Controllers
         [ChildActionOnly]
         public ActionResult RedigerKunde(int id)
         {
-            RedigerKundeModell enKunde = DbKunder.hentEnKunde(id);
+            RedigerKundeModell enKunde = _kunderBLL.hentEnKunde(id);
 
             return PartialView(enKunde);  
         }
@@ -62,9 +71,9 @@ namespace Nettbutikk.Controllers
             {
                 return PartialView();
             }
-            if (DbKunder.redigerKunde(innKunde))
+            if (_kunderBLL.redigerKunde(innKunde))
             {
-                Kunder kunde = DbKunder.getKunde(innKunde.epost);
+                Kunder kunde = _kunderBLL.getKunde(innKunde.epost);
 
                 Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
                 Session["InnloggetKundeId"] = kunde.Id;
@@ -83,7 +92,7 @@ namespace Nettbutikk.Controllers
         [ChildActionOnly]
         public ActionResult RedigerKundePassord(int passordId)
         {
-            RedigerKundePassordModell enKundePassord = DbKunder.hentEnKundePassord(passordId);
+            RedigerKundePassordModell enKundePassord = _kunderBLL.hentEnKundePassord(passordId);
 
             return PartialView(enKundePassord);
         }
@@ -95,9 +104,9 @@ namespace Nettbutikk.Controllers
             {
                 return 0;
             }
-            if (DbKunder.redigerKundePassord(innPassord))
+            if (_kunderBLL.redigerKundePassord(innPassord))
             {
-                int passord = DbKunder.getKundePassord(innPassord.passordId);
+                int passord = _kunderBLL.getKundePassord(innPassord.passordId);
                 Session["InnloggetKundePassordId"] = passord;
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
@@ -111,7 +120,7 @@ namespace Nettbutikk.Controllers
 
         public ActionResult OrdrehistorikkKunde(int id)
         {
-            var kundeOrdre = DbKunder.finnAlleOrdre(id);
+            var kundeOrdre = _kunderBLL.finnAlleOrdre(id);
             return PartialView(kundeOrdre);
         }
 
@@ -128,9 +137,9 @@ namespace Nettbutikk.Controllers
         [HttpPost]
         public ActionResult LoggInnKunde(LoggInnModell innKunde)
         {
-            if (DbKunder.Kunde_i_DB(innKunde))
+            if (_kunderBLL.Kunde_i_DB(innKunde))
             {
-                Kunder kunde = DbKunder.getKunde(innKunde.Epost);
+                Kunder kunde = _kunderBLL.getKunde(innKunde.Epost);
 
                 Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
                 Session["InnloggetKundeId"] = kunde.Id;
@@ -176,7 +185,7 @@ namespace Nettbutikk.Controllers
         [HttpGet]
         public ActionResult getOrdreDetaljer(int ordreId)
         {
-            var tempOrdre = DbKunder.getOrdre(ordreId);
+            var tempOrdre = _kunderBLL.getOrdre(ordreId);
 
             var ordre = new Ordre()
             {

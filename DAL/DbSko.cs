@@ -1,10 +1,10 @@
-﻿using Nettbutikk.Models;
+﻿using Nettbutikk.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Nettbutikk.Controllers
+namespace Nettbutikk.DAL
 {
     public class DbSko
     {
@@ -24,8 +24,15 @@ namespace Nettbutikk.Controllers
                         pris = s.Pris.OrderByDescending(p => p.Dato).FirstOrDefault().Pris,
                         farge = s.Farge,
                         beskrivelse = s.Beskrivelse,
-                        storlekar = s.Storlekar,
-                        bilder = s.Bilder
+                        storlekar = s.Storlekar.Select(t => new Storlek (){
+                            storlekId = t.StorlekId,
+                            storlek = t.Storlek,
+                            antall = t.Antall
+                        }).ToList(),
+                        bilder = s.Bilder.Select(b => new Bilde() {
+                            bildeId = b.BildeId,
+                            bildeUrl = b.BildeUrl
+                        }).ToList()
 
                     }).ToList();
 
@@ -55,8 +62,17 @@ namespace Nettbutikk.Controllers
                         pris = s.Pris.OrderByDescending(p => p.Dato).FirstOrDefault().Pris,
                         farge = s.Farge,
                         beskrivelse = s.Beskrivelse,
-                        storlekar = s.Storlekar,
-                        bilder = s.Bilder
+                        storlekar = s.Storlekar.Select(t => new Storlek()
+                        {
+                            storlekId = t.StorlekId,
+                            storlek = t.Storlek,
+                            antall = t.Antall
+                        }).ToList(),
+                        bilder = s.Bilder.Select(b => new Bilde()
+                        {
+                            bildeId = b.BildeId,
+                            bildeUrl = b.BildeUrl
+                        }).ToList()
 
                     }).ToList();
 
@@ -86,8 +102,17 @@ namespace Nettbutikk.Controllers
                         pris = s.Pris.OrderByDescending(p => p.Dato).FirstOrDefault().Pris,
                         farge = s.Farge,
                         beskrivelse = s.Beskrivelse,
-                        storlekar = s.Storlekar,
-                        bilder = s.Bilder
+                        storlekar = s.Storlekar.Select(t => new Storlek()
+                        {
+                            storlekId = t.StorlekId,
+                            storlek = t.Storlek,
+                            antall = t.Antall
+                        }).ToList(),
+                        bilder = s.Bilder.Select(b => new Bilde()
+                        {
+                            bildeId = b.BildeId,
+                            bildeUrl = b.BildeUrl
+                        }).ToList()
 
                     }).ToList();
 
@@ -119,8 +144,17 @@ namespace Nettbutikk.Controllers
                             pris = enSko.Pris.OrderByDescending(p => p.Dato).FirstOrDefault().Pris,
                             farge = enSko.Farge,
                             beskrivelse = enSko.Beskrivelse,
-                            storlekar = enSko.Storlekar,
-                            bilder = enSko.Bilder
+                            storlekar = enSko.Storlekar.Select(t => new Storlek()
+                            {
+                                storlekId = t.StorlekId,
+                                storlek = t.Storlek,
+                                antall = t.Antall
+                            }).ToList(),
+                            bilder = enSko.Bilder.Select(b => new Bilde()
+                            {
+                                bildeId = b.BildeId,
+                                bildeUrl = b.BildeUrl
+                            }).ToList()
 
                         };
 

@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Nettbutikk.Models;
+using Nettbutikk.Model;
+using BLL;
 
 namespace Nettbutikk.Controllers
 {
     public class NettbutikkController : Controller
     {
+        ISkoLogikk _skoBLL;
+
+        public NettbutikkController()
+        {
+            _skoBLL = new SkoBLL();
+        }
         public ActionResult Hjem()
         {
             if (Session["LoggetInn"] == null)
@@ -21,29 +28,29 @@ namespace Nettbutikk.Controllers
                 ViewBag.Innlogget = (bool)Session["LoggetInn"];
             }
 
-            var skoene = DbSko.hentAlleSko();
+            var skoene = _skoBLL.hentAlleSko();
             return View(skoene);
         }
 
         public ActionResult ForHvem(int forHvemId)
         {
-            List<Kategori> kategorier = DbSko.hentAlleKategorierForHvem(forHvemId);
+            List<Kategori> kategorier = _skoBLL.hentAlleKategorierForHvem(forHvemId);
             ViewData["ForHvemId"] = forHvemId;
-            ViewData["ForHvem"] = DbSko.getFor(forHvemId).navn;
+            ViewData["ForHvem"] = _skoBLL.getFor(forHvemId).navn;
             return View(kategorier);
         }
 
         public ActionResult Kategori(int forHvemId, int kategoriId)
         {
             ViewData["ForHvemId"] = forHvemId;
-            ViewData["ForHvem"] = DbSko.getFor(forHvemId).navn;
-            Kategori kategori = DbSko.getKategori(kategoriId);
+            ViewData["ForHvem"] = _skoBLL.getFor(forHvemId).navn;
+            Kategori kategori = _skoBLL.getKategori(kategoriId);
             return View(kategori);
         }
 
         public ActionResult KategoriPartial(int forHvemId, int kategoriId)
         {
-            List<Skoen> skoene = DbSko.hentAlleSkoFor(forHvemId, kategoriId);
+            List<Skoen> skoene = _skoBLL.hentAlleSkoFor(forHvemId, kategoriId);
             return PartialView(skoene);
         }
 

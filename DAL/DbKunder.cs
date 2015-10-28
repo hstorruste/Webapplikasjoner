@@ -1,10 +1,10 @@
-﻿using Nettbutikk.Models;
+﻿using Nettbutikk.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Nettbutikk.Controllers
+namespace Nettbutikk.DAL
 {
     public class DbKunder
     {
@@ -283,7 +283,7 @@ namespace Nettbutikk.Controllers
             }
         }
 
-        public static Ordrer finnSisteOrdre(int KundeId)
+        public static Ordre finnSisteOrdre(int KundeId)
         {
             using (var db = new NettbutikkContext())
             {
@@ -291,7 +291,28 @@ namespace Nettbutikk.Controllers
                 {
                     Ordrer sisteOrdre = db.Ordrer.Include("OrdreDetaljer.Sko.Merke").Include("OrdreDetaljer.Sko.Bilder").Include("Kunder.Poststeder")
                         .Where(o => o.KundeId == KundeId).OrderByDescending(o => o.OrdreDato).FirstOrDefault();
-                    return sisteOrdre;
+                    var ordre = new Ordre()
+                    {
+                        ordreId = sisteOrdre.OrdreId,
+                        ordreDato = sisteOrdre.OrdreDato,
+                        kundeId = sisteOrdre.KundeId,
+                        kundeNavn = sisteOrdre.Kunder.Fornavn + " " + sisteOrdre.Kunder.Etternavn,
+                        adresse = sisteOrdre.Kunder.Adresse,
+                        postnr = sisteOrdre.Kunder.Postnr,
+                        poststed = sisteOrdre.Kunder.Poststeder.Poststed,
+                        varer = sisteOrdre.OrdreDetaljer.Select(d => new HandlevognVare
+                        {
+                            skoId = d.Sko.SkoId,
+                            skoNavn = d.Sko.Navn,
+                            merke = d.Sko.Merke.Navn,
+                            farge = d.Sko.Farge,
+                            storlek = d.Storlek,
+                            pris = d.Pris,
+                            bildeUrl = d.Sko.Bilder.Where(b => b.BildeUrl.Contains("/Medium/")).FirstOrDefault().BildeUrl,
+                        }).ToList(),
+                        totalBelop = sisteOrdre.TotalBelop
+                    };
+                    return ordre;
                 }
                 catch (Exception feil)
                 {

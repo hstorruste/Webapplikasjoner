@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.SessionState;
-using Nettbutikk.Models;
+using Nettbutikk.Model;
 
-namespace Nettbutikk.Controllers
+namespace Nettbutikk.DAL
 {
     public class DbHandlevogn
     {

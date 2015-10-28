@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 
-namespace Nettbutikk.Models
+namespace Nettbutikk.DAL
 {
     public class Eksempeldata : DropCreateDatabaseIfModelChanges<NettbutikkContext>
     {

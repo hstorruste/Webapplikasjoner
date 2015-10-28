@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Nettbutikk.Models;
+using Nettbutikk.Model;
+using BLL;
 
 namespace Nettbutikk.Controllers
 {
     public class HandlevognController : Controller
     {
-        // GET: Handlevogn
+        IHandlevognLogikk _handlevognBLL;
+        IKundeLogikk _kunderBLL;
+
+        public HandlevognController()
+        {
+            _handlevognBLL = new HandlevognBLL();
+            _kunderBLL = new KunderBLL();
+        }
+
         public ActionResult Index()
         {
-            var handlevogn = DbHandlevogn.getHandlevogn(Session.SessionID);
+            var handlevogn = _handlevognBLL.getHandlevogn(Session.SessionID);
             return View(handlevogn);
         }
 
@@ -25,7 +34,7 @@ namespace Nettbutikk.Controllers
             }
             Session["FraBetaling"] = false;
             var kundeId = (int) Session["InnloggetKundeId"];
-            var ordre = DbHandlevogn.lagTempOrdre(Session.SessionID, kundeId); //Ny ordre ikke ennå lagret i databasen.
+            var ordre = _handlevognBLL.lagTempOrdre(Session.SessionID, kundeId); //Ny ordre ikke ennå lagret i databasen.
             return View(ordre);
         }
 
@@ -43,36 +52,14 @@ namespace Nettbutikk.Controllers
             }
             var kundeId = (int)Session["InnloggetKundeId"];
 
-            var sisteOrdre = DbKunder.finnSisteOrdre(kundeId);
-            var ordre = new Ordre()
-            {
-                ordreId = sisteOrdre.OrdreId,
-                ordreDato = sisteOrdre.OrdreDato,
-                kundeId = sisteOrdre.KundeId,
-                kundeNavn = sisteOrdre.Kunder.Fornavn + " " + sisteOrdre.Kunder.Etternavn,
-                adresse = sisteOrdre.Kunder.Adresse,
-                postnr = sisteOrdre.Kunder.Postnr,
-                poststed = sisteOrdre.Kunder.Poststeder.Poststed,
-                varer = sisteOrdre.OrdreDetaljer.Select(d => new HandlevognVare
-                {
-                    skoId = d.Sko.SkoId,
-                    skoNavn = d.Sko.Navn,
-                    merke = d.Sko.Merke.Navn,
-                    farge = d.Sko.Farge,
-                    storlek = d.Storlek,
-                    pris = d.Pris,
-                    bildeUrl = d.Sko.Bilder.Where(b => b.BildeUrl.Contains("/Medium/")).FirstOrDefault().BildeUrl,
-                }).ToList(),
-                totalBelop = sisteOrdre.TotalBelop
-            };
-
-            return View(ordre);
+            var sisteOrdre = _kunderBLL.finnSisteOrdre(kundeId);
+            return View(sisteOrdre);
         }
 
         [ChildActionOnly]
         public ActionResult AntallVarer()
         {
-            ViewData["VareAntall"] = DbHandlevogn.antallHandlevognVarer(Session.SessionID);
+            ViewData["VareAntall"] = _handlevognBLL.antallHandlevognVarer(Session.SessionID);
             return PartialView("AntallVarer");
         }
 
@@ -83,7 +70,7 @@ namespace Nettbutikk.Controllers
                 return false;
 
             var kundeId = (int)Session["InnloggetKundeId"];
-            var ok = DbKunder.arkiverOrdre(Session.SessionID, kundeId);
+            var ok = _kunderBLL.arkiverOrdre(Session.SessionID, kundeId);
            
             return ok;
         }
@@ -91,7 +78,7 @@ namespace Nettbutikk.Controllers
         //Kalles med ajax fra Handlevogn/Kvittering-View
         public bool SlettHandlevognVarer()
         {
-            return DbHandlevogn.slettAlleHandlevognVarer(Session.SessionID);
+            return _handlevognBLL.slettAlleHandlevognVarer(Session.SessionID);
         }
 
         //Kalles med ajax fra Sko/Detaljer-View
@@ -104,13 +91,13 @@ namespace Nettbutikk.Controllers
                 SkoId = skoId,
                 Storlek = skoStr
             };
-            return DbHandlevogn.leggTilVare(nyVare);
+            return _handlevognBLL.leggTilVare(nyVare);
         }
 
         //Kalles med ajax fra Handlevogn/Index-View
         public bool FjernVare(int vareId)
         {
-            return DbHandlevogn.fjernVare(vareId);
+            return _handlevognBLL.fjernVare(vareId);
         }
     }
 }
