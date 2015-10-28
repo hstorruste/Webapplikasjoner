@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Nettbutikk.Models;
+using Nettbutikk.Model;
+using BLL;
 
 namespace Nettbutikk.Controllers
 {
     public class SkoController : Controller
     {
+        ISkoLogikk _skoBLL;
+
+        public SkoController()
+        {
+            _skoBLL = new SkoBLL();
+        }
         public ActionResult Liste()
         {
-            return View(DbSko.hentAlleSko());
+            return View(_skoBLL.hentAlleSko());
         }
         public ActionResult Registrer()
         {
@@ -20,14 +27,14 @@ namespace Nettbutikk.Controllers
 
         public ActionResult Detaljer(int skoId)
         {
-            var ensko = DbSko.hentEnSko(skoId);
+            var ensko = _skoBLL.hentEnSko(skoId);
             return View(ensko);
         }
 
         [ChildActionOnly]
         public ActionResult vareNav()
         {
-            List<ForHvem> forHvem = DbSko.hentAlleForHvem();
+            List<ForHvem> forHvem = _skoBLL.hentAlleForHvem();
             return PartialView(forHvem);
         }
 
@@ -35,7 +42,7 @@ namespace Nettbutikk.Controllers
         public ActionResult vareNavKategorier(int forHvem)
         {
             ViewData["ForHvemId"] = forHvem;
-            List<Kategori> kategorier = DbSko.hentAlleKategorierForHvem(forHvem);
+            List<Kategori> kategorier = _skoBLL.hentAlleKategorierForHvem(forHvem);
             return PartialView(kategorier);
         }
     }

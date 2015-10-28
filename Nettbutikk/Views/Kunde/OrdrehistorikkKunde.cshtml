@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Nettbutikk.Models.Ordrer>
+﻿@model IEnumerable<Nettbutikk.Model.Ordre>
 @{
     Layout = null;
 }
@@ -21,13 +21,13 @@
         {
             <tr>
                 <td>
-                    <a href="#" data-ordreId="@Html.DisplayFor(modelItem => item.OrdreId)">@Html.DisplayFor(modelItem => item.OrdreId)</a>
+                    <a href="#" data-ordreId="@Html.DisplayFor(modelItem => item.ordreId)">@Html.DisplayFor(modelItem => item.ordreId)</a>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.OrdreDato)
+                    @Html.DisplayFor(modelItem => item.ordreDato)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TotalBelop)
+                    @Html.DisplayFor(modelItem => item.totalBelop)
                 </td>
                 <td>
                     <button type="button" class="detaljer btn btn-default">Detaljer</button>

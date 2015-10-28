@@ -50,13 +50,20 @@ namespace Nettbutikk.DAL
             
         }
 
-        public static bool leggTilVare(Kundevogner vare)
+        public static bool leggTilVare(string sessionId, int skoId, int skoStr)
         {
-            using(var db = new NettbutikkContext())
+            Kundevogner nyVare = new Kundevogner()
+            {
+                SessionId = sessionId,
+                Dato = DateTime.Now,
+                SkoId = skoId,
+                Storlek = skoStr
+            };
+            using (var db = new NettbutikkContext())
             {
                 try
                 {
-                    db.Kundevogner.Add(vare);
+                    db.Kundevogner.Add(nyVare);
                     db.SaveChanges();
                     return true;
                 }

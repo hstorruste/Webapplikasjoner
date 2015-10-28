@@ -12,7 +12,7 @@ namespace BLL
     {
         Handlevogn getHandlevogn(string sessionId);
         List<HandlevognVare> getAlleKundevognvarer(string sessionId);
-        bool leggTilVare(Kundevogner vare);
+        bool leggTilVare(string sessionId, int skoId, int skoStr);
         bool fjernVare(int vareId);
         bool fjernAlleVarer(string sessionId);
         decimal getTotalpris(string sessionId);

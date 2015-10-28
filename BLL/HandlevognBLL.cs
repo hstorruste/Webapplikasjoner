@@ -50,9 +50,9 @@ namespace BLL
             return DbHandlevogn.lagTempOrdre(sessionId, kundeId);
         }
 
-        public bool leggTilVare(Kundevogner vare)
+        public bool leggTilVare(string sessionId, int skoId, int skoStr)
         {
-            return DbHandlevogn.leggTilVare(vare);
+            return DbHandlevogn.leggTilVare(sessionId,skoId,skoStr);
         }
 
         public bool slettAlleHandlevognVarer(string sessionId)

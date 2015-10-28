@@ -7,6 +7,34 @@ using System.Web.Security;
 
 namespace Nettbutikk.Model
 {
+    public class KundeModell
+    {
+        public int id { get; set; }
+        [Display(Name = "Fornavn")]
+        [Required(ErrorMessage = "Fornavn må oppgis")]
+        public string fornavn { get; set; }
+        [Display(Name = "Etternavn")]
+        [Required(ErrorMessage = "Etternavn må oppgis")]
+        public string etternavn { get; set; }
+        [Display(Name = "Adresse")]
+        [Required(ErrorMessage = "Adresse må oppgis")]
+        public string adresse { get; set; }
+        [Display(Name = "Postnr")]
+        [Required(ErrorMessage = "Postnr må oppgis")]
+        [RegularExpression(@"[0-9]{4}", ErrorMessage = "Postnr må være 4 siffer")]
+        public string postnr { get; set; }
+        [Display(Name = "Poststed")]
+        [Required(ErrorMessage = "Poststed må oppgis")]
+        public string poststed { get; set; }
+        [Display(Name = "Epost")]
+        [Required(ErrorMessage = "Epost må oppgis")]
+        [DataType(DataType.EmailAddress)]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Oppgi en gyldig epost")]
+        public string epost { get; set; }
+        [Display(Name = "Passord-Id")]
+        public int passordId { get; set; }
+    }
+
     public class RegistrerKundeModell
     {
         public int id { get; set; }

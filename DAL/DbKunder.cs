@@ -8,11 +8,21 @@ namespace Nettbutikk.DAL
 {
     public class DbKunder
     {
-        public static Kunder getKunde(string epost)
+        public static KundeModell getKunde(string epost)
         {
             using (var db = new NettbutikkContext())
             {
-                return db.Kunder.Include("Passorden").FirstOrDefault(k => k.Epost == epost);
+                Kunder temp = db.Kunder.Include("Passorden").FirstOrDefault(k => k.Epost == epost);
+                return new KundeModell() {
+                    id = temp.Id,
+                    fornavn = temp.Fornavn,
+                    etternavn = temp.Etternavn,
+                    adresse = temp.Adresse,
+                    postnr = temp.Postnr,
+                    poststed = temp.Poststeder.Poststed,
+                    epost = temp.Epost,
+                    passordId = temp.Passorden.PassordId
+                };
             }
         }
 
@@ -225,7 +235,7 @@ namespace Nettbutikk.DAL
             }
         }
 
-        public static Ordrer getOrdre(int ordreId)
+        public static Ordre getOrdre(int ordreId)
         {
             using (var db = new NettbutikkContext())
             {
@@ -233,7 +243,27 @@ namespace Nettbutikk.DAL
                 {
                     Ordrer enOrdre = db.Ordrer.Include("OrdreDetaljer.Sko.Merke").Include("OrdreDetaljer.Sko.Bilder").Include("Kunder.Poststeder")
                         .SingleOrDefault(o => o.OrdreId == ordreId);
-                    return enOrdre;
+                    return new Ordre()
+                    {
+                        ordreId = enOrdre.OrdreId,
+                        ordreDato = enOrdre.OrdreDato,
+                        kundeId = enOrdre.KundeId,
+                        kundeNavn = enOrdre.Kunder.Fornavn + " " + enOrdre.Kunder.Etternavn,
+                        adresse = enOrdre.Kunder.Adresse,
+                        postnr = enOrdre.Kunder.Postnr,
+                        poststed = enOrdre.Kunder.Poststeder.Poststed,
+                        varer = enOrdre.OrdreDetaljer.Select(d => new HandlevognVare
+                        {
+                            skoId = d.Sko.SkoId,
+                            skoNavn = d.Sko.Navn,
+                            merke = d.Sko.Merke.Navn,
+                            farge = d.Sko.Farge,
+                            storlek = d.Storlek,
+                            pris = d.Pris,
+                            bildeUrl = d.Sko.Bilder.Where(b => b.BildeUrl.Contains("/Medium/")).FirstOrDefault().BildeUrl,
+                        }).ToList(),
+                        totalBelop = enOrdre.TotalBelop
+                    };
                 }
                 catch (Exception feil)
                 {
@@ -267,13 +297,33 @@ namespace Nettbutikk.DAL
             }
         }
 
-        public static List<Ordrer> finnAlleOrdre(int KundeId)
+        public static List<Ordre> finnAlleOrdre(int KundeId)
         {
             using (var db = new NettbutikkContext())
             {
                 try
                 {
-                    List<Ordrer> alleOrdre = db.Ordrer.Where(o => o.KundeId == KundeId).ToList();
+                    List<Ordre> alleOrdre = db.Ordrer.Where(o => o.KundeId == KundeId).Select( o => new Ordre()
+                    {
+                        ordreId = o.OrdreId,
+                        ordreDato = o.OrdreDato,
+                        kundeId = o.KundeId,
+                        kundeNavn = o.Kunder.Fornavn + " " + o.Kunder.Etternavn,
+                        adresse = o.Kunder.Adresse,
+                        postnr = o.Kunder.Postnr,
+                        poststed = o.Kunder.Poststeder.Poststed,
+                        varer = o.OrdreDetaljer.Select(d => new HandlevognVare
+                        {
+                            skoId = d.Sko.SkoId,
+                            skoNavn = d.Sko.Navn,
+                            merke = d.Sko.Merke.Navn,
+                            farge = d.Sko.Farge,
+                            storlek = d.Storlek,
+                            pris = d.Pris,
+                            bildeUrl = d.Sko.Bilder.Where(b => b.BildeUrl.Contains("/Medium/")).FirstOrDefault().BildeUrl,
+                        }).ToList(),
+                        totalBelop = o.TotalBelop
+                    }).ToList();
                     return alleOrdre;
                 }
                 catch (Exception feil)

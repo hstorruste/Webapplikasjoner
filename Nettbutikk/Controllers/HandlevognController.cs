@@ -84,14 +84,7 @@ namespace Nettbutikk.Controllers
         //Kalles med ajax fra Sko/Detaljer-View
         public bool LeggTil(int skoId, int skoStr)
         {
-            Kundevogner nyVare = new Kundevogner()
-            {
-                SessionId = Session.SessionID,
-                Dato = DateTime.Now,
-                SkoId = skoId,
-                Storlek = skoStr
-            };
-            return _handlevognBLL.leggTilVare(nyVare);
+            return _handlevognBLL.leggTilVare(Session.SessionID, skoId, skoStr);
         }
 
         //Kalles med ajax fra Handlevogn/Index-View

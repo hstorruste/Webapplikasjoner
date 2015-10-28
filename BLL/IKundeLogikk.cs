@@ -10,7 +10,7 @@ namespace BLL
 {
     public interface IKundeLogikk
     {
-        Kunder getKunde(string epost);
+        KundeModell getKunde(string epost);
         int getKundePassord(int innPassordId);
         bool registrerKunde(RegistrerKundeModell innKunde);
         RedigerKundeModell hentEnKunde(int id);

@@ -15,7 +15,7 @@ namespace BLL
             return DbKunder.arkiverOrdre(sessionId, kundeId);
         }
 
-        public List<Ordrer> finnAlleOrdre(int KundeId)
+        public List<Ordre> finnAlleOrdre(int KundeId)
         {
             return DbKunder.finnAlleOrdre(KundeId);
         }
@@ -25,7 +25,7 @@ namespace BLL
             return DbKunder.finnSisteOrdre(KundeId);
         }
 
-        public Kunder getKunde(string epost)
+        public KundeModell getKunde(string epost)
         {
             return DbKunder.getKunde(epost);
         }
@@ -35,7 +35,7 @@ namespace BLL
             return DbKunder.getKundePassord(innPassordId);
         }
 
-        public Ordrer getOrdre(int ordreId)
+        public Ordre getOrdre(int ordreId)
         {
             return DbKunder.getOrdre(ordreId);
         }

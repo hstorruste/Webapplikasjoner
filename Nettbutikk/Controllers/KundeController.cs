@@ -32,11 +32,11 @@ namespace Nettbutikk.Controllers
             }
             if (_kunderBLL.registrerKunde(innKunde))
             {
-                Kunder kunde = _kunderBLL.getKunde(innKunde.epost);    
+                KundeModell kunde = _kunderBLL.getKunde(innKunde.epost);    
             
-                Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
-                Session["InnloggetKundeId"] = kunde.Id;
-                Session["InnloggetKundePassordId"] = kunde.Passorden.PassordId;
+                Session["Kundenavn"] = kunde.fornavn + " " + kunde.etternavn;
+                Session["InnloggetKundeId"] = kunde.id;
+                Session["InnloggetKundePassordId"] = kunde.passordId;
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
                 Session["EmailFinnes"] = false;
@@ -73,10 +73,11 @@ namespace Nettbutikk.Controllers
             }
             if (_kunderBLL.redigerKunde(innKunde))
             {
-                Kunder kunde = _kunderBLL.getKunde(innKunde.epost);
+                KundeModell kunde = _kunderBLL.getKunde(innKunde.epost);
 
-                Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
-                Session["InnloggetKundeId"] = kunde.Id;
+                Session["Kundenavn"] = kunde.fornavn + " " + kunde.etternavn;
+                Session["InnloggetKundeId"] = kunde.id;
+                Session["InnloggetKundePassordId"] = kunde.passordId;
                 ViewBag.innLogget = true;
                 Session["LoggetInn"] = true;
                 ViewData["EmailFinnes"] = false;
@@ -139,11 +140,11 @@ namespace Nettbutikk.Controllers
         {
             if (_kunderBLL.Kunde_i_DB(innKunde))
             {
-                Kunder kunde = _kunderBLL.getKunde(innKunde.Epost);
+                KundeModell kunde = _kunderBLL.getKunde(innKunde.Epost);
 
-                Session["Kundenavn"] = kunde.Fornavn + " " + kunde.Etternavn;
-                Session["InnloggetKundeId"] = kunde.Id;
-                Session["InnloggetKundePassordId"] = kunde.Passorden.PassordId;
+                Session["Kundenavn"] = kunde.fornavn + " " + kunde.etternavn;
+                Session["InnloggetKundeId"] = kunde.id;
+                Session["InnloggetKundePassordId"] = kunde.passordId;
                 Session["LoggetInn"] = true;
                 ViewBag.Innlogget = true;
 
@@ -185,29 +186,7 @@ namespace Nettbutikk.Controllers
         [HttpGet]
         public ActionResult getOrdreDetaljer(int ordreId)
         {
-            var tempOrdre = _kunderBLL.getOrdre(ordreId);
-
-            var ordre = new Ordre()
-            {
-                ordreId = tempOrdre.OrdreId,
-                ordreDato = tempOrdre.OrdreDato,
-                kundeId = tempOrdre.KundeId,
-                kundeNavn = tempOrdre.Kunder.Fornavn + " " + tempOrdre.Kunder.Etternavn,
-                adresse = tempOrdre.Kunder.Adresse,
-                postnr = tempOrdre.Kunder.Postnr,
-                poststed = tempOrdre.Kunder.Poststeder.Poststed,
-                varer = tempOrdre.OrdreDetaljer.Select(d => new HandlevognVare
-                {
-                    skoId = d.Sko.SkoId,
-                    skoNavn = d.Sko.Navn,
-                    merke = d.Sko.Merke.Navn,
-                    farge = d.Sko.Farge,
-                    storlek = d.Storlek,
-                    pris = d.Pris,
-                    bildeUrl = d.Sko.Bilder.Where(b => b.BildeUrl.Contains("/Medium/")).FirstOrDefault().BildeUrl,
-                }).ToList(),
-                totalBelop = tempOrdre.TotalBelop
-            };
+            var ordre = _kunderBLL.getOrdre(ordreId);
 
             return PartialView("OrdreDetaljerKunde", ordre);
         }

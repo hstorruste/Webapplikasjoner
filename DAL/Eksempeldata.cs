@@ -6,8 +6,12 @@ using System.Data.Entity;
 
 namespace Nettbutikk.DAL
 {
-    public class Eksempeldata : DropCreateDatabaseIfModelChanges<NettbutikkContext>
+    public class Eksempeldata : CreateDatabaseIfNotExists<NettbutikkContext>
     {
+        public Eksempeldata()
+        {
+            System.Data.Entity.Database.SetInitializer(this);
+        }
         protected override void Seed(NettbutikkContext context)
         {
             var forHvem = new List<For>

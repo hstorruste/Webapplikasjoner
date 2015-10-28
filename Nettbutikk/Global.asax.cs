@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using BLL;
 
 namespace Nettbutikk
 {
@@ -11,7 +12,7 @@ namespace Nettbutikk
     {
         protected void Application_Start()
         {
-            System.Data.Entity.Database.SetInitializer(new Nettbutikk.Models.Eksempeldata());
+            InitializerBLL.Initialize();
 
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);

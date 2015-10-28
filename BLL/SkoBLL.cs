@@ -32,7 +32,7 @@ namespace BLL
 
         public List<ForHvem> hentAlleForHvem()
         {
-            return hentAlleForHvem();
+            return DbSko.hentAlleForHvem();
         }
 
         public List<Kategori> hentAlleKategorierForHvem(int forHvemId)
@@ -42,12 +42,12 @@ namespace BLL
 
         public ForHvem getFor(int forId)
         {
-            return getFor(forId);
+            return DbSko.getFor(forId);
         }
 
         public Kategori getKategori(int kategoriId)
         {
-            return getKategori(kategoriId);
+            return DbSko.getKategori(kategoriId);
         }
     }
 }

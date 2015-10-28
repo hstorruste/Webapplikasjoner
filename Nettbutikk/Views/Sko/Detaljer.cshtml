@@ -1,4 +1,4 @@
-﻿@model Nettbutikk.Models.Skoen
+﻿@model Nettbutikk.Model.Skoen
 
 <!DOCTYPE html>
 
@@ -48,9 +48,9 @@
                     {
                         foreach (var bilde in Model.bilder)
                         {
-                            if (bilde.BildeUrl.Contains("/Stor/"))
+                            if (bilde.bildeUrl.Contains("/Stor/"))
                             {
-                                <img src="@Html.DisplayFor(modelItem => bilde.BildeUrl)" class="img-responsive" />
+                                <img src="@Html.DisplayFor(modelItem => bilde.bildeUrl)" class="img-responsive" />
                                 break;
                             }
                         }
@@ -63,10 +63,10 @@
                 {
                     foreach (var bilde in Model.bilder)
                     {
-                        if (bilde.BildeUrl.Contains("/Medium/"))
+                        if (bilde.bildeUrl.Contains("/Medium/"))
                         {
                             <div class="col-md-12">
-                                <img src="@Html.DisplayFor(modelItem => bilde.BildeUrl)" class="img-responsive" />
+                                <img src="@Html.DisplayFor(modelItem => bilde.bildeUrl)" class="img-responsive" />
                             </div>
                         }
                     }

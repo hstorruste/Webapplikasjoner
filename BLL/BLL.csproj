@@ -43,6 +43,7 @@
     <Compile Include="HandlevognBLL.cs" />
     <Compile Include="IHandlevognLogikk.cs" />
     <Compile Include="IKundeLogikk.cs" />
+    <Compile Include="InitializerBLL.cs" />
     <Compile Include="ISkoLogikk.cs" />
     <Compile Include="KunderBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
