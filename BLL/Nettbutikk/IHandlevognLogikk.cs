@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Nettbutikk.Model;
 using Nettbutikk.DAL;
 
-namespace BLL
+namespace Nettbutikk.BLL
 {
     public interface IHandlevognLogikk
     {

@@ -42,19 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bilde.cs" />
-    <Compile Include="ForHvem.cs" />
-    <Compile Include="Handlevogn.cs" />
-    <Compile Include="HandlevognVare.cs" />
-    <Compile Include="Kategori.cs" />
-    <Compile Include="KundeModeller.cs" />
-    <Compile Include="Ordre.cs" />
+    <Compile Include="Nettbutikk\Bilde.cs" />
+    <Compile Include="Nettbutikk\ForHvem.cs" />
+    <Compile Include="Nettbutikk\Handlevogn.cs" />
+    <Compile Include="Nettbutikk\HandlevognVare.cs" />
+    <Compile Include="Nettbutikk\Kategori.cs" />
+    <Compile Include="Nettbutikk\KundeModeller.cs" />
+    <Compile Include="Nettbutikk\Ordre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Skoen.cs" />
-    <Compile Include="Storlek.cs" />
+    <Compile Include="Nettbutikk\Skoen.cs" />
+    <Compile Include="Nettbutikk\Storlek.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Admin\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

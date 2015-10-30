@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Nettbutikk.Model;
-using BLL;
+using Nettbutikk.BLL;
 
 namespace Nettbutikk.Controllers
 {

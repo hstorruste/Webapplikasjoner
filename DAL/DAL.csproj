@@ -50,10 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbHandlevogn.cs" />
-    <Compile Include="DbInitializer.cs" />
-    <Compile Include="DbKunder.cs" />
-    <Compile Include="DbSko.cs" />
+    <Compile Include="Nettbutikk\DbHandlevogn.cs" />
+    <Compile Include="Nettbutikk\DbInitializer.cs" />
+    <Compile Include="Nettbutikk\DbKunder.cs" />
+    <Compile Include="Nettbutikk\DbSko.cs" />
     <Compile Include="Eksempeldata.cs" />
     <Compile Include="NettbutikkContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +67,9 @@
       <Project>{d635108b-42cc-4bca-b7bd-371928c45992}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Admin\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Nettbutikk.DAL;
 
-namespace BLL
+namespace Nettbutikk.BLL
 {
     public class InitializerBLL
     {
