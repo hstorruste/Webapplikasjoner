@@ -19,9 +19,9 @@ namespace Admin.DAL
         Kategori updateKategori(Kategori kategori);
         ForHvem updateFor(ForHvem forhvem);
         Merke updateMerke(Merke merke);
-        Merke deleteKategori(int id);
+        Kategori deleteKategori(int id);
         ForHvem deleteFor(int id);
-        Kategori deleteMerke(int id);
+        Merke deleteMerke(int id);
         Merke addMerke(string merkeNavn);
         ForHvem addFor(string forNavn);
         Kategori addKategori(string kategoriNavn);

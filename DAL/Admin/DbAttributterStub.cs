@@ -29,17 +29,27 @@ namespace Admin.DAL
             throw new NotImplementedException();
         }
 
-        public Merke deleteKategori(int id)
+        public Kategori deleteKategori(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Kategori deleteMerke(int id)
+        public Merke deleteMerke(int id)
         {
             throw new NotImplementedException();
         }
 
         public List<ForHvem> getFor()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ForHvem getFor(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Kategori getKategori(int id)
         {
             throw new NotImplementedException();
         }
@@ -50,6 +60,11 @@ namespace Admin.DAL
         }
 
         public List<Merke> getMerke()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Merke getMerke(int id)
         {
             throw new NotImplementedException();
         }
