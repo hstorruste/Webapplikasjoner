@@ -13,11 +13,17 @@ namespace Admin.DAL
         List<Kategori> getKategorier();
         List<ForHvem> getFor();
         List<Merke> getMerke();
-        Kategori updateKategori();
-        ForHvem updateFor();
-        Merke updateMerke();
-        Merke deleteKategori();
-        ForHvem deleteFor();
-        Kategori deleteMerke();
+        Kategori getKategori(int id);
+        ForHvem getFor(int id);
+        Merke getMerke(int id);
+        Kategori updateKategori(Kategori kategori);
+        ForHvem updateFor(ForHvem forhvem);
+        Merke updateMerke(Merke merke);
+        Merke deleteKategori(int id);
+        ForHvem deleteFor(int id);
+        Kategori deleteMerke(int id);
+        Merke addMerke(string merkeNavn);
+        ForHvem addFor(string forNavn);
+        Kategori addKategori(string kategoriNavn);
     }
 }

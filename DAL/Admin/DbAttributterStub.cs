@@ -9,17 +9,32 @@ namespace Admin.DAL
 {
     public class DbAttributterStub : IDbAttributter
     {
-        public ForHvem deleteFor()
+        public ForHvem addFor(string forNavn)
         {
             throw new NotImplementedException();
         }
 
-        public Merke deleteKategori()
+        public Kategori addKategori(string kategoriNavn)
         {
             throw new NotImplementedException();
         }
 
-        public Kategori deleteMerke()
+        public Merke addMerke(string merkeNavn)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ForHvem deleteFor(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Merke deleteKategori(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Kategori deleteMerke(int id)
         {
             throw new NotImplementedException();
         }
@@ -39,17 +54,17 @@ namespace Admin.DAL
             throw new NotImplementedException();
         }
 
-        public ForHvem updateFor()
+        public ForHvem updateFor(ForHvem forhvem)
         {
             throw new NotImplementedException();
         }
 
-        public Kategori updateKategori()
+        public Kategori updateKategori(Kategori kategori)
         {
             throw new NotImplementedException();
         }
 
-        public Merke updateMerke()
+        public Merke updateMerke(Merke merke)
         {
             throw new NotImplementedException();
         }
