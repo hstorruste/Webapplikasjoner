@@ -1,9 +1,7 @@
 ﻿@model IEnumerable<Nettbutikk.Model.ForHvem>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+
+<table id="grupper" class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.navn)
@@ -17,10 +15,14 @@
             @Html.DisplayFor(modelItem => item.navn)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.forId  }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.forId })
+            @Html.ActionLink("Rediger", "Edit", new { id=item.forId  }, new { @class = "btn btn-default" }) |
+            @Html.ActionLink("Slett", "Delete", new { id = item.forId }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
-
 </table>
+<p>
+    <input id="nyFor" type="text" placeholder="Legg til en ny gruppe"/> 
+    <button id="btnLeggTilFor" class="btn btn-success" >Legg til</button>
+    <label id="errorFor" class="text-danger"></label>
+</p>

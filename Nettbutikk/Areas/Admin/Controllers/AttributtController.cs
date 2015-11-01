@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Admin.BLL;
+using Nettbutikk.Model;
 
 namespace Nettbutikk.Areas.Admin.Controllers
 {
@@ -42,6 +43,13 @@ namespace Nettbutikk.Areas.Admin.Controllers
         {
             var liste = _attributtBLL.getMerke();
             return PartialView(liste);
+        }
+
+        [HttpPost]
+        public JsonResult LeggTilFor(ForHvem ny)
+        {
+            var lagtTil = _attributtBLL.addFor(ny.navn);
+            return Json(lagtTil);
         }
     }
 }
