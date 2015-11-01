@@ -11,11 +11,11 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td class="col-md-4">
+            <td class="col-md-4" data-merkeid="@item.merkeId">
                 @Html.DisplayFor(modelItem => item.navn)
             </td>
             <td>
-                @Html.ActionLink("Rediger", "Edit", new { id = item.merkeId }, new { @class = "btn btn-default" }) |
+                <a class='btn btn-default' onclick="redigerMerke('@item.merkeId','@item.navn')">Rediger</a>
                 @Html.ActionLink("Slett", "Delete", new { id = item.merkeId }, new { @class = "btn btn-danger" })
             </td>
         </tr>
@@ -33,3 +33,22 @@
         </td>
     </tr>
 </table>
+<!-- Rediger - Modal -->
+<div class="modal fade" id="redigerMerkeModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Rediger merke</h4>
+            </div>
+            <div class="modal-body">
+                <input id="redigertMerke" class="form-control" type="text" data-id="" />
+            </div>
+            <div class="modal-footer">
+                <label id="merkeModalError"></label>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Avbryt</button>
+                <button type="button" class="btn btn-warning" onclick="lagreMerke()">Lagre</button>
+            </div>
+        </div>
+    </div>
+</div>

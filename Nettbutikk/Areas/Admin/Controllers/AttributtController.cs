@@ -65,5 +65,12 @@ namespace Nettbutikk.Areas.Admin.Controllers
             var lagtTil = _attributtBLL.addMerke(ny.navn);
             return Json(lagtTil);
         }
+
+        [HttpPost]
+        public JsonResult OppdaterMerke(Merke item)
+        {
+            var redigert = _attributtBLL.updateMerke(item);
+            return Json(redigert);
+        }
     }
 }

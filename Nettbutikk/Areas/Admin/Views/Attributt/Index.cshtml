@@ -126,6 +126,43 @@
                 });
             });
         });
+
+        function redigerMerke(id, navn) {
+            $('#redigertMerke').data("id", id);
+            $('#redigertMerke').val(navn);
+            $('#redigerMerkeModal').modal();
+        }
+
+        function lagreMerke() {
+            var id = $('#redigertMerke').data("id");
+            var navn = $('#redigertMerke').val();
+            if (navn == "") {
+                $('#merkeModalError').text("Kan ikke være tom!");
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("OppdaterMerke", "Attributt")',
+                data: JSON.stringify({ merkeId: id, navn: navn }),
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data != null) {
+                        $('.close').click();
+                        var tag = "td[data-merkeid=" + data.merkeId + "]";
+                        $(tag).text(data.navn);
+                    }
+                    else {
+                        $('#merkeModalError').text("Noe gikk galt!");
+                    }
+                },
+                error: function (data) {
+                    $('#merkeModalError').text("Noe gikk galt!");
+                }
+
+            });
+        }
     </script>
 </head>
 <body>
