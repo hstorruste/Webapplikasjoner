@@ -51,5 +51,19 @@ namespace Nettbutikk.Areas.Admin.Controllers
             var lagtTil = _attributtBLL.addFor(ny.navn);
             return Json(lagtTil);
         }
+
+        [HttpPost]
+        public JsonResult LeggTilKategori(Kategori ny)
+        {
+            var lagtTil = _attributtBLL.addKategori(ny.navn);
+            return Json(lagtTil);
+        }
+
+        [HttpPost]
+        public JsonResult LeggTilMerke(Merke ny)
+        {
+            var lagtTil = _attributtBLL.addMerke(ny.navn);
+            return Json(lagtTil);
+        }
     }
 }

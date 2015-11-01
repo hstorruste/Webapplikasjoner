@@ -11,6 +11,7 @@ namespace Nettbutikk.Model
         [ScaffoldColumn(false)]
         public int kategoriId { get; set; }
         [Display(Name = "Kategori")]
+        [Required(ErrorMessage = "Navn på kategori må oppgis")]
         public string navn { get; set; }
     }
 }

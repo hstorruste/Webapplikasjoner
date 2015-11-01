@@ -6,9 +6,40 @@
     <title>Index</title>
     <script type="text/javascript">
         $(document).ready(function () {
+            $('#nyFor').keypress(function (event) {
+                if (event.keyCode == 13) {
+                    $('#btnLeggTilFor').click();
+                }
+                else {
+                    $('#errorFor').text("");
+                }
+            });
+
+            $('#nyKategori').keypress(function (event) {
+                if (event.keyCode == 13) {
+                    $('#btnLeggTilKategori').click();
+                }
+                else {
+                    $('#errorKategori').text("");
+                }
+            });
+
+            $('#nyMerke').keypress(function (event) {
+                if (event.keyCode == 13) {
+                    $('#btnLeggTilMerke').click();
+                }
+                else {
+                    $('#errorMerke').text("");
+                }
+            });
+
             $('#btnLeggTilFor').click(function () {
                 var ny = $('#nyFor').val();
-
+                if (ny == "") {
+                    $('#errorFor').text("Gruppe må oppgis");
+                    return;
+                }
+                
                 $.ajax({
                     url: '@Url.Action("LeggTilFor","Attributt")',
                     data: JSON.stringify({ navn: ny }),
@@ -29,6 +60,68 @@
                     },
                     error: function (data) {
                         $('#errorFor').text("Noe gikk galt!");
+                    }
+                });
+            });
+
+            $('#btnLeggTilKategori').click(function () {
+                var ny = $('#nyKategori').val();
+                if (ny == "") {
+                    $('#errorKategori').text("Navn på kategori må oppgis");
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("LeggTilKategori","Attributt")',
+                    data: JSON.stringify({ navn: ny }),
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: "application/json;charset=utf-8",
+                    success: function (data) {
+                        if (data != null) {
+                            $('#nyKategori').val("");
+                            $('#errorKategori').text("");
+                            var ny = "<tr><td>" + data.navn + "</td>";
+                            ny += "<td><a href='#' class='btn btn-default'>Rediger</a> | <a href='#' class='btn btn-danger'>Slett</a></td></tr>";
+                            $('#kategorier').append(ny);
+                        }
+                        else {
+                            $('#errorKategori').text("Noe gikk galt!");
+                        }
+                    },
+                    error: function (data) {
+                        $('#errorKategori').text("Noe gikk galt!");
+                    }
+                });
+            });
+
+            $('#btnLeggTilMerke').click(function () {
+                var ny = $('#nyMerke').val();
+                if (ny == "") {
+                    $('#errorMerke').text("Navn på merke må oppgis");
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("LeggTilMerke","Attributt")',
+                    data: JSON.stringify({ navn: ny }),
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: "application/json;charset=utf-8",
+                    success: function (data) {
+                        if (data != null) {
+                            $('#nyMerke').val("");
+                            $('#errorMerke').text("");
+                            var ny = "<tr><td>" + data.navn + "</td>";
+                            ny += "<td><a href='#' class='btn btn-default'>Rediger</a> | <a href='#' class='btn btn-danger'>Slett</a></td></tr>";
+                            $('#merker').append(ny);
+                        }
+                        else {
+                            $('#errorMerke').text("Noe gikk galt!");
+                        }
+                    },
+                    error: function (data) {
+                        $('#errorMerke').text("Noe gikk galt!");
                     }
                 });
             });

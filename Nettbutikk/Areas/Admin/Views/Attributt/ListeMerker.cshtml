@@ -1,26 +1,35 @@
 ﻿@model IEnumerable<Nettbutikk.Model.Merke>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table id="merker" class="table">
     <tr>
-        <th>
+        <th class="col-md-4">
             @Html.DisplayNameFor(model => model.navn)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="col-md-4">
+                @Html.DisplayFor(modelItem => item.navn)
+            </td>
+            <td>
+                @Html.ActionLink("Rediger", "Edit", new { id = item.merkeId }, new { @class = "btn btn-default" }) |
+                @Html.ActionLink("Slett", "Delete", new { id = item.merkeId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+<table class="table">
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.navn)
+        <td class="col-md-4">
+            <input id="nyMerke" class="form-control" type="text" placeholder="Legg til et nytt merke" />
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.merkeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.merkeId })
+            <button id="btnLeggTilMerke" class="btn btn-success">Legg til</button>
+            <label id="errorMerke" class="text-danger"></label>
         </td>
     </tr>
-}
-
 </table>

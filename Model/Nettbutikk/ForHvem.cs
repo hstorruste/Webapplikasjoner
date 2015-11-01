@@ -11,6 +11,7 @@ namespace Nettbutikk.Model
         [ScaffoldColumn(false)]
         public int forId { get; set; }
         [Display(Name = "For hvem")]
+        [Required(ErrorMessage = "Kan ikke være blank.")]
         public string navn { get; set; }
     }
 }

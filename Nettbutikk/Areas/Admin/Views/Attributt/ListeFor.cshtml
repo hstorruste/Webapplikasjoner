@@ -3,26 +3,33 @@
 
 <table id="grupper" class="table">
     <tr>
-        <th>
+        <th class="col-md-4">
             @Html.DisplayNameFor(model => model.navn)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="col-md-4">
+                @Html.DisplayFor(modelItem => item.navn)
+            </td>
+            <td>
+                @Html.ActionLink("Rediger", "Edit", new { id = item.forId }, new { @class = "btn btn-default" }) |
+                @Html.ActionLink("Slett", "Delete", new { id = item.forId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+</table>
+<table class="table">
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.navn)
+        <td class="col-md-4">
+            <input id="nyFor" class="form-control" type="text" placeholder="Legg til en ny gruppe" />
         </td>
         <td>
-            @Html.ActionLink("Rediger", "Edit", new { id=item.forId  }, new { @class = "btn btn-default" }) |
-            @Html.ActionLink("Slett", "Delete", new { id = item.forId }, new { @class = "btn btn-danger" })
+            <button id="btnLeggTilFor" class="btn btn-success">Legg til</button>
+            <label id="errorFor" class="text-danger"></label>
         </td>
     </tr>
-}
 </table>
-<p>
-    <input id="nyFor" type="text" placeholder="Legg til en ny gruppe"/> 
-    <button id="btnLeggTilFor" class="btn btn-success" >Legg til</button>
-    <label id="errorFor" class="text-danger"></label>
-</p>
