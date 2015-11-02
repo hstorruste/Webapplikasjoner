@@ -47,6 +47,7 @@
     <Compile Include="Nettbutikk\Handlevogn.cs" />
     <Compile Include="Nettbutikk\HandlevognVare.cs" />
     <Compile Include="Nettbutikk\Kategori.cs" />
+    <Compile Include="Nettbutikk\Kunde.cs" />
     <Compile Include="Nettbutikk\KundeModeller.cs" />
     <Compile Include="Nettbutikk\Merke.cs" />
     <Compile Include="Nettbutikk\Ordre.cs" />
