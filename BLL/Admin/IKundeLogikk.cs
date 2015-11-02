@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Admin
 {
-    public interface IKunderBLL
+    public interface IKundeLogikk
     {
         List<Kunde> getKunder();
         Kunde getKunde(int id);

@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <title>Hjem</title>
 </head>
 <body>
@@ -15,12 +16,12 @@
             <div class="row">
                 <!--Ruta 1 (Kunder)-->
                 <div class="col-md-4" style="padding:0px">
-                    <div class="panel panel-default text-center col-md-12">
-                        <a href="@Url.Action("Detaljer","Admin")">
+                    <div class="panel panel-default text-center col-md-12 ruta">
+                        <a href="@Url.Action("Index","Kunde")">
                             <div class="panel-body col-md-12 clearfix">
-                                <span class="glyphicon glyphicon-user"></span>
+                                <img src="~/Pictures/Admin/grp.png">
                                 <div class="col-md-12 ">
-                                    Kunder
+                                    <h3 class="ruta-text">Kunder</h3>
                                 </div>
                             </div>
                         </a>
@@ -28,12 +29,12 @@
                 </div>
                 <!--Ruta 2 (Sko)-->
                 <div class="col-md-4" style="padding:0px">
-                    <div class="panel panel-default text-center col-md-12">
+                    <div class="panel panel-default text-center col-md-12 ruta">
                         <a href="@Url.Action("Detaljer","Admin")">
                             <div class="panel-body col-md-12 clearfix">
-                                <span class="glyphicons glyphicons-shoes"></span>
+                                <img src="~/Pictures/Admin/shoe.png">
                                 <div class="col-md-12 ">
-                                    Sko
+                                    <h3 class="ruta-text">Sko</h3>
                                 </div>
                             </div>
                         </a>
@@ -41,12 +42,12 @@
                 </div>
                 <!--Ruta 3 (Ordre)-->
                 <div class="col-md-4" style="padding:0px">
-                    <div class="panel panel-default text-center col-md-12">
+                    <div class="panel panel-default text-center col-md-12 ruta">
                         <a href="@Url.Action("Detaljer","Admin")">
                             <div class="panel-body col-md-12 clearfix">
-                                <span class="glyphicons glyphicons-list-alt"></span>
+                                <img src="~/Pictures/Admin/ordre.png">
                                 <div class="col-md-12 ">
-                                    Ordre
+                                    <h3 class="ruta-text">Ordre</h3>
                                 </div>
                             </div>
                         </a>
@@ -56,12 +57,12 @@
             <div class="row">
                 <!--Ruta 4 (For/Kategori/Merke)-->
                 <div class="col-md-4" style="padding:0px">
-                    <div class="panel panel-default text-center col-md-12">
+                    <div class="panel panel-default text-center col-md-12 ruta">
                         <a href="@Url.Action("Index","Attributt")">
                             <div class="panel-body col-md-12 clearfix">
-                                <span class="glyphicons glyphicons-settings"></span>
+                                <img src="~/Pictures/Admin/settings.png">
                                 <div class="col-md-12 ">
-                                    For/Kategori/Merke
+                                    <h3 class="ruta-text">Attributter</h3>
                                 </div>
                             </div>
                         </a>
@@ -69,25 +70,25 @@
                 </div>
                 <!--Ruta 5 (Lager)-->
                 <div class="col-md-4" style="padding:0px">
-                    <div class="panel panel-default text-center col-md-12">
+                    <div class="panel panel-default text-center col-md-12 ruta">
                         <a href="@Url.Action("Detaljer","Admin")">
                             <div class="panel-body col-md-12 clearfix">
-                                <span class="glyphicons glyphicons-truck"></span>
+                                <img src="~/Pictures/Admin/truck.png">
                                 <div class="col-md-12 ">
-                                    Lager
+                                    <h3 class="ruta-text">Lager</h3>
                                 </div>
                             </div>
                         </a>
                     </div>
                 </div>
-                <!--Ruta 6 (Rediger Admin)-->
+                <!--Ruta 6 (Admin)-->
                 <div class="col-md-4" style="padding:0px">
-                    <div class="panel panel-default text-center col-md-12">
+                    <div class="panel panel-default text-center col-md-12 ruta">
                         <a href="@Url.Action("Detaljer","Admin")">
                             <div class="panel-body col-md-12 clearfix">
-                                <span class="glyphicons glyphicons-skull"></span>
+                                <img src="~/Pictures/Admin/lock.png">
                                 <div class="col-md-12 ">
-                                    Rediger Admin
+                                    <h3 class="ruta-text">Admin</h3>
                                 </div>
                             </div>
                         </a>

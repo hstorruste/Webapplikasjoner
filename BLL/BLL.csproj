@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\IKunderBLL.cs" />
-    <Compile Include="Admin\KunderBLL.cs" />
+    <Compile Include="Admin\IKundeLogikk.cs" />
+    <Compile Include="Admin\KundeBLL.cs" />
     <Compile Include="Admin\AttributtBLL.cs" />
     <Compile Include="Admin\IAttributtLogikk.cs" />
     <Compile Include="Nettbutikk\HandlevognBLL.cs" />

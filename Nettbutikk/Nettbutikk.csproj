@@ -121,6 +121,12 @@
     <Content Include="Areas\Admin\Views\Attributt\ListeKategorier.cshtml" />
     <Content Include="Areas\Admin\Views\Attributt\ListeMerker.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Pictures\Admin\grp.png" />
+    <Content Include="Pictures\Admin\lock.png" />
+    <Content Include="Pictures\Admin\ordre.png" />
+    <Content Include="Pictures\Admin\settings.png" />
+    <Content Include="Pictures\Admin\shoe.png" />
+    <Content Include="Pictures\Admin\truck.png" />
     <Content Include="Pictures\Sko\Medium\1225502411_1.jpg" />
     <Content Include="Pictures\Sko\Medium\1225502411_2.jpg" />
     <Content Include="Pictures\Sko\Medium\1225502411_4.jpg" />
@@ -305,6 +311,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\AttributtController.cs" />
+    <Compile Include="Areas\Admin\Controllers\KundeController.cs" />
     <Compile Include="Controllers\HandlevognController.cs" />
     <Compile Include="Controllers\KundeController.cs" />
     <Compile Include="Controllers\NettbutikkController.cs" />
@@ -348,6 +355,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Kunde\" />
     <Folder Include="Models\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>

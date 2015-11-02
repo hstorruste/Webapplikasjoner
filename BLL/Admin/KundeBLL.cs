@@ -8,16 +8,16 @@ using DAL.Admin;
 
 namespace BLL.Admin
 {
-    public class KunderBLL : IKunderBLL
+    public class KundeBLL : IKundeLogikk
     {
         private IDbKunder _repo;
 
-        public KunderBLL()
+        public KundeBLL()
         {
             _repo = new DbKunder();
         }
 
-        public KunderBLL(DbKunderStub stub)
+        public KundeBLL(DbKunderStub stub)
         {
             _repo = stub;
         }
