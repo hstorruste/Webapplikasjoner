@@ -12,6 +12,9 @@ namespace Nettbutikk.Model
         [ScaffoldColumn(false)]
         public int merkeId { get; set; }
         [Display(Name = "Merke")]
+        [Required(ErrorMessage = "Navn på merke må oppgis")]
         public string navn { get; set; }
+        [Display(Name = "Antall sko")]
+        public int antallSko { get; set; }
     }
 }

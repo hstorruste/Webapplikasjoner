@@ -23,7 +23,7 @@ namespace Admin.DAL
                     db.For.Add(ny);
                     db.SaveChanges();
                     var lagret = db.For.SingleOrDefault(f => f.Navn == forNavn);
-                    return new ForHvem { forId = lagret.ForId, navn = lagret.Navn };
+                    return new ForHvem { forId = lagret.ForId, navn = lagret.Navn, antallSko = lagret.Sko.Count };
                 }
                 catch
                 {
@@ -46,7 +46,7 @@ namespace Admin.DAL
                     db.Kategorier.Add(ny);
                     db.SaveChanges();
                     var lagret = db.Kategorier.SingleOrDefault(k => k.Navn == kategoriNavn);
-                    return new Kategori {  kategoriId = lagret.KategoriId, navn = lagret.Navn };
+                    return new Kategori {  kategoriId = lagret.KategoriId, navn = lagret.Navn, antallSko = lagret.Sko.Count };
                 }
                 catch
                 {
@@ -69,7 +69,7 @@ namespace Admin.DAL
                     db.Merker.Add(ny);
                     db.SaveChanges();
                     var lagret = db.Merker.SingleOrDefault(f => f.Navn == merkeNavn);
-                    return new Merke { merkeId = lagret.MerkerId, navn = lagret.Navn };
+                    return new Merke { merkeId = lagret.MerkerId, navn = lagret.Navn, antallSko = lagret.Sko.Count };
                 }
                 catch
                 {
@@ -132,7 +132,7 @@ namespace Admin.DAL
             {
                 try
                 {
-                    return db.For.Select(f => new ForHvem(){ forId = f.ForId, navn = f.Navn }).ToList();
+                    return db.For.Select(f => new ForHvem(){ forId = f.ForId, navn = f.Navn, antallSko = f.Sko.Count }).ToList();
                 }
                 catch (Exception feil)
                 {
@@ -148,7 +148,7 @@ namespace Admin.DAL
                 try
                 {
                     var funnet = db.For.Find(id);
-                    return new ForHvem() { forId = funnet.ForId, navn = funnet.Navn };
+                    return new ForHvem() { forId = funnet.ForId, navn = funnet.Navn, antallSko = funnet.Sko.Count };
                 }
                 catch (Exception feil)
                 {
@@ -164,7 +164,7 @@ namespace Admin.DAL
                 try
                 {
                     var funnet = db.Kategorier.Find(id);
-                    return new Kategori() { kategoriId = funnet.KategoriId, navn = funnet.Navn };
+                    return new Kategori() { kategoriId = funnet.KategoriId, navn = funnet.Navn, antallSko = funnet.Sko.Count };
                 }
                 catch (Exception feil)
                 {
@@ -180,7 +180,8 @@ namespace Admin.DAL
                 try
                 {
                     return db.Kategorier.Select(k => new Kategori() {
-                        kategoriId = k.KategoriId, navn = k.Navn
+                        kategoriId = k.KategoriId, navn = k.Navn,
+                        antallSko = k.Sko.Count
                     }).ToList();
                 }
                 catch (Exception feil)
@@ -196,7 +197,7 @@ namespace Admin.DAL
             {
                 try
                 {
-                    return db.Merker.Select(m => new Merke() { merkeId = m.MerkerId, navn = m.Navn }).ToList();
+                    return db.Merker.Select(m => new Merke() { merkeId = m.MerkerId, navn = m.Navn, antallSko = m.Sko.Count }).ToList();
                 }
                 catch (Exception feil)
                 {
@@ -212,7 +213,121 @@ namespace Admin.DAL
                 try
                 {
                     var funnet = db.Merker.Find(id);
-                    return new Merke() { merkeId = funnet.MerkerId, navn = funnet.Navn };
+                    return new Merke() { merkeId = funnet.MerkerId, navn = funnet.Navn, antallSko = funnet.Sko.Count };
+                }
+                catch (Exception feil)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public List<Skoen> getSkoAvFor(int id)
+        {
+            using(var db = new NettbutikkContext())
+            {
+                try
+                {
+                    var liste = db.For.Find(id).Sko.Select(s => new Skoen()
+                    {
+                        skoId = s.SkoId,
+                        navn = s.Navn,
+                        kategori = s.Kategori.Navn,
+                        merke = s.Merke.Navn,
+                        forHvem = s.ForHvem.Navn,
+                        pris = s.Pris.OrderByDescending(p => p.Dato).FirstOrDefault().Pris,
+                        farge = s.Farge,
+                        beskrivelse = s.Beskrivelse,
+                        storlekar = s.Storlekar.Select(t => new Storlek()
+                        {
+                            storlekId = t.StorlekId,
+                            storlek = t.Storlek,
+                            antall = t.Antall
+                        }).ToList(),
+                        bilder = s.Bilder.Select(b => new Bilde()
+                        {
+                            bildeId = b.BildeId,
+                            bildeUrl = b.BildeUrl
+                        }).ToList()
+                    }).ToList();
+
+                    return liste;
+                }
+                catch(Exception feil)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public List<Skoen> getSkoAvKategori(int id)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    var liste = db.Kategorier.Find(id).Sko.Select(s => new Skoen()
+                    {
+                        skoId = s.SkoId,
+                        navn = s.Navn,
+                        kategori = s.Kategori.Navn,
+                        merke = s.Merke.Navn,
+                        forHvem = s.ForHvem.Navn,
+                        pris = s.Pris.OrderByDescending(p => p.Dato).FirstOrDefault().Pris,
+                        farge = s.Farge,
+                        beskrivelse = s.Beskrivelse,
+                        storlekar = s.Storlekar.Select(t => new Storlek()
+                        {
+                            storlekId = t.StorlekId,
+                            storlek = t.Storlek,
+                            antall = t.Antall
+                        }).ToList(),
+                        bilder = s.Bilder.Select(b => new Bilde()
+                        {
+                            bildeId = b.BildeId,
+                            bildeUrl = b.BildeUrl
+                        }).ToList()
+                    }).ToList();
+
+                    return liste;
+                }
+                catch (Exception feil)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public List<Skoen> getSkoAvMerke(int id)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    var liste = db.Merker.Find(id).Sko.Select(s => new Skoen()
+                    {
+                        skoId = s.SkoId,
+                        navn = s.Navn,
+                        kategori = s.Kategori.Navn,
+                        merke = s.Merke.Navn,
+                        forHvem = s.ForHvem.Navn,
+                        pris = s.Pris.OrderByDescending(p => p.Dato).FirstOrDefault().Pris,
+                        farge = s.Farge,
+                        beskrivelse = s.Beskrivelse,
+                        storlekar = s.Storlekar.Select(t => new Storlek()
+                        {
+                            storlekId = t.StorlekId,
+                            storlek = t.Storlek,
+                            antall = t.Antall
+                        }).ToList(),
+                        bilder = s.Bilder.Select(b => new Bilde()
+                        {
+                            bildeId = b.BildeId,
+                            bildeUrl = b.BildeUrl
+                        }).ToList()
+                    }).ToList();
+
+                    return liste;
                 }
                 catch (Exception feil)
                 {

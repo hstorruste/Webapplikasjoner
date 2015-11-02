@@ -10,17 +10,25 @@ namespace BLL.Admin
 {
     public class KunderBLL : IKunderBLL
     {
+        private IDbKunder _repo;
+
+        public KunderBLL()
+        {
+            _repo = new DbKunder();
+        }
+
+        public KunderBLL(DbKunderStub stub)
+        {
+            _repo = stub;
+        }
         public Kunde getKunde(int id)
         {
-            var DbKunder = new DbKunder();
-            return DbKunder.getKunde(id);
+            return _repo.getKunde(id);
         }
 
         public List<Kunde> getKunder()
         {
-            var DbKunder = new DbKunder();
-            List<Kunde> alleKunder = DbKunder.getKunder();
-            return alleKunder;
+            return _repo.getKunder();
         }
     }
 }

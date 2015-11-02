@@ -4,99 +4,112 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Nettbutikk.Model;
+using Admin.DAL;
 
-namespace Admin.DAL
+namespace Admin.BLL
 {
-    public class DbAttributterStub : IDbAttributter
+    public class AttributtBLL : IAttributtLogikk
     {
+        private IDbAttributter _repo;
+
+        public AttributtBLL()
+        {
+            _repo = new DbAttributter();
+        }
+
+        public AttributtBLL(DbAttributterStub stub)
+        {
+            _repo = stub;
+        }
+
         public ForHvem addFor(string forNavn)
         {
-            throw new NotImplementedException();
+            return _repo.addFor(forNavn);
         }
 
         public Kategori addKategori(string kategoriNavn)
         {
-            throw new NotImplementedException();
+            return _repo.addKategori(kategoriNavn);
         }
 
         public Merke addMerke(string merkeNavn)
         {
-            throw new NotImplementedException();
+            return _repo.addMerke(merkeNavn);
         }
 
         public ForHvem deleteFor(int id)
         {
-            throw new NotImplementedException();
+            return _repo.deleteFor(id);
         }
 
         public Kategori deleteKategori(int id)
         {
-            throw new NotImplementedException();
+            return _repo.deleteKategori(id);
         }
 
         public Merke deleteMerke(int id)
         {
-            throw new NotImplementedException();
+            return _repo.deleteMerke(id);
         }
 
         public List<ForHvem> getFor()
         {
-            throw new NotImplementedException();
+            return _repo.getFor();
         }
 
         public ForHvem getFor(int id)
         {
-            throw new NotImplementedException();
+            return _repo.getFor(id);
         }
 
         public Kategori getKategori(int id)
         {
-            throw new NotImplementedException();
+            return _repo.getKategori(id);
         }
 
         public List<Kategori> getKategorier()
         {
-            throw new NotImplementedException();
+            return _repo.getKategorier();
         }
 
         public List<Merke> getMerke()
         {
-            throw new NotImplementedException();
+            return _repo.getMerke();
         }
 
         public Merke getMerke(int id)
         {
-            throw new NotImplementedException();
+            return _repo.getMerke(id);
         }
 
         public List<Skoen> getSkoAvFor(int id)
         {
-            throw new NotImplementedException();
+            return _repo.getSkoAvFor(id);
         }
 
         public List<Skoen> getSkoAvKategori(int id)
         {
-            throw new NotImplementedException();
+            return _repo.getSkoAvKategori(id);
         }
 
         public List<Skoen> getSkoAvMerke(int id)
         {
-            throw new NotImplementedException();
+            return _repo.getSkoAvMerke(id);
         }
 
         public ForHvem updateFor(ForHvem forhvem)
         {
-            throw new NotImplementedException();
+            return _repo.updateFor(forhvem);
         }
 
         public Kategori updateKategori(Kategori kategori)
         {
-            throw new NotImplementedException();
+            return _repo.updateKategori(kategori);
         }
 
         public Merke updateMerke(Merke merke)
         {
-            throw new NotImplementedException();
+            return _repo.updateMerke(merke);
         }
     }
 }

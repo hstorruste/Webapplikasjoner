@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#nyFor').keypress(function (event) {
+                if (event.keyCode == 13) {
+                    $('#btnLeggTilFor').click();
+                }
+                else {
+                    $('#errorFor').text("");
+                }
+            });
+
+            $('#nyKategori').keypress(function (event) {
+                if (event.keyCode == 13) {
+                    $('#btnLeggTilKategori').click();
+                }
+                else {
+                    $('#errorKategori').text("");
+                }
+            });
+
+            $('#nyMerke').keypress(function (event) {
+                if (event.keyCode == 13) {
+                    $('#btnLeggTilMerke').click();
+                }
+                else {
+                    $('#errorMerke').text("");
+                }
+            });
+
+            $('#btnLeggTilFor').click(function () {
+                var ny = $('#nyFor').val();
+                if (ny == "") {
+                    $('#errorFor').text("Gruppe må oppgis");
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("LeggTilFor","Attributt")',
+                    data: JSON.stringify({ navn: ny }),
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: "application/json;charset=utf-8",
+                    success: function (data) {
+                        if (data != null) {
+                            $('#nyFor').val("");
+                            $('#errorFor').text("");
+                            var ny = "<tr><td>" + data.navn + "</td>";
+                            ny += "<td><a href='#' class='btn btn-default'>Rediger</a> | <a href='#' class='btn btn-danger'>Slett</a></td></tr>";
+                            $('#grupper').append(ny);
+                        }
+                        else {
+                            $('#errorFor').text("Noe gikk galt!");
+                        }
+                    },
+                    error: function (data) {
+                        $('#errorFor').text("Noe gikk galt!");
+                    }
+                });
+            });
+
+            $('#btnLeggTilKategori').click(function () {
+                var ny = $('#nyKategori').val();
+                if (ny == "") {
+                    $('#errorKategori').text("Navn på kategori må oppgis");
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("LeggTilKategori","Attributt")',
+                    data: JSON.stringify({ navn: ny }),
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: "application/json;charset=utf-8",
+                    success: function (data) {
+                        if (data != null) {
+                            $('#nyKategori').val("");
+                            $('#errorKategori').text("");
+                            var ny = "<tr><td>" + data.navn + "</td>";
+                            ny += "<td><a href='#' class='btn btn-default'>Rediger</a> | <a href='#' class='btn btn-danger'>Slett</a></td></tr>";
+                            $('#kategorier').append(ny);
+                        }
+                        else {
+                            $('#errorKategori').text("Noe gikk galt!");
+                        }
+                    },
+                    error: function (data) {
+                        $('#errorKategori').text("Noe gikk galt!");
+                    }
+                });
+            });
+
+            $('#btnLeggTilMerke').click(function () {
+                var ny = $('#nyMerke').val();
+                if (ny == "") {
+                    $('#errorMerke').text("Navn på merke må oppgis");
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("LeggTilMerke","Attributt")',
+                    data: JSON.stringify({ navn: ny }),
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: "application/json;charset=utf-8",
+                    success: function (data) {
+                        if (data != null) {
+                            $('#nyMerke').val("");
+                            $('#errorMerke').text("");
+                            var ny = "<tr><td>" + data.navn + "</td>";
+                            ny += "<td><a href='#' class='btn btn-default'>Rediger</a> | <a href='#' class='btn btn-danger'>Slett</a></td></tr>";
+                            $('#merker').append(ny);
+                        }
+                        else {
+                            $('#errorMerke').text("Noe gikk galt!");
+                        }
+                    },
+                    error: function (data) {
+                        $('#errorMerke').text("Noe gikk galt!");
+                    }
+                });
+            });
+        });
+
+        function redigerMerke(id) {
+            $('#merkeModalError').text("");
+            $('#redigertMerke').data("id", id);
+            var tag = "td[data-merkeid=" + id + "]";
+            var navn = $(tag).data("merkenavn");
+            $('#redigertMerke').val(navn);
+            $('#redigerMerkeModal').modal();
+        }
+
+        function redigerKategori(id) {
+            $('#kategoriModalError').text("");
+            $('#redigertKategori').data("id", id);
+            var tag = "td[data-kategoriid=" + id + "]";
+            var navn = $(tag).data("kategorinavn");
+            $('#redigertKategori').val(navn);
+            $('#redigerKategoriModal').modal();
+        }
+
+        function redigerFor(id) {
+            $('#forModalError').text("");
+            $('#redigertFor').data("id", id);
+            var tag = "td[data-forid=" + id + "]";
+            var navn = $(tag).data("fornavn");
+            $('#redigertFor').val(navn);
+            $('#redigerForModal').modal();
+        }
+
+        function lagreMerke() {
+            var id = $('#redigertMerke').data("id");
+            var navn = $('#redigertMerke').val();
+            if (navn == "") {
+                $('#merkeModalError').text("Kan ikke være tom!");
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("OppdaterMerke", "Attributt")',
+                data: JSON.stringify({ merkeId: id, navn: navn }),
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data != null) {
+                        $('.close').click();
+                        var tag = "td[data-merkeid=" + data.merkeId + "]";
+                        $(tag).text(data.navn);
+                        $(tag).data("merkenavn",data.navn);
+                    }
+                    else {
+                        $('#merkeModalError').text("Noe gikk galt!");
+                    }
+                },
+                error: function (data) {
+                    $('#merkeModalError').text("Noe gikk galt!");
+                }
+
+            });
+        }
+
+        function lagreKategori() {
+            var id = $('#redigertKategori').data("id");
+            var navn = $('#redigertKategori').val();
+            if (navn == "") {
+                $('#kategoriModalError').text("Kan ikke være tom!");
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("OppdaterKategori", "Attributt")',
+                data: JSON.stringify({ kategoriId: id, navn: navn }),
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data != null) {
+                        $('.close').click();
+                        var tag = "td[data-kategoriid=" + data.kategoriId + "]";
+                        $(tag).text(data.navn);
+                        $(tag).data("kategorinavn", data.navn);
+                    }
+                    else {
+                        $('#kategoriModalError').text("Noe gikk galt!");
+                    }
+                },
+                error: function (data) {
+                    $('#kategoriModalError').text("Noe gikk galt!");
+                }
+
+            });
+        }
+
+        function lagreFor() {
+            var id = $('#redigertFor').data("id");
+            var navn = $('#redigertFor').val();
+            if (navn == "") {
+                $('#forModalError').text("Kan ikke være tom!");
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("OppdaterFor", "Attributt")',
+                data: JSON.stringify({ forId: id, navn: navn }),
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data != null) {
+                        $('.close').click();
+                        var tag = "td[data-forid=" + data.forId + "]";
+                        $(tag).text(data.navn);
+                        $(tag).data("fornavn", data.navn);
+                    }
+                    else {
+                        $('#forModalError').text("Noe gikk galt!");
+                    }
+                },
+                error: function (data) {
+                    $('#forModalError').text("Noe gikk galt!");
+                }
+
+            });
+        }
+    </script>
+</head>
+<body>
+    <div> 
+        <h2 class="text-center">
+            Sko - attributter
+        </h2>
+        <p class="text-center">Her kan man se, redigere og legge til nye merker, kategorier og grupper i databasen.</p>
+        <hr />
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Merker</a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        @Html.Action("ListeMerker", "Attributt")
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Gruppetilhørighet</a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        @Html.Action("ListeFor", "Attributt")
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Kategorier</a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        @Html.Action("ListeKategorier", "Attributt")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

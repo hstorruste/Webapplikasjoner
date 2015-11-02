@@ -9,7 +9,7 @@ namespace Nettbutikk.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         // GET: Admin/Admin
-        public ActionResult Index()
+        public ActionResult Hjem()
         {
             return View();
         }

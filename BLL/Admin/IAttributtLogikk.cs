@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Nettbutikk.Model;
-using Nettbutikk.DAL;
 
-namespace Admin.DAL
+namespace Admin.BLL
 {
-    public interface IDbAttributter
+    public interface IAttributtLogikk
     {
         List<Kategori> getKategorier();
         List<ForHvem> getFor();
