@@ -13,5 +13,7 @@ namespace Nettbutikk.Model
         [Display(Name = "Kategori")]
         [Required(ErrorMessage = "Navn på kategori må oppgis")]
         public string navn { get; set; }
+        [Display(Name = "Antall sko")]
+        public int antallSko { get; set; }
     }
 }

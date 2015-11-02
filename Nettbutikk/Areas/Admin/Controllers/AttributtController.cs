@@ -72,5 +72,19 @@ namespace Nettbutikk.Areas.Admin.Controllers
             var redigert = _attributtBLL.updateMerke(item);
             return Json(redigert);
         }
+
+        [HttpPost]
+        public JsonResult OppdaterKategori(Kategori item)
+        {
+            var redigert = _attributtBLL.updateKategori(item);
+            return Json(redigert);
+        }
+
+        [HttpPost]
+        public JsonResult OppdaterFor(ForHvem item)
+        {
+            var redigert = _attributtBLL.updateFor(item);
+            return Json(redigert);
+        }
     }
 }

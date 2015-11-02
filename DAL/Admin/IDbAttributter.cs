@@ -25,5 +25,8 @@ namespace Admin.DAL
         Merke addMerke(string merkeNavn);
         ForHvem addFor(string forNavn);
         Kategori addKategori(string kategoriNavn);
+        List<Skoen> getSkoAvMerke(int id);
+        List<Skoen> getSkoAvKategori(int id);
+        List<Skoen> getSkoAvFor(int id);
     }
 }

@@ -13,5 +13,7 @@ namespace Nettbutikk.Model
         [Display(Name = "For hvem")]
         [Required(ErrorMessage = "Kan ikke være blank.")]
         public string navn { get; set; }
+        [Display(Name = "Antall sko")]
+        public int antallSko { get; set; }
     }
 }

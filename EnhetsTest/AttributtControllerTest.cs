@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace EnhetsTest
 {
     [TestClass]
-    public class UnitTest1
+    public class AttributtControllerTest
     {
         [TestMethod]
         public void TestMethod1()

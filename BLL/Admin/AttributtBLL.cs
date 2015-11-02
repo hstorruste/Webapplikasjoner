@@ -82,6 +82,21 @@ namespace Admin.BLL
             return _repo.getMerke(id);
         }
 
+        public List<Skoen> getSkoAvFor(int id)
+        {
+            return _repo.getSkoAvFor(id);
+        }
+
+        public List<Skoen> getSkoAvKategori(int id)
+        {
+            return _repo.getSkoAvKategori(id);
+        }
+
+        public List<Skoen> getSkoAvMerke(int id)
+        {
+            return _repo.getSkoAvMerke(id);
+        }
+
         public ForHvem updateFor(ForHvem forhvem)
         {
             return _repo.updateFor(forhvem);

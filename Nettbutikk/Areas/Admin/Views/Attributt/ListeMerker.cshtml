@@ -5,18 +5,31 @@
         <th class="col-md-4">
             @Html.DisplayNameFor(model => model.navn)
         </th>
+        <th class="col-md-1">
+            @Html.DisplayNameFor(model => model.antallSko)
+        </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td class="col-md-4" data-merkeid="@item.merkeId">
+            <td class="col-md-4" data-merkeid="@item.merkeId" data-merkenavn="@item.navn">
                 @Html.DisplayFor(modelItem => item.navn)
             </td>
+            <td class="col-md-1">
+                @Html.DisplayFor(modelItem => item.antallSko)
+            </td>
             <td>
-                <a class='btn btn-default' onclick="redigerMerke('@item.merkeId','@item.navn')">Rediger</a>
-                @Html.ActionLink("Slett", "Delete", new { id = item.merkeId }, new { @class = "btn btn-danger" })
+                <a class='btn btn-default' onclick="redigerMerke('@item.merkeId')">Rediger</a>
+                @if (item.antallSko == 0)
+                {
+                    @Html.ActionLink("Slett", "Delete", new { id = item.merkeId }, new { @class = "btn btn-danger" });
+                }
+                else
+                {
+                    <label>Kan ikke slettes! (*)</label>
+                }
             </td>
         </tr>
     }
@@ -24,13 +37,17 @@
 </table>
 <table class="table">
     <tr>
-        <td class="col-md-4">
+        <td class="col-md-5">
             <input id="nyMerke" class="form-control" type="text" placeholder="Legg til et nytt merke" />
         </td>
         <td>
             <button id="btnLeggTilMerke" class="btn btn-success">Legg til</button>
             <label id="errorMerke" class="text-danger"></label>
         </td>
+    </tr>
+    <tr>
+        <td>* Alle merker som er knyttet til en eller flere sko kan ikke slettes </td>
+        <td></td>
     </tr>
 </table>
 <!-- Rediger - Modal -->
@@ -45,7 +62,7 @@
                 <input id="redigertMerke" class="form-control" type="text" data-id="" />
             </div>
             <div class="modal-footer">
-                <label id="merkeModalError"></label>
+                <label id="merkeModalError" class="col-md-12" ></label>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Avbryt</button>
                 <button type="button" class="btn btn-warning" onclick="lagreMerke()">Lagre</button>
             </div>

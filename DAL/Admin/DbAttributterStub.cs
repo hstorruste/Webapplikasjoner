@@ -69,6 +69,21 @@ namespace Admin.DAL
             throw new NotImplementedException();
         }
 
+        public List<Skoen> getSkoAvFor(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Skoen> getSkoAvKategori(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Skoen> getSkoAvMerke(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public ForHvem updateFor(ForHvem forhvem)
         {
             throw new NotImplementedException();

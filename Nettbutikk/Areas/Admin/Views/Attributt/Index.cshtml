@@ -39,7 +39,7 @@
                     $('#errorFor').text("Gruppe må oppgis");
                     return;
                 }
-                
+
                 $.ajax({
                     url: '@Url.Action("LeggTilFor","Attributt")',
                     data: JSON.stringify({ navn: ny }),
@@ -127,10 +127,31 @@
             });
         });
 
-        function redigerMerke(id, navn) {
+        function redigerMerke(id) {
+            $('#merkeModalError').text("");
             $('#redigertMerke').data("id", id);
+            var tag = "td[data-merkeid=" + id + "]";
+            var navn = $(tag).data("merkenavn");
             $('#redigertMerke').val(navn);
             $('#redigerMerkeModal').modal();
+        }
+
+        function redigerKategori(id) {
+            $('#kategoriModalError').text("");
+            $('#redigertKategori').data("id", id);
+            var tag = "td[data-kategoriid=" + id + "]";
+            var navn = $(tag).data("kategorinavn");
+            $('#redigertKategori').val(navn);
+            $('#redigerKategoriModal').modal();
+        }
+
+        function redigerFor(id) {
+            $('#forModalError').text("");
+            $('#redigertFor').data("id", id);
+            var tag = "td[data-forid=" + id + "]";
+            var navn = $(tag).data("fornavn");
+            $('#redigertFor').val(navn);
+            $('#redigerForModal').modal();
         }
 
         function lagreMerke() {
@@ -152,6 +173,7 @@
                         $('.close').click();
                         var tag = "td[data-merkeid=" + data.merkeId + "]";
                         $(tag).text(data.navn);
+                        $(tag).data("merkenavn",data.navn);
                     }
                     else {
                         $('#merkeModalError').text("Noe gikk galt!");
@@ -163,13 +185,78 @@
 
             });
         }
+
+        function lagreKategori() {
+            var id = $('#redigertKategori').data("id");
+            var navn = $('#redigertKategori').val();
+            if (navn == "") {
+                $('#kategoriModalError').text("Kan ikke være tom!");
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("OppdaterKategori", "Attributt")',
+                data: JSON.stringify({ kategoriId: id, navn: navn }),
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data != null) {
+                        $('.close').click();
+                        var tag = "td[data-kategoriid=" + data.kategoriId + "]";
+                        $(tag).text(data.navn);
+                        $(tag).data("kategorinavn", data.navn);
+                    }
+                    else {
+                        $('#kategoriModalError').text("Noe gikk galt!");
+                    }
+                },
+                error: function (data) {
+                    $('#kategoriModalError').text("Noe gikk galt!");
+                }
+
+            });
+        }
+
+        function lagreFor() {
+            var id = $('#redigertFor').data("id");
+            var navn = $('#redigertFor').val();
+            if (navn == "") {
+                $('#forModalError').text("Kan ikke være tom!");
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("OppdaterFor", "Attributt")',
+                data: JSON.stringify({ forId: id, navn: navn }),
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data != null) {
+                        $('.close').click();
+                        var tag = "td[data-forid=" + data.forId + "]";
+                        $(tag).text(data.navn);
+                        $(tag).data("fornavn", data.navn);
+                    }
+                    else {
+                        $('#forModalError').text("Noe gikk galt!");
+                    }
+                },
+                error: function (data) {
+                    $('#forModalError').text("Noe gikk galt!");
+                }
+
+            });
+        }
     </script>
 </head>
 <body>
     <div> 
         <h2 class="text-center">
-            Attributter
+            Sko - attributter
         </h2>
+        <p class="text-center">Her kan man se, redigere og legge til nye merker, kategorier og grupper i databasen.</p>
         <hr />
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
