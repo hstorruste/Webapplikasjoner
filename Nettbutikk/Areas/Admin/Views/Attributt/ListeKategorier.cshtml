@@ -25,7 +25,7 @@
                 <a class='btn btn-default' onclick="redigerKategori('@item.kategoriId')">Rediger</a>
                 @if (item.antallSko == 0)
                 {
-                    @Html.ActionLink("Slett", "Delete", new { id = item.kategoriId }, new { @class = "btn btn-danger" });
+                    <a class='btn btn-danger' onclick="slettKategoriModal('@item.kategoriId')">Slett</a>
                 }
                 else
                 {
@@ -66,6 +66,25 @@
                 <label class="col-md-12" id="kategoriModalError"></label>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Avbryt</button>
                 <button type="button" class="btn btn-warning" onclick="lagreKategori()">Lagre</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Slett - Modal -->
+<div class="modal fade" id="slettKategoriModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Slett kategori</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-danger">Er du sikker på at du vil slette <span id="slettKategori" data-id=""></span>?</h4>
+            </div>
+            <div class="modal-footer">
+                <label id="slettKategoriModalError" class="col-md-12"></label>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Avbryt</button>
+                <button type="button" class="btn btn-danger" onclick="slettKategori()">Slett</button>
             </div>
         </div>
     </div>

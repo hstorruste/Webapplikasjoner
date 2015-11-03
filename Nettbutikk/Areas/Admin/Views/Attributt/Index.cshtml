@@ -50,8 +50,10 @@
                         if (data != null) {
                             $('#nyFor').val("");
                             $('#errorFor').text("");
-                            var ny = "<tr><td>" + data.navn + "</td>";
-                            ny += "<td><a href='#' class='btn btn-default'>Rediger</a> | <a href='#' class='btn btn-danger'>Slett</a></td></tr>";
+                            var ny = "<tr><td class='col-md-4' data-forid='" + data.forId + "' data-fornavn='" + data.navn + "'>";
+                            ny += data.navn + "</td><td class='col-md-1'>" + data.antallSko + "</td>";
+                            ny += "<td><a class='btn btn-default' onclick='redigerFor(" + '"' + data.forId + '"' + ")'>Rediger</a>";
+                            ny += " <a class='btn btn-danger' onclick='slettForModal(" + '"' + data.forId + '"' + ")'>Slett</a></td></tr>";
                             $('#grupper').append(ny);
                         }
                         else {
@@ -81,8 +83,10 @@
                         if (data != null) {
                             $('#nyKategori').val("");
                             $('#errorKategori').text("");
-                            var ny = "<tr><td>" + data.navn + "</td>";
-                            ny += "<td><a href='#' class='btn btn-default'>Rediger</a> | <a href='#' class='btn btn-danger'>Slett</a></td></tr>";
+                            var ny = "<tr><td class='col-md-4' data-kategoriid='" + data.kategoriId + "' data-kategorinavn='" + data.navn + "'>";
+                            ny += data.navn + "</td><td class='col-md-1'>" + data.antallSko + "</td>";
+                            ny += "<td><a class='btn btn-default' onclick='redigerKategori(" + '"' + data.kategoriId + '"' + ")'>Rediger</a>";
+                            ny += " <a class='btn btn-danger' onclick='slettKategoriModal(" + '"' + data.kategoriId + '"' + ")'>Slett</a></td></tr>";
                             $('#kategorier').append(ny);
                         }
                         else {
@@ -112,8 +116,10 @@
                         if (data != null) {
                             $('#nyMerke').val("");
                             $('#errorMerke').text("");
-                            var ny = "<tr><td>" + data.navn + "</td>";
-                            ny += "<td><a href='#' class='btn btn-default'>Rediger</a> | <a href='#' class='btn btn-danger'>Slett</a></td></tr>";
+                            var ny = "<tr><td class='col-md-4' data-merkeid='" + data.merkeId + "' data-merkenavn='" + data.navn + "'>";
+                            ny += data.navn + "</td><td class='col-md-1'>" + data.antallSko + "</td>";
+                            ny += "<td><a class='btn btn-default' onclick='redigerMerke(" + '"' + data.merkeId + '"' + ")'>Rediger</a>";
+                            ny += " <a class='btn btn-danger' onclick='slettMerkeModal(" + '"' + data.merkeId + '"' + ")'>Slett</a></td></tr>";
                             $('#merker').append(ny);
                         }
                         else {
@@ -257,6 +263,96 @@
             $('#slettMerke').text(navn);
             $('#slettMerkeModal').modal();
         }
+
+        function slettKategoriModal(id) {
+            $('#slettKategoriModalError').text("");
+            $('#slettKategori').data("id", id);
+            var tag = "td[data-kategoriid=" + id + "]";
+            var navn = $(tag).data("kategorinavn");
+            $('#slettKategori').text(navn);
+            $('#slettKategoriModal').modal();
+        }
+
+        function slettForModal(id) {
+            $('#slettForModalError').text("");
+            $('#slettFor').data("id", id);
+            var tag = "td[data-forid=" + id + "]";
+            var navn = $(tag).data("fornavn");
+            $('#slettFor').text(navn);
+            $('#slettForModal').modal();
+        }
+
+        function slettMerke() {
+            var id = $('#slettMerke').data("id");
+            $.ajax({
+                url: '@Url.Action("SlettMerke", "Attributt")',
+                data: JSON.stringify({ id: id }),
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data != null) {
+                        $('.close').click();
+                        var tag = "td[data-merkeid=" + data.merkeId + "]";
+                        $(tag).parent().remove();
+                    }
+                    else {
+                        $('#slettMerkeModalError').text("Noe gikk galt!");
+                    }
+                },
+                error: function (err) {
+                    $('#slettMerkeModalError').text("Noe gikk galt!");
+                }
+            });
+        }
+
+        function slettKategori() {
+            var id = $('#slettKategori').data("id");
+            $.ajax({
+                url: '@Url.Action("SlettKategori", "Attributt")',
+                data: JSON.stringify({ id: id }),
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data != null) {
+                        $('.close').click();
+                        var tag = "td[data-kategoriid=" + data.kategoriId + "]";
+                        $(tag).parent().remove();
+                    }
+                    else {
+                        $('#slettKategoriModalError').text("Noe gikk galt!");
+                    }
+                },
+                error: function (err) {
+                    $('#slettKategoriModalError').text("Noe gikk galt!");
+                }
+            });
+        }
+
+        function slettFor() {
+            var id = $('#slettFor').data("id");
+            $.ajax({
+                url: '@Url.Action("SlettFor", "Attributt")',
+                data: JSON.stringify({ id: id }),
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data != null) {
+                        $('.close').click();
+                        var tag = "td[data-forid=" + data.forId + "]";
+                        $(tag).parent().remove();
+                    }
+                    else {
+                        $('#slettForModalError').text("Noe gikk galt!");
+                    }
+                },
+                error: function (err) {
+                    $('#slettForModalError').text("Noe gikk galt!");
+                }
+            });
+        }
     </script>
 </head>
 <body>
@@ -273,7 +369,7 @@
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Merker</a>
                     </h4>
                 </div>
-                <div id="collapse1" class="panel-collapse collapse in">
+                <div id="collapse1" class="panel-collapse collapse">
                     <div class="panel-body">
                         @Html.Action("ListeMerker", "Attributt")
                     </div>

@@ -23,7 +23,7 @@ namespace Admin.DAL
                     db.For.Add(ny);
                     db.SaveChanges();
                     var lagret = db.For.SingleOrDefault(f => f.Navn == forNavn);
-                    return new ForHvem { forId = lagret.ForId, navn = lagret.Navn, antallSko = lagret.Sko.Count };
+                    return new ForHvem { forId = lagret.ForId, navn = lagret.Navn };
                 }
                 catch
                 {
@@ -46,7 +46,7 @@ namespace Admin.DAL
                     db.Kategorier.Add(ny);
                     db.SaveChanges();
                     var lagret = db.Kategorier.SingleOrDefault(k => k.Navn == kategoriNavn);
-                    return new Kategori {  kategoriId = lagret.KategoriId, navn = lagret.Navn, antallSko = lagret.Sko.Count };
+                    return new Kategori {  kategoriId = lagret.KategoriId, navn = lagret.Navn };
                 }
                 catch
                 {
@@ -69,7 +69,7 @@ namespace Admin.DAL
                     db.Merker.Add(ny);
                     db.SaveChanges();
                     var lagret = db.Merker.SingleOrDefault(f => f.Navn == merkeNavn);
-                    return new Merke { merkeId = lagret.MerkerId, navn = lagret.Navn, antallSko = lagret.Sko.Count };
+                    return new Merke { merkeId = lagret.MerkerId, navn = lagret.Navn };
                 }
                 catch
                 {
@@ -85,6 +85,7 @@ namespace Admin.DAL
                 try
                 {
                     var slettet = db.For.Remove(db.For.Find(id));
+                    db.SaveChanges();
                     return new ForHvem() { forId = slettet.ForId, navn = slettet.Navn};
                 }
                 catch(Exception feil)
@@ -101,6 +102,7 @@ namespace Admin.DAL
                 try
                 {
                     var slettet = db.Kategorier.Remove(db.Kategorier.Find(id));
+                    db.SaveChanges();
                     return new Kategori() { kategoriId = slettet.KategoriId, navn = slettet.Navn };
                 }
                 catch (Exception feil)
@@ -117,6 +119,7 @@ namespace Admin.DAL
                 try
                 {
                     var slettet = db.Merker.Remove(db.Merker.Find(id));
+                    db.SaveChanges();
                     return new Merke() { merkeId = slettet.MerkerId, navn = slettet.Navn };
                 }
                 catch (Exception feil)

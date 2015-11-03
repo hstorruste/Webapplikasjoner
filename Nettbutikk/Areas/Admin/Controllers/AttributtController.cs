@@ -87,18 +87,25 @@ namespace Nettbutikk.Areas.Admin.Controllers
             return Json(redigert);
         }
 
-        [HttpDelete]
-        public bool DeleteMerke(int id)
+        [HttpPost]
+        public JsonResult SlettMerke(int id)
         {
             var slettet = _attributtBLL.deleteMerke(id);
-            if(slettet != null)
-            { 
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Json(slettet);
+        }
+
+        [HttpPost]
+        public JsonResult SlettKategori(int id)
+        {
+            var slettet = _attributtBLL.deleteKategori(id);
+            return Json(slettet);
+        }
+
+        [HttpPost]
+        public JsonResult SlettFor(int id)
+        {
+            var slettet = _attributtBLL.deleteFor(id);
+            return Json(slettet);
         }
     }
 }
