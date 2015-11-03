@@ -7,22 +7,23 @@ using System.Web.Mvc;
 
 namespace Nettbutikk.Areas.Admin.Controllers
 {
-    public class KundeController : Controller
+    public class KundeAdminController : Controller
     {
         IKundeLogikk _kundeBLL;
 
-        public KundeController()
+        public KundeAdminController()
         {
             _kundeBLL = new KundeBLL();
         }
 
-        public KundeController(IKundeLogikk stub)
+        public KundeAdminController(IKundeLogikk stub)
         {
             _kundeBLL = stub;
         }
         public ActionResult Index()
         {
-            return View();
+            var liste = _kundeBLL.getKunder();
+            return View(liste);
         }
     }
 }
