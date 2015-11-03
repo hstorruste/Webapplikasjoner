@@ -24,7 +24,7 @@
                 <a class='btn btn-default' onclick="redigerMerke('@item.merkeId')">Rediger</a>
                 @if (item.antallSko == 0)
                 {
-                    @Html.ActionLink("Slett", "Delete", new { id = item.merkeId }, new { @class = "btn btn-danger" });
+                    <a class='btn btn-danger' onclick="slettMerkeModal('@item.merkeId')">Slett</a>
                 }
                 else
                 {
@@ -65,6 +65,25 @@
                 <label id="merkeModalError" class="col-md-12" ></label>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Avbryt</button>
                 <button type="button" class="btn btn-warning" onclick="lagreMerke()">Lagre</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Slett - Modal -->
+<div class="modal fade" id="slettMerkeModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Slett merke</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-danger">Er du sikker på at du vil slette <span id="slettMerke" data-id=""></span>?</h4>
+            </div>
+            <div class="modal-footer">
+                <label id="slettMerkeModalError" class="col-md-12"></label>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Avbryt</button>
+                <button type="button" class="btn btn-danger" onclick="slettMerke()">Slett</button>
             </div>
         </div>
     </div>

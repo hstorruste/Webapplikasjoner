@@ -246,8 +246,16 @@
                 error: function (data) {
                     $('#forModalError').text("Noe gikk galt!");
                 }
-
             });
+        }
+
+        function slettMerkeModal(id) {
+            $('#slettMerkeModalError').text("");
+            $('#slettMerke').data("id", id);
+            var tag = "td[data-merkeid=" + id + "]";
+            var navn = $(tag).data("merkenavn");
+            $('#slettMerke').text(navn);
+            $('#slettMerkeModal').modal();
         }
     </script>
 </head>

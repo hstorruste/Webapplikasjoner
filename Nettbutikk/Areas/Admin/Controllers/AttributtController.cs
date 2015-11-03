@@ -86,5 +86,19 @@ namespace Nettbutikk.Areas.Admin.Controllers
             var redigert = _attributtBLL.updateFor(item);
             return Json(redigert);
         }
+
+        [HttpDelete]
+        public bool DeleteMerke(int id)
+        {
+            var slettet = _attributtBLL.deleteMerke(id);
+            if(slettet != null)
+            { 
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
