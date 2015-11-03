@@ -11,37 +11,123 @@ namespace Admin.DAL
     {
         public ForHvem addFor(string forNavn)
         {
-            throw new NotImplementedException();
+            var ny = new ForHvem()
+            {
+                forId = 1,
+                navn = forNavn
+            };
+
+            if(forNavn == "")
+            {
+                return null;
+            }
+            else
+            {
+                return ny;
+            }
         }
 
         public Kategori addKategori(string kategoriNavn)
         {
-            throw new NotImplementedException();
+            var ny = new Kategori()
+            {
+                kategoriId = 1,
+                navn = kategoriNavn
+            };
+
+            if (kategoriNavn == "")
+            {
+                return null;
+            }
+            else
+            {
+                return ny;
+            }
         }
 
         public Merke addMerke(string merkeNavn)
         {
-            throw new NotImplementedException();
+            var ny = new Merke()
+            {
+                merkeId = 1,
+                navn = merkeNavn
+            };
+
+            if (merkeNavn == "")
+            {
+                return null;
+            }
+            else
+            {
+                return ny;
+            }
         }
 
         public ForHvem deleteFor(int id)
         {
-            throw new NotImplementedException();
+            var ny = new ForHvem()
+            {
+                forId = 1,
+                navn = "Herre"
+            };
+
+            if (id != ny.forId)
+            {
+                return null;
+            }
+            else
+            {
+                return ny;
+            }
         }
 
         public Kategori deleteKategori(int id)
         {
-            throw new NotImplementedException();
+            var ny = new Kategori()
+            {
+                kategoriId = 1,
+                navn = "Sko"
+            };
+
+            if (id != ny.kategoriId)
+            {
+                return null;
+            }
+            else
+            {
+                return ny;
+            }
         }
 
         public Merke deleteMerke(int id)
         {
-            throw new NotImplementedException();
+            var ny = new Merke()
+            {
+                merkeId = 1,
+                navn = "Adidas"
+            };
+
+            if (id != ny.merkeId )
+            {
+                return null;
+            }
+            else
+            {
+                return ny;
+            }
         }
 
         public List<ForHvem> getFor()
         {
-            throw new NotImplementedException();
+
+            var liste = new List<ForHvem>
+            {
+                new ForHvem { forId = 1, navn = "Herre", antallSko = 1 },
+                new ForHvem { forId = 2, navn = "Dame", antallSko = 2 },
+                new ForHvem { forId = 3, navn = "Barn", antallSko = 3 }
+            };
+            
+            return liste;
         }
 
         public ForHvem getFor(int id)
@@ -56,12 +142,26 @@ namespace Admin.DAL
 
         public List<Kategori> getKategorier()
         {
-            throw new NotImplementedException();
+            var liste = new List<Kategori>
+            {
+                new Kategori { kategoriId = 1, navn = "Sko", antallSko = 1 },
+                new Kategori { kategoriId = 2, navn = "Sneakers", antallSko = 2 },
+                new Kategori { kategoriId = 3, navn = "Gummistøvler", antallSko = 3 }
+            };
+
+            return liste;
         }
 
         public List<Merke> getMerke()
         {
-            throw new NotImplementedException();
+            var liste = new List<Merke>
+            {
+                new Merke { merkeId = 1, navn = "Odiin", antallSko = 1 },
+                new Merke { merkeId = 2, navn = "B&CO", antallSko = 2 },
+                new Merke { merkeId = 3, navn = "Sanita", antallSko = 3 }
+            };
+
+            return liste;
         }
 
         public Merke getMerke(int id)
@@ -86,17 +186,38 @@ namespace Admin.DAL
 
         public ForHvem updateFor(ForHvem forhvem)
         {
-            throw new NotImplementedException();
+            if(forhvem.navn == "")
+            {
+                return null;
+            }
+            else
+            {
+                return forhvem;
+            }
         }
 
         public Kategori updateKategori(Kategori kategori)
         {
-            throw new NotImplementedException();
+            if(kategori.navn == "")
+            {
+                return null;
+            }
+            else
+            {
+                return kategori;
+            }
         }
 
         public Merke updateMerke(Merke merke)
         {
-            throw new NotImplementedException();
+            if(merke.navn == "")
+            {
+                return null;
+            }
+            else
+            {
+                return merke;
+            }
         }
     }
 }
