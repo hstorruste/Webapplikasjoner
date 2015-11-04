@@ -30,6 +30,7 @@ namespace Nettbutikk.DAL
         public DbSet<Ordrer> Ordrer { get; set; }
         public DbSet<OrdreDetaljer> OrdreDetaljer { get; set; }
         public DbSet<Kundevogner> Kundevogner { get; set; }
+        public DbSet<Admin> Admin { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -187,5 +188,13 @@ namespace Nettbutikk.DAL
         public DateTime Dato { get; set; }
         
         public virtual Sko Sko { get; set; }
+    }
+
+    public class Admin
+    {
+        [Key]
+        public int AdminId { get; set; }
+        public string Brukernavn { get; set; }
+        public byte[] Passord { get; set; }
     }
 }
