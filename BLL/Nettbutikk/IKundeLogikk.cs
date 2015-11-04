@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Nettbutikk.DAL;
-using Nettbutikk.Model;
+using DAL.Nettbutikk;
+using Model.Nettbutikk;
 
-namespace Nettbutikk.BLL
+namespace BLL.Nettbutikk
 {
     public interface IKundeLogikk
     {

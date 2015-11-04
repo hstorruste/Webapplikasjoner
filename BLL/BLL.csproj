@@ -49,7 +49,7 @@
     <Compile Include="Nettbutikk\HandlevognBLL.cs" />
     <Compile Include="Nettbutikk\IHandlevognLogikk.cs" />
     <Compile Include="Nettbutikk\IKundeLogikk.cs" />
-    <Compile Include="InitializerBLL.cs" />
+    <Compile Include="Nettbutikk\InitializerBLL.cs" />
     <Compile Include="Nettbutikk\ISkoLogikk.cs" />
     <Compile Include="Nettbutikk\KunderBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

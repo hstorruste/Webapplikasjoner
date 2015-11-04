@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Nettbutikk.DAL;
+using DAL.Nettbutikk;
 
-namespace Nettbutikk.BLL
+namespace BLL.Nettbutikk
 {
     public class InitializerBLL
     {

@@ -1,5 +1,5 @@
 ﻿using Nettbutikk.Areas.Admin.Models;
-using Nettbutikk.Model;
+using Model.Nettbutikk;
 using System;
 using System.Collections.Generic;
 using System.Linq;

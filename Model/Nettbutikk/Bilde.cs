@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nettbutikk.Model
+namespace Model.Nettbutikk
 {
     public class Bilde
     {

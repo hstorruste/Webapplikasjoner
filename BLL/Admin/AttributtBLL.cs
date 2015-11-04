@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Nettbutikk.Model;
-using Admin.DAL;
+using Model.Nettbutikk;
+using DAL.Admin;
 
-namespace Admin.BLL
+namespace BLL.Admin
 {
     public class AttributtBLL : IAttributtLogikk
     {

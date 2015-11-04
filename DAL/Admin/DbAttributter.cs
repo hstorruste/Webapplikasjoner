@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Nettbutikk.Model;
-using Nettbutikk.DAL;
+using Model.Nettbutikk;
+using DAL.Nettbutikk;
 
-namespace Admin.DAL
+namespace DAL.Admin
 {
     public class DbAttributter : IDbAttributter
     {

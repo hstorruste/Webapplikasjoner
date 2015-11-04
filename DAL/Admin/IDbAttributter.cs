@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Nettbutikk.Model;
-using Nettbutikk.DAL;
+using Model.Nettbutikk;
 
-namespace Admin.DAL
+namespace DAL.Admin
 {
     public interface IDbAttributter
     {

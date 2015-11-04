@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Admin.BLL;
-using Nettbutikk.Model;
+using BLL.Admin;
+using Model.Nettbutikk;
 
 namespace Nettbutikk.Areas.Admin.Controllers
 {

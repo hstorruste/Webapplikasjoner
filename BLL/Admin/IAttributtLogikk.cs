@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Nettbutikk.Model;
+using Model.Nettbutikk;
 
-namespace Admin.BLL
+namespace BLL.Admin
 {
     public interface IAttributtLogikk
     {

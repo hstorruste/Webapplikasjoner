@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Nettbutikk.Model;
+using Model.Nettbutikk;
 using System.Text;
 using System.Threading.Tasks;
 

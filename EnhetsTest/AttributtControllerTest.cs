@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nettbutikk.Areas.Admin.Controllers;
-using Admin.BLL;
-using Admin.DAL;
-using Nettbutikk.Model;
+using BLL.Admin;
+using DAL.Admin;
+using Model.Nettbutikk;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using Microsoft.CSharp;

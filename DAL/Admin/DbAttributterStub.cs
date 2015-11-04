@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Nettbutikk.Model;
+using Model.Nettbutikk;
 
-namespace Admin.DAL
+namespace DAL.Admin
 {
     public class DbAttributterStub : IDbAttributter
     {
