@@ -51,6 +51,7 @@
     <Compile Include="Nettbutikk\KundeModeller.cs" />
     <Compile Include="Nettbutikk\Merke.cs" />
     <Compile Include="Nettbutikk\Ordre.cs" />
+    <Compile Include="Nettbutikk\Pris.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Nettbutikk\Skoen.cs" />
     <Compile Include="Nettbutikk\Storlek.cs" />

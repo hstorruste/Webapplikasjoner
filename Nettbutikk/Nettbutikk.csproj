@@ -124,6 +124,7 @@
     <Content Include="Areas\Admin\Views\SkoAdmin\SkoListe.cshtml" />
     <Content Include="Areas\Admin\Views\SkoAdmin\SlettedeSkoListe.cshtml" />
     <Content Include="Areas\Admin\Views\SkoAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SkoAdmin\Detaljer.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Pictures\Admin\grp.png" />
     <Content Include="Pictures\Admin\lock.png" />
@@ -360,7 +361,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Kunde\" />
     <Folder Include="Models\" />
     <Folder Include="Properties\PublishProfiles\" />

@@ -11,6 +11,9 @@ namespace DAL.Admin
     {
         List<Skoen> getAktuelleSko();
         List<Skoen> getSlettedeSko();
+        Skoen getSko(int id);
+        List<Pris> getPrishistorikk(int skoId);
+
 
     }
 }

@@ -62,5 +62,11 @@ namespace Nettbutikk.Areas.Admin.Controllers
             }
             return PartialView(liste);
         }
+
+        public ActionResult Detaljer(int id)
+        {
+            var enSko = _skoBLL.getSko(id);
+            return View(enSko);
+        }
     }
 }

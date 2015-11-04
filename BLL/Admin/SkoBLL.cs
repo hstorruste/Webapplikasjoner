@@ -26,6 +26,16 @@ namespace BLL.Admin
             return _repo.getAktuelleSko();
         }
 
+        public List<Pris> getPrishistorikk(int skoId)
+        {
+            return _repo.getPrishistorikk(skoId);
+        }
+
+        public Skoen getSko(int id)
+        {
+            return _repo.getSko(id);
+        }
+
         public List<Skoen> getSlettedeSko()
         {
             return _repo.getSlettedeSko();
