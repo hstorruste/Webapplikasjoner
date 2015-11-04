@@ -54,8 +54,10 @@
     <Compile Include="Admin\DbAttributterStub.cs" />
     <Compile Include="Admin\DbKunder.cs" />
     <Compile Include="Admin\DbKunderStub.cs" />
+    <Compile Include="Admin\DbSko.cs" />
     <Compile Include="Admin\IDbAttributter.cs" />
     <Compile Include="Admin\IDbKunder.cs" />
+    <Compile Include="Admin\IDbSko.cs" />
     <Compile Include="Nettbutikk\DbHandlevogn.cs" />
     <Compile Include="Nettbutikk\DbInitializer.cs" />
     <Compile Include="Nettbutikk\DbKunder.cs" />

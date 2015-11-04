@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <ul class="nav nav-tabs nav-justified">
+            <li class="active"><a data-toggle="tab" href="#skoliste">Skoliste</a></li>
+            <li><a data-toggle="tab" href="#slettetliste">Slettede sko</a></li>
+            <li><a data-toggle="tab" href="#nysko">Legg til ny</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="skoliste" class="tab-pane fade in active">
+                <h3 class="text-center">Skoliste</h3>
+                @Html.Action("SkoListe","SkoAdmin")
+            </div>
+            <div id="slettetliste" class="tab-pane fade">
+                <h3 class="text-center">Slettede sko</h3>
+                @Html.Action("SlettedeSkoListe", "SkoAdmin")
+            </div>
+            <div id="nysko" class="tab-pane fade">
+                <h3 class="text-center">Ny sko</h3>
+                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -120,6 +120,9 @@
     <Content Include="Areas\Admin\Views\Attributt\ListeFor.cshtml" />
     <Content Include="Areas\Admin\Views\Attributt\ListeKategorier.cshtml" />
     <Content Include="Areas\Admin\Views\Attributt\ListeMerker.cshtml" />
+    <Content Include="Areas\Admin\Views\SkoAdmin\SkoListe.cshtml" />
+    <Content Include="Areas\Admin\Views\SkoAdmin\SlettedeSkoListe.cshtml" />
+    <Content Include="Areas\Admin\Views\SkoAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Pictures\Admin\grp.png" />
     <Content Include="Pictures\Admin\lock.png" />
@@ -312,6 +315,8 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\AttributtController.cs" />
     <Compile Include="Areas\Admin\Controllers\KundeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SkoAdminController.cs" />
+    <Compile Include="Areas\Admin\Models\SkoListeElement.cs" />
     <Compile Include="Controllers\HandlevognController.cs" />
     <Compile Include="Controllers\KundeController.cs" />
     <Compile Include="Controllers\NettbutikkController.cs" />
@@ -354,7 +359,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Kunde\" />
     <Folder Include="Models\" />
     <Folder Include="Properties\PublishProfiles\" />

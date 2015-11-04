@@ -1,0 +1,42 @@
+﻿@model List<Nettbutikk.Areas.Admin.Models.SkoListeElement>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => Model[0].navn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => Model[0].merke)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => Model[0].kategori)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => Model[0].forHvem)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.navn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.merke)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kategori)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.forHvem)
+        </td>
+        <td>
+            @Html.ActionLink("Detaljer", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-default" }) |
+            @Html.ActionLink("Rediger", "Edit", new { /* id=item.PrimaryKey */ }, new { @class="btn btn-warning"}) |
+            @Html.ActionLink("Slett", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
