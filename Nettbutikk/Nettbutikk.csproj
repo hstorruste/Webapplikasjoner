@@ -125,6 +125,7 @@
     <Content Include="Areas\Admin\Views\SkoAdmin\SlettedeSkoListe.cshtml" />
     <Content Include="Areas\Admin\Views\SkoAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SkoAdmin\Detaljer.cshtml" />
+    <Content Include="Areas\Admin\Views\SkoAdmin\Prishistorikk.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Pictures\Admin\grp.png" />
     <Content Include="Pictures\Admin\lock.png" />

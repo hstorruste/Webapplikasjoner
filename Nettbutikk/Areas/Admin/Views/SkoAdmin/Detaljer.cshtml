@@ -6,6 +6,24 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Detaljer</title>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $('#btnPris').click(function () {
+                var skoId = $(this).data("id");
+                var url = "@Url.Action("Prishistorikk", "SkoAdmin")" + "/?skoId=" + skoId;;
+                $('#prisModal').load(url, visPriser());
+
+            });
+
+            function visPriser() {
+                $('#prisModalTrigger').click()
+            }
+        });
+
+
+    </script>
 </head>
 <body>
     <div class="container">
@@ -81,9 +99,9 @@
         </dl>
     </div>
     <p class="text-center row">
-        @Html.ActionLink("<< Tilbake", "Index", new { }, new { @class= "btn btn-default col-md-2 col-md-offset-1" })
+        @Html.ActionLink("<< Tilbake", "Index", new { }, new { @class = "btn btn-default col-md-2 col-md-offset-1", @onClick = "history.go(-1);return true;" })
         <a class="btn btn-default col-md-2" data-toggle="modal" data-target="#bildeModal">Vis bilder ( @Model.bilder.Count )</a>
-        @Html.ActionLink("Prishistorikk", "Index", new { id = Model.skoId }, new { @class = "btn btn-default col-md-2" }) 
+        <a class="btn btn-default col-md-2" id="btnPris" data-id="@Model.skoId">Prishistorikk</a>
         @Html.ActionLink("Rediger", "Edit", new { id = Model.skoId }, new { @class = "btn btn-warning col-md-2" })
         @Html.ActionLink("Slett", "Index", new { id = Model.skoId }, new { @class = "btn btn-danger col-md-2" })
     </p>
@@ -146,6 +164,12 @@
             </div>
 
         </div>
+    </div>
+
+    <a id="prisModalTrigger" data-toggle="modal" data-target="#prisModal"></a>
+    <!-- Modal -->
+    <div class="modal fade" id="prisModal" role="dialog">
+
     </div>
 </body>
 </html>

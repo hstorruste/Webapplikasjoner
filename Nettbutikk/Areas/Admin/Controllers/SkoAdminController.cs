@@ -68,5 +68,12 @@ namespace Nettbutikk.Areas.Admin.Controllers
             var enSko = _skoBLL.getSko(id);
             return View(enSko);
         }
+
+        [HttpGet]
+        public ActionResult Prishistorikk(int skoId)
+        {
+            var priser = _skoBLL.getPrishistorikk(skoId);
+            return PartialView(priser);
+        }
     }
 }

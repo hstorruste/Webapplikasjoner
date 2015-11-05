@@ -1,0 +1,38 @@
+﻿@model List<Model.Nettbutikk.Pris>
+
+<div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title text-center">@Html.DisplayFor(model => Model[0].skoNavn)</h4>
+        </div>
+        <div class="modal-body">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => Model[0].dato)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => Model[0].pris)
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dato)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pris)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default center-block" data-dismiss="modal">Lukk</button>
+        </div>
+    </div>
+</div>
+
