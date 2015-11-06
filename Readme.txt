@@ -1,5 +1,9 @@
 TEKNISKE SPESIFIKASJONER - Admin for Nettbutikk
 
+Versjonshåndtering og deployment
+Det finnes en kjørende versjon på: http://dotnet.cs.hioa.no/s165519/
+Vi har brugt Git til versjonshåndtering og deployet med Visual Studio. 
+
 Strukturering
 Hele løsningen inneholder koden fra oblig 1 og oblig 2. For å kunne gjenbruke mest mulig kode fra oblig 1 har vi valgt å lagdele denne også. Vi følte vi fikk bedre oversikt ved å gjøre det slik. For å holde orden på koden på en ryddig måte, har vi valgt å holde koden fra oblig 1 og 2 adskilt på følgende måte:
 
