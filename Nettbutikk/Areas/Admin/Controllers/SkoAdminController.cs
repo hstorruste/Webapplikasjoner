@@ -25,9 +25,17 @@ namespace Nettbutikk.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            return View();
-
+            if (Session["AdminLoggetInn"] == null || (bool)Session["AdminLoggetInn"] == false)
+            {
+                return RedirectToAction("Hjem", "Nettbutikk", new { area = "" });
+            }
+            else
+            {
+                return View();
+            }
         }
+
+        [ChildActionOnly]
         public ActionResult SkoListe()
         {
             var tempListe = _skoBLL.getAktuelleSko();
@@ -49,6 +57,7 @@ namespace Nettbutikk.Areas.Admin.Controllers
             return PartialView(liste);
         }
 
+        [ChildActionOnly]
         public ActionResult SlettedeSkoListe()
         {
             var tempListe = _skoBLL.getSlettedeSko();
@@ -70,12 +79,14 @@ namespace Nettbutikk.Areas.Admin.Controllers
             return PartialView(liste);
         }
 
+        [ChildActionOnly]
         public ActionResult Detaljer(int id)
         {
             var enSko = _skoBLL.getSko(id);
             return View(enSko);
         }
 
+        [ChildActionOnly]
         [HttpGet]
         public ActionResult Prishistorikk(int skoId)
         {
