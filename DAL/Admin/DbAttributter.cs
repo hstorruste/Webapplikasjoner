@@ -25,8 +25,9 @@ namespace DAL.Admin
                     var lagret = db.For.SingleOrDefault(f => f.Navn == forNavn);
                     return new ForHvem { forId = lagret.ForId, navn = lagret.Navn };
                 }
-                catch
+                catch(Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -48,8 +49,9 @@ namespace DAL.Admin
                     var lagret = db.Kategorier.SingleOrDefault(k => k.Navn == kategoriNavn);
                     return new Kategori {  kategoriId = lagret.KategoriId, navn = lagret.Navn };
                 }
-                catch
+                catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -71,8 +73,9 @@ namespace DAL.Admin
                     var lagret = db.Merker.SingleOrDefault(f => f.Navn == merkeNavn);
                     return new Merke { merkeId = lagret.MerkerId, navn = lagret.Navn };
                 }
-                catch
+                catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -90,6 +93,7 @@ namespace DAL.Admin
                 }
                 catch(Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -107,6 +111,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -124,6 +129,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -139,6 +145,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -155,6 +162,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -171,6 +179,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -189,6 +198,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -204,6 +214,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -220,6 +231,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -258,6 +270,7 @@ namespace DAL.Admin
                 }
                 catch(Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -296,6 +309,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -334,6 +348,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -352,6 +367,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -370,6 +386,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -388,6 +405,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }

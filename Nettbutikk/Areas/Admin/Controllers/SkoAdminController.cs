@@ -32,15 +32,19 @@ namespace Nettbutikk.Areas.Admin.Controllers
         {
             var tempListe = _skoBLL.getAktuelleSko();
             var liste = new List<SkoListeElement>();
-            foreach(var sko in tempListe)
+            if (tempListe != null)
             {
-                liste.Add(new SkoListeElement {
-                    skoId = sko.skoId,
-                    navn = sko.navn,
-                    merke = sko.merke,
-                    kategori = sko.kategori,
-                    forHvem = sko.forHvem
-                });
+                foreach (var sko in tempListe)
+                {
+                    liste.Add(new SkoListeElement
+                    {
+                        skoId = sko.skoId,
+                        navn = sko.navn,
+                        merke = sko.merke,
+                        kategori = sko.kategori,
+                        forHvem = sko.forHvem
+                    });
+                }
             }
             return PartialView(liste);
         }
@@ -49,16 +53,19 @@ namespace Nettbutikk.Areas.Admin.Controllers
         {
             var tempListe = _skoBLL.getSlettedeSko();
             var liste = new List<SkoListeElement>();
-            foreach (var sko in tempListe)
+            if (tempListe != null)
             {
-                liste.Add(new SkoListeElement
+                foreach (var sko in tempListe)
                 {
-                    skoId = sko.skoId,
-                    navn = sko.navn,
-                    merke = sko.merke,
-                    kategori = sko.kategori,
-                    forHvem = sko.forHvem
-                });
+                    liste.Add(new SkoListeElement
+                    {
+                        skoId = sko.skoId,
+                        navn = sko.navn,
+                        merke = sko.merke,
+                        kategori = sko.kategori,
+                        forHvem = sko.forHvem
+                    });
+                }
             }
             return PartialView(liste);
         }

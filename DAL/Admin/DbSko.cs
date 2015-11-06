@@ -33,6 +33,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -56,8 +57,9 @@ namespace DAL.Admin
 
                     return priser;
                 }
-                catch
+                catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -105,6 +107,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -128,11 +131,11 @@ namespace DAL.Admin
                         pris = s.Pris.OrderByDescending(p => p.Dato).FirstOrDefault().Pris
 
                     }).ToList();
-
                     return liste;
                 }
                 catch (Exception feil)
                 {
+                    DAL.ErrorHandler.logError(feil);
                     return null;
                 }
             }

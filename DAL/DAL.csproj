@@ -60,6 +60,7 @@
     <Compile Include="Admin\IDbKunder.cs" />
     <Compile Include="Admin\IDbOrdrer.cs" />
     <Compile Include="Admin\IDbSko.cs" />
+    <Compile Include="ErrorHandler.cs" />
     <Compile Include="Nettbutikk\DbHandlevogn.cs" />
     <Compile Include="Nettbutikk\DbInitializer.cs" />
     <Compile Include="Nettbutikk\DbKunder.cs" />
