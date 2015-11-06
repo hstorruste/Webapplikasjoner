@@ -59,6 +59,7 @@
     <Compile Include="Admin\DbKunderStub.cs" />
     <Compile Include="Admin\DbOrdrer.cs" />
     <Compile Include="Admin\DbSko.cs" />
+    <Compile Include="Admin\DbSkoStub.cs" />
     <Compile Include="Admin\IDbAttributter.cs" />
     <Compile Include="Admin\IDbKunder.cs" />
     <Compile Include="Admin\IDbOrdrer.cs" />
