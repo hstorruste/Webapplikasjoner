@@ -11,7 +11,14 @@ namespace Nettbutikk.Areas.Admin.Controllers
         // GET: Admin/Admin
         public ActionResult Hjem()
         {
-            return View();
+            if (Session["AdminLoggetInn"] == null || (bool)Session["AdminLoggetInn"] == false)
+            {
+                return RedirectToAction("Hjem", "Nettbutikk", new { area = "" });
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

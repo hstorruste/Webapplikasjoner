@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-
+using DAL.Admin;
 namespace DAL.Nettbutikk
 {
     public class Eksempeldata : CreateDatabaseIfNotExists<NettbutikkContext>
     {
         protected override void Seed(NettbutikkContext context)
         {
+            String passord = "admin123?";
+            DbLoggInn loggInn = new DbLoggInn();
+            byte[] passordDb = loggInn.lagHash(passord);
+            var admin = new Admin { Brukernavn = "Admin", Passord = passordDb };
+            context.Admin.Add(admin);
+
             var forHvem = new List<For>
             {
                 new For { Navn = "Dame" },

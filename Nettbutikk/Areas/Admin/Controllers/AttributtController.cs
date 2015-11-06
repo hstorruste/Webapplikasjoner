@@ -24,21 +24,31 @@ namespace Nettbutikk.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            if (Session["AdminLoggetInn"] == null || (bool)Session["AdminLoggetInn"] == false)
+            {
+                return RedirectToAction("Hjem", "Nettbutikk", new { area = "" });
+            }
+            else
+            {
+                return View();
+            }
         }
 
+        [ChildActionOnly]
         public ActionResult ListeFor()
         {
             var liste = _attributtBLL.getFor();
             return PartialView(liste);
         }
 
+        [ChildActionOnly]
         public ActionResult ListeKategorier()
         {
             var liste = _attributtBLL.getKategorier();
             return PartialView(liste);
         }
 
+        [ChildActionOnly]
         public ActionResult ListeMerker()
         {
             var liste = _attributtBLL.getMerke();
