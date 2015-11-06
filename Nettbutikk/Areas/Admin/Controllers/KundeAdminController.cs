@@ -22,8 +22,15 @@ namespace Nettbutikk.Areas.Admin.Controllers
         }
         public ActionResult Index()
         {
-            var liste = _kundeBLL.getKunder();
-            return View(liste);
+            if (Session["AdminLoggetInn"] == null || (bool)Session["AdminLoggetInn"] == false)
+            {
+                return RedirectToAction("Hjem", "Nettbutikk", new { area = "" });
+            }
+            else
+            {
+                var liste = _kundeBLL.getKunder();
+                return View(liste);
+            }
         }
     }
 }

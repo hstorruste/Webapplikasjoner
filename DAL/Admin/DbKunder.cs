@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Model.Nettbutikk;
 using DAL.Nettbutikk;
+using DAL;
 
 namespace DAL.Admin
 {
@@ -30,6 +31,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -54,6 +56,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    ErrorHandler.logError(feil);
                     return null;
                 }
             }

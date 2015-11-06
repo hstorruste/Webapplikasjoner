@@ -126,6 +126,7 @@
     <Content Include="Areas\Admin\Views\SkoAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SkoAdmin\Detaljer.cshtml" />
     <Content Include="Areas\Admin\Views\SkoAdmin\Prishistorikk.cshtml" />
+    <Content Include="Areas\Admin\Views\LoggInn\LoggInn.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Pictures\Admin\grp.png" />
     <Content Include="Pictures\Admin\lock.png" />
@@ -318,6 +319,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\AttributtController.cs" />
     <Compile Include="Areas\Admin\Controllers\KundeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoggInnController.cs" />
     <Compile Include="Areas\Admin\Controllers\SkoAdminController.cs" />
     <Compile Include="Areas\Admin\Models\SkoListeElement.cs" />
     <Compile Include="Controllers\HandlevognController.cs" />

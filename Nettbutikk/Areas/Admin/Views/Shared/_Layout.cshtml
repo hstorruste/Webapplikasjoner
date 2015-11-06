@@ -17,6 +17,18 @@
                 @Html.ActionLink("Admin", "Hjem", "Admin", new { area = "Admin" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["AdminLoggetInn"] != null && (bool)Session["AdminLoggetInn"])
+                    {
+                        <li><a href="@Url.Action("LoggUt","LoggInn", new { area = "Admin" })"><span class="glyphicon glyphicon-log-out"></span> Logg av</a></li>
+                    }
+                    else
+                    {
+                        <li></li>
+                    }
+                </ul>
+            </div>
+            <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                 </ul>
             </div>

@@ -1,4 +1,4 @@
-﻿using Model.Nettbutikk;
+﻿using Model.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Admin
 {
-    public interface IDbOrdrer
+    public interface IDbLoggInn
     {
-        List<Ordre> getOrdrer();
-        Ordre getOrdre(int id);
+        byte[] lagHash(string innPassord);
+        bool adminIDb(LoggInn innAdmin);
+
     }
 }

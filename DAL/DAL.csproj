@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\DbLoggInnStub.cs" />
+    <Compile Include="Admin\IDbLoggInn.cs" />
+    <Compile Include="Admin\DbLoggInn.cs" />
     <Compile Include="Admin\DbAttributter.cs" />
     <Compile Include="Admin\DbAttributterStub.cs" />
     <Compile Include="Admin\DbKunder.cs" />
