@@ -13,7 +13,8 @@ namespace DAL.Admin
         List<Skoen> getSlettedeSko();
         Skoen getSko(int id);
         List<Pris> getPrishistorikk(int skoId);
-
+        Skoen slett(int id);
+        Skoen gjenopprett(int id);
 
     }
 }

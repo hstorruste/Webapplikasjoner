@@ -82,5 +82,16 @@ namespace Nettbutikk.Areas.Admin.Controllers
             var priser = _skoBLL.getPrishistorikk(skoId);
             return PartialView(priser);
         }
+
+        [HttpPost]
+        public ActionResult Slett(int skoId)
+        {
+            var slettet = _skoBLL.slett(skoId);
+            if(slettet == null)
+            {
+                ViewBag.Feil = "Sko med id: " + skoId + " ble ikke slettet!";
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
