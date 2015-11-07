@@ -41,6 +41,7 @@ namespace DAL.Nettbutikk
                 }
                 catch (Exception feil)
                 {
+                    ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -81,6 +82,7 @@ namespace DAL.Nettbutikk
                 }
                 catch (Exception feil)
                 {
+                    ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -121,6 +123,7 @@ namespace DAL.Nettbutikk
                 }
                 catch (Exception feil)
                 {
+                    ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -167,6 +170,7 @@ namespace DAL.Nettbutikk
                 }
                 catch (Exception feil)
                 {
+                    ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -187,6 +191,7 @@ namespace DAL.Nettbutikk
                 }
                 catch (Exception feil)
                 {
+                    ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -208,6 +213,7 @@ namespace DAL.Nettbutikk
                 }
                 catch (Exception feil)
                 {
+                    ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -230,6 +236,7 @@ namespace DAL.Nettbutikk
                 }
                 catch (Exception feil)
                 {
+                    ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -250,6 +257,7 @@ namespace DAL.Nettbutikk
                 }
                 catch (Exception feil)
                 {
+                    ErrorHandler.logError(feil);
                     return null;
                 }
             }
