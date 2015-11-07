@@ -40,5 +40,15 @@ namespace BLL.Admin
         {
             return _repo.getSlettedeSko();
         }
+
+        public Skoen gjenopprett(int id)
+        {
+            return _repo.gjenopprett(id);
+        }
+
+        public Skoen slett(int id)
+        {
+            return _repo.slett(id);
+        }
     }
 }

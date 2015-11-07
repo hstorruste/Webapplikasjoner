@@ -206,5 +206,83 @@ namespace DAL.Admin
 
             return skoene;
         }
+
+        public Skoen gjenopprett(int id)
+        {
+            var enSko = new Skoen
+            {
+                skoId = 1,
+                navn = "B&CO 2455100311",
+                beskrivelse = "Tøff B&CO damesko med lisser. Skoen er i tekstil med små metall nitter. Den har sort kantbånd rundt lisser stykket og langs kanten. Skoen er sort med brune flammer. Den har canvas dekksåle og canvas fôr. Gummisålen er tofarget hvit og sort.",
+                merke = "B&CO",
+                farge = "Sort",
+                forHvem = "Dame",
+                kategori = "Sko",
+                pris = 499.00M,
+                storlekar = new List<Storlek>
+                        {
+                            new Storlek { storlekId = 1, storlek = 36, antall = 10 },
+                            new Storlek { storlekId = 2, storlek = 37, antall = 11 },
+                            new Storlek { storlekId = 3, storlek = 38, antall = 12 },
+                            new Storlek { storlekId = 4, storlek = 39, antall = 13 },
+                            new Storlek { storlekId = 5, storlek = 40, antall = 14 },
+                            new Storlek { storlekId = 6, storlek = 41, antall = 15 }
+                        },
+                bilder = new List<Bilde>
+                        {
+                            new Bilde { bildeId = 1, bildeUrl = "bilde1.jpg" },
+                            new Bilde { bildeId = 2, bildeUrl = "bilde2.jpg" },
+                            new Bilde { bildeId = 3, bildeUrl = "bilde3.jpg" },
+                        }
+            };
+
+            if (id == enSko.skoId)
+            {
+                return enSko;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Skoen slett(int id)
+        {
+            var enSko = new Skoen
+            {
+                skoId = 1,
+                navn = "B&CO 2455100311",
+                beskrivelse = "Tøff B&CO damesko med lisser. Skoen er i tekstil med små metall nitter. Den har sort kantbånd rundt lisser stykket og langs kanten. Skoen er sort med brune flammer. Den har canvas dekksåle og canvas fôr. Gummisålen er tofarget hvit og sort.",
+                merke = "B&CO",
+                farge = "Sort",
+                forHvem = "Dame",
+                kategori = "Sko",
+                pris = 499.00M,
+                storlekar = new List<Storlek>
+                        {
+                            new Storlek { storlekId = 1, storlek = 36, antall = 10 },
+                            new Storlek { storlekId = 2, storlek = 37, antall = 11 },
+                            new Storlek { storlekId = 3, storlek = 38, antall = 12 },
+                            new Storlek { storlekId = 4, storlek = 39, antall = 13 },
+                            new Storlek { storlekId = 5, storlek = 40, antall = 14 },
+                            new Storlek { storlekId = 6, storlek = 41, antall = 15 }
+                        },
+                bilder = new List<Bilde>
+                        {
+                            new Bilde { bildeId = 1, bildeUrl = "bilde1.jpg" },
+                            new Bilde { bildeId = 2, bildeUrl = "bilde2.jpg" },
+                            new Bilde { bildeId = 3, bildeUrl = "bilde3.jpg" },
+                        }
+            };
+
+            if (id == enSko.skoId)
+            {
+                return enSko;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

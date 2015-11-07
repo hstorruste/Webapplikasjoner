@@ -140,5 +140,94 @@ namespace DAL.Admin
                 }
             }
         }
+
+        public Skoen gjenopprett(int id)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    var enSko = db.Sko.Find(id);
+                    if (enSko == null)
+                        return null;
+
+                    enSko.Slettet = false;
+                    var gjenopprettet = new Skoen
+                    {
+                        skoId = enSko.SkoId,
+                        navn = enSko.Navn,
+                        kategori = enSko.Kategori.Navn,
+                        merke = enSko.Merke.Navn,
+                        forHvem = enSko.ForHvem.Navn,
+                        pris = enSko.Pris.OrderByDescending(p => p.Dato).FirstOrDefault().Pris,
+                        farge = enSko.Farge,
+                        beskrivelse = enSko.Beskrivelse,
+                        storlekar = enSko.Storlekar.Select(t => new Storlek()
+                        {
+                            storlekId = t.StorlekId,
+                            storlek = t.Storlek,
+                            antall = t.Antall
+                        }).ToList(),
+                        bilder = enSko.Bilder.Select(b => new Bilde()
+                        {
+                            bildeId = b.BildeId,
+                            bildeUrl = b.BildeUrl
+                        }).ToList()
+                    };
+                    db.SaveChanges();
+
+                    return gjenopprettet;
+                }
+                catch (Exception feil)
+                {
+                    DAL.ErrorHandler.logError(feil);
+                    return null;
+                }
+            }
+        }
+
+        public Skoen slett(int id)
+        {
+            using(var db = new NettbutikkContext())
+            {
+                try
+                {
+                    var enSko = db.Sko.Find(id);
+                    if (enSko == null)
+                        return null;
+
+                    enSko.Slettet = true;
+                    var slettet =  new Skoen {
+                        skoId = enSko.SkoId,
+                        navn = enSko.Navn,
+                        kategori = enSko.Kategori.Navn,
+                        merke = enSko.Merke.Navn,
+                        forHvem = enSko.ForHvem.Navn,
+                        pris = enSko.Pris.OrderByDescending(p => p.Dato).FirstOrDefault().Pris,
+                        farge = enSko.Farge,
+                        beskrivelse = enSko.Beskrivelse,
+                        storlekar = enSko.Storlekar.Select(t => new Storlek()
+                        {
+                            storlekId = t.StorlekId,
+                            storlek = t.Storlek,
+                            antall = t.Antall
+                        }).ToList(),
+                        bilder = enSko.Bilder.Select(b => new Bilde()
+                        {
+                            bildeId = b.BildeId,
+                            bildeUrl = b.BildeUrl
+                        }).ToList()
+                    };
+                    db.SaveChanges();
+
+                    return slettet;
+                }
+                catch(Exception feil)
+                {
+                    DAL.ErrorHandler.logError(feil);
+                    return null;
+                }
+            }
+        }
     }
 }
