@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Model.Nettbutikk.Kunde>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fornavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adresse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.postnr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.poststed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.epost)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fornavn)
+                @Html.DisplayFor(modelItem => item.etternavn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.adresse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.postnr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.poststed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.epost)
+            </td>
+        </tr>
+    }
+
+</table>
+

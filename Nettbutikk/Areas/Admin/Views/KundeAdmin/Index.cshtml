@@ -1,48 +1,31 @@
-﻿@model IEnumerable<Model.Nettbutikk.Kunde>
+﻿<!DOCTYPE html>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Kunder</h2>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.fornavn)  
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.adresse)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.postnr)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.poststed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.epost)
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fornavn)
-            @Html.DisplayFor(modelItem => item.etternavn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.adresse)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.postnr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.poststed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.epost)
-        </td>
-    </tr>
-}
-
-</table>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <h2 class="text-center">
+            Kunder
+        </h2>
+        <p class="text-center">Her kan man se alle kunder</p>
+        <hr />
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Kunder</a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        @Html.Action("KundeListe", "KundeAdmin")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

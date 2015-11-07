@@ -19,6 +19,7 @@ namespace DAL.Admin
                     var funnet = db.Ordrer.Find(id);
                     DbKunder dbKunder = new DbKunder();
                     Kunde kunde = dbKunder.getKunde(funnet.KundeId);
+                    //HandlevognVare varer = DbHandlevogn.
                     return new Ordre()
                     {
                         ordreId = funnet.OrdreId,
@@ -34,6 +35,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    ErrorHandler.logError(feil);
                     return null;
                 }
             }
@@ -58,6 +60,7 @@ namespace DAL.Admin
                 }
                 catch (Exception feil)
                 {
+                    ErrorHandler.logError(feil);
                     return null;
                 }
             }
