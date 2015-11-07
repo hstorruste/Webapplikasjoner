@@ -25,6 +25,10 @@ namespace Nettbutikk.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult LoggInn(LoggInn innAdmin)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             if (_LoggInnBLL.adminIDb(innAdmin))
             {
                 Session["AdminLoggetInn"] = true;
