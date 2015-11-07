@@ -79,14 +79,19 @@ namespace Nettbutikk.Areas.Admin.Controllers
             return PartialView(liste);
         }
 
-        [ChildActionOnly]
         public ActionResult Detaljer(int id)
         {
-            var enSko = _skoBLL.getSko(id);
-            return View(enSko);
+            if (Session["AdminLoggetInn"] == null || (bool)Session["AdminLoggetInn"] == false)
+            {
+                return RedirectToAction("Hjem", "Nettbutikk", new { area = "" });
+            }
+            else
+            {
+                var enSko = _skoBLL.getSko(id);
+                return View(enSko);
+            }
         }
 
-        [ChildActionOnly]
         [HttpGet]
         public ActionResult Prishistorikk(int skoId)
         {

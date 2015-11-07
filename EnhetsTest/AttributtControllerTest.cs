@@ -7,6 +7,8 @@ using Model.Nettbutikk;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using Microsoft.CSharp;
+using MvcContrib.TestHelper;
+using System.Linq;
 
 namespace EnhetsTest
 {
@@ -14,16 +16,49 @@ namespace EnhetsTest
     public class AttributtControllerTest
     {
         [TestMethod]
-        public void Index_vis_view()
+        public void Index_Ok_vis_view()
         {
             //Arrange
             var controller = new AttributtController(new AttributtBLL(new DbAttributterStub()));
-
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["AdminLoggetInn"] = true;
             //Act
             var resultat = (ViewResult)controller.Index();
 
             //Assert
             Assert.AreEqual(resultat.ViewName, "");
+        }
+
+        [TestMethod]
+        public void Index_feil_ikke_logget_inn()
+        {
+            //Arrange
+            var controller = new AttributtController(new AttributtBLL(new DbAttributterStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["AdminLoggetInn"] = false;
+            //Act
+            var resultat = (RedirectToRouteResult)controller.Index();
+
+            //Assert
+            Assert.AreEqual(resultat.RouteName, "");
+            Assert.AreEqual(resultat.RouteValues.Values.Last(), "Nettbutikk");
+        }
+
+        [TestMethod]
+        public void Index_feil_logget_inn_undefined()
+        {
+            //Arrange
+            var controller = new AttributtController(new AttributtBLL(new DbAttributterStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            //Act
+            var resultat = (RedirectToRouteResult)controller.Index();
+
+            //Assert
+            Assert.AreEqual(resultat.RouteName, "");
+            Assert.AreEqual(resultat.RouteValues.Values.Last(), "Nettbutikk");
         }
 
         [TestMethod]

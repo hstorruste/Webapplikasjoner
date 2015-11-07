@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using Microsoft.CSharp;
 using Nettbutikk.Areas.Admin.Controllers;
 using Nettbutikk.Areas.Admin.Models;
+using MvcContrib.TestHelper;
+using System.Linq;
 
 namespace EnhetsTest
 {
@@ -19,12 +21,46 @@ namespace EnhetsTest
         {
             //Arrange
             var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["AdminLoggetInn"] = true;
 
             //Act
             var resultat = (ViewResult)controller.Index();
 
             //Assert
             Assert.AreEqual(resultat.ViewName, "");
+        }
+
+        [TestMethod]
+        public void Index_feil_ikke_logget_inn()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["AdminLoggetInn"] = false;
+            //Act
+            var resultat = (RedirectToRouteResult)controller.Index();
+
+            //Assert
+            Assert.AreEqual(resultat.RouteName, "");
+            Assert.AreEqual(resultat.RouteValues.Values.Last(), "Nettbutikk");
+        }
+
+        [TestMethod]
+        public void Index_feil_logget_inn_undefined()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            //Act
+            var resultat = (RedirectToRouteResult)controller.Index();
+
+            //Assert
+            Assert.AreEqual(resultat.RouteName, "");
+            Assert.AreEqual(resultat.RouteValues.Values.Last(), "Nettbutikk");
         }
 
         [TestMethod]
@@ -130,6 +166,9 @@ namespace EnhetsTest
         {
             //Arrange
             var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["AdminLoggetInn"] = true;
             var forventetResultat = new Skoen
             {
                 skoId = 1,
@@ -188,7 +227,10 @@ namespace EnhetsTest
         {
             //Arrange
             var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
-            
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["AdminLoggetInn"] = true;
+
             //Act
             var resultat = (ViewResult)controller.Detaljer(0);
             var resultatListe = (Skoen)resultat.Model;
@@ -197,6 +239,41 @@ namespace EnhetsTest
             Assert.AreEqual(resultat.ViewName, "");
             Assert.AreEqual(null, resultatListe);
             
+        }
+
+        [TestMethod]
+        public void Detaljer_feil_ikke_logget_inn()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["AdminLoggetInn"] = false;
+
+            //Act
+            var resultat = (RedirectToRouteResult)controller.Detaljer(1);
+
+            //Assert
+            Assert.AreEqual(resultat.RouteName, "");
+            Assert.AreEqual(resultat.RouteValues.Values.Last(), "Nettbutikk");
+
+        }
+
+        [TestMethod]
+        public void Detaljer_feil_logget_inn_undefined()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+
+            //Act
+            var resultat = (RedirectToRouteResult)controller.Detaljer(1);
+
+            //Assert
+            Assert.AreEqual(resultat.RouteName, "");
+            Assert.AreEqual(resultat.RouteValues.Values.Last(), "Nettbutikk");
+
         }
 
         [TestMethod]

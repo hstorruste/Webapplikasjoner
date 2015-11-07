@@ -12,7 +12,7 @@
 
             $('#btnPris').click(function () {
                 var skoId = $(this).data("id");
-                var url = "@Url.Action("Prishistorikk", "SkoAdmin")" + "/?skoId=" + skoId;;
+                var url = "@Url.Action("Prishistorikk", "SkoAdmin")" + "/?skoId=" + skoId;
                 $('#prisModal').load(url, visPriser());
 
             });
