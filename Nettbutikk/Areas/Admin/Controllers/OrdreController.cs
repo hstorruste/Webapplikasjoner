@@ -32,6 +32,7 @@ namespace Nettbutikk.Areas.Admin.Controllers
             }
         }
 
+        [ChildActionOnly]
         public ActionResult OrdreListe()
         {
             var liste = _ordreBLL.getOrdrer();
