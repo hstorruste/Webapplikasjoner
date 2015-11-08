@@ -1,5 +1,11 @@
 TEKNISKE SPESIFIKASJONER - Admin for Nettbutikk
 
+Forord
+Pga av mangel på tid og en meget omfattende oppgave er ikke alle funskjoner implementert. Mye fungerer godt, men et par ting fungerer ikke. Det følgende: 
+- Laste opp bilder til ny sko.
+- Redigere sko.
+- Det meste er enhetstestet, men det kan være enkelt mangler.
+
 Versjonshåndtering og deployment
 Det finnes en kjørende versjon på: http://dotnet.cs.hioa.no/s165519/
 Vi har brugt Git til versjonshåndtering og deployet med Visual Studio. 

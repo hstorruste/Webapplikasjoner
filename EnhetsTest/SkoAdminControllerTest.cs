@@ -324,5 +324,209 @@ namespace EnhetsTest
             Assert.AreEqual(null, resultatListe);
 
         }
+
+        [TestMethod]
+        public void Gjenopprett_Ok()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
+            var forventetResultet = true;
+            //Act
+            var resultat = controller.Gjenopprett(1);
+
+            //Assert
+            Assert.AreEqual(resultat, forventetResultet);
+        }
+
+        [TestMethod]
+        public void Gjenopprett_Feil_Db()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
+            var forventetResultet = false;
+            //Act
+            var resultat = controller.Gjenopprett(0);
+
+            //Assert
+            Assert.AreEqual(resultat, forventetResultet);
+        }
+
+        [TestMethod]
+        public void Slett_Ok()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
+            var forventetResultet = true;
+            //Act
+            var resultat = controller.Slett(1);
+
+            //Assert
+            Assert.AreEqual(resultat, forventetResultet);
+        }
+
+        [TestMethod]
+        public void Slett_Feil_Db()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
+            var forventetResultet = false;
+            //Act
+            var resultat = controller.Slett(0);
+
+            //Assert
+            Assert.AreEqual(resultat, forventetResultet);
+        }
+
+        [TestMethod]
+        public void LeggTilStr_Ok()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
+            var forventetResultet = new Storlek
+            {
+                storlekId = 1,
+                storlek = 35
+            };
+            //Act
+            var resultat = controller.LeggTilStr(1,new Storlek { storlek = 35 });
+            dynamic jsonObject = resultat.Data;
+
+            //Assert
+            Assert.AreEqual(jsonObject.storlekId , forventetResultet.storlekId);
+            Assert.AreEqual(jsonObject.storlek, forventetResultet.storlek);
+        }
+
+        [TestMethod]
+        public void LeggTilStr_Feil_Db()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
+            
+            //Act
+            var resultat = controller.LeggTilStr(0, new Storlek { storlek = 35 });
+            dynamic jsonObject = resultat.Data;
+
+            //Assert
+            Assert.AreEqual(jsonObject, null);
+        }
+        
+        [TestMethod]
+        public void NySko_Ok_Vis_View()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["AdminLoggetInn"] = true;
+
+            //Act
+            var resultat = (ViewResult)controller.NySko();
+
+            //Assert
+            Assert.AreEqual(resultat.ViewName, "");
+        }
+
+        [TestMethod]
+        public void NySko_Feil_Ikke_Logget_Inn_Vis_View()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["AdminLoggetInn"] = false;
+
+            //Act
+            var resultat = (RedirectToRouteResult)controller.NySko();
+
+            //Assert
+            Assert.AreEqual(resultat.RouteName, "");
+            Assert.AreEqual(resultat.RouteValues.Values.Last(), "Nettbutikk");
+        }
+
+        [TestMethod]
+        public void NySko_Feil_Logget_Inn_Undefined()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+
+            //Act
+            var resultat = (RedirectToRouteResult)controller.NySko();
+
+            //Assert
+            Assert.AreEqual(resultat.RouteName, "");
+            Assert.AreEqual(resultat.RouteValues.Values.Last(), "Nettbutikk");
+        }
+
+        [TestMethod]
+        public void NySko_Ok_Post()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
+            var innSko = new Skoen {
+                skoId = 1,
+                navn = "B&CO 2455100311",
+                beskrivelse = "Tøff B&CO damesko med lisser. Skoen er i tekstil med små metall nitter. Den har sort kantbånd rundt lisser stykket og langs kanten. Skoen er sort med brune flammer. Den har canvas dekksåle og canvas fôr. Gummisålen er tofarget hvit og sort.",
+                merke = "B&CO",
+                farge = "Sort",
+                forHvem = "Dame",
+                kategori = "Sko",
+                pris = 499.00M,
+            };
+
+            //Act
+            var resultat = (RedirectToRouteResult)controller.NySko(innSko);
+
+            //Assert
+            Assert.AreEqual(resultat.RouteName, "");
+            Assert.AreEqual(resultat.RouteValues.Values.Last(), "SkoAdmin");
+        }
+
+        [TestMethod]
+        public void NySko_Feil_Validering_Post()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
+            var innSko = new Skoen();
+            controller.ViewData.ModelState.AddModelError("fornavn", "Ikke oppgitt fornavn");
+            //Act
+            var resultat = (ViewResult)controller.NySko(innSko);
+
+            //Assert
+            Assert.IsTrue(resultat.ViewData.ModelState.Count == 1);
+            Assert.AreEqual(resultat.ViewName, "");
+        }
+
+        [TestMethod]
+        public void NySkoDel2_Vis_View()
+        {
+            //Arrange
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
+            var forventetResultat = new Skoen
+            {
+                skoId = 1,
+                navn = "B&CO 2455100311",
+                beskrivelse = "Tøff B&CO damesko med lisser. Skoen er i tekstil med små metall nitter. Den har sort kantbånd rundt lisser stykket og langs kanten. Skoen er sort med brune flammer. Den har canvas dekksåle og canvas fôr. Gummisålen er tofarget hvit og sort.",
+                merke = "B&CO",
+                farge = "Sort",
+                forHvem = "Dame",
+                kategori = "Sko",
+                pris = 499.00M,
+            };
+            //Act
+            var resultat = (ViewResult)controller.NySkoDel2(forventetResultat);
+            var resultatModel = (Skoen)resultat.Model;
+            //Assert
+            Assert.AreEqual(resultat.ViewName, "");
+            Assert.AreEqual(resultatModel.skoId, forventetResultat.skoId);
+            Assert.AreEqual(resultatModel.navn, forventetResultat.navn);
+            Assert.AreEqual(resultatModel.beskrivelse, forventetResultat.beskrivelse);
+            Assert.AreEqual(resultatModel.merke, forventetResultat.merke);
+            Assert.AreEqual(resultatModel.farge, forventetResultat.farge);
+            Assert.AreEqual(resultatModel.forHvem, forventetResultat.forHvem);
+            Assert.AreEqual(resultatModel.kategori, forventetResultat.kategori);
+            Assert.AreEqual(resultatModel.pris, forventetResultat.pris);
+        }
     }
 }

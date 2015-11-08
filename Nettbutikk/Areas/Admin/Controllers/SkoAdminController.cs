@@ -110,7 +110,6 @@ namespace Nettbutikk.Areas.Admin.Controllers
             var slettet = _skoBLL.slett(skoId);
             if(slettet == null)
             {
-                ViewBag.Feil = "Sko med id: " + skoId + " ble ikke slettet!";
                 return false;
             }
             return true;
@@ -126,7 +125,6 @@ namespace Nettbutikk.Areas.Admin.Controllers
             var gjenopprettet = _skoBLL.gjenopprett(skoId);
             if (gjenopprettet == null)
             {
-                ViewBag.Feil = "Sko med id: " + skoId + " ble ikke slettet!";
                 return false;
             }
             return true;

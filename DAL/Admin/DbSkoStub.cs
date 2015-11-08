@@ -248,7 +248,14 @@ namespace DAL.Admin
 
         public Skoen lagreSko(Skoen innsko)
         {
-            throw new NotImplementedException();
+            if(innsko.navn == "")
+            {
+                return null;
+            }
+            else
+            {
+                return innsko;
+            }
         }
 
         public Bilde leggTilBilde(int skoId, Bilde innBilde)
@@ -258,7 +265,25 @@ namespace DAL.Admin
 
         public Storlek leggTilStorlek(int skoId, Storlek innStr)
         {
-            throw new NotImplementedException();
+            var sko = new Skoen
+            {
+                skoId = 1
+            };
+
+            var enStr = new Storlek
+            {
+                storlekId = 1,
+                storlek = innStr.storlek
+            };
+
+            if(sko.skoId == skoId)
+            {
+                return enStr;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Skoen slett(int id)
@@ -307,7 +332,20 @@ namespace DAL.Admin
 
         public Storlek slettStorlek(int id)
         {
-            throw new NotImplementedException();
+            var enStr = new Storlek
+            {
+                storlekId = 1,
+                storlek = 35
+            };
+
+            if(enStr.storlekId == id)
+            {
+                return enStr;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
