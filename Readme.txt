@@ -4,6 +4,7 @@ Forord
 Pga av mangel på tid og en meget omfattende oppgave er ikke alle funskjoner implementert. Mye fungerer godt, men et par ting fungerer ikke. Det følgende: 
 - Laste opp bilder til ny sko.
 - Redigere sko.
+- Legge til ny pris på sko.
 - Det meste er enhetstestet, men det kan være enkelt mangler.
 
 Versjonshåndtering og deployment
