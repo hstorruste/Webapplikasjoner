@@ -34,7 +34,7 @@
         <td>
             @Html.ActionLink("Detaljer", "Detaljer", new { id = item.skoId }, new { @class = "btn btn-default" }) |
             @Html.ActionLink("Rediger", "Edit", new { /* id=item.PrimaryKey */ }, new { @class="btn btn-warning"}) |
-            @Html.ActionLink("Slett", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-danger" })
+            <a class="btn btn-danger btn-sletteSko" data-slettModal="true" data-id="@item.skoId" data-navn="@item.navn">Slett</a>
         </td>
     </tr>
 }

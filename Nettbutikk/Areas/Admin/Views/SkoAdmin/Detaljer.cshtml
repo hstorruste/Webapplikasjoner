@@ -22,7 +22,20 @@
             }
         });
 
-
+        function slettSko() {
+            var skoId = $('#slettSko').data("id");
+            $.ajax({
+                url: '@Url.Action("Slett","SkoAdmin")',
+                data: { skoId: skoId },
+                type: 'POST',
+                success: function (data) {
+                    window.location.href = '@Url.Action("Index","SkoAdmin")';
+                },
+                error: function (err) {
+                    $('#slettSkoModalError').text("Noe gikk galt! Kunne ikke slette skoen.");
+                }
+            });
+        }
     </script>
 </head>
 <body>
@@ -103,7 +116,7 @@
         <a class="btn btn-default col-md-2" data-toggle="modal" data-target="#bildeModal">Vis bilder ( @Model.bilder.Count )</a>
         <a class="btn btn-default col-md-2" id="btnPris" data-id="@Model.skoId">Prishistorikk</a>
         @Html.ActionLink("Rediger", "Edit", new { id = Model.skoId }, new { @class = "btn btn-warning col-md-2" })
-        @Html.ActionLink("Slett", "Index", new { id = Model.skoId }, new { @class = "btn btn-danger col-md-2" })
+        <a class="btn btn-danger col-md-2" data-toggle="modal" data-target="#slettSkoModal">Slett</a>
     </p>
 
     <!-- BildeModal -->
@@ -168,8 +181,10 @@
 
     <a id="prisModalTrigger" data-toggle="modal" data-target="#prisModal"></a>
     <!-- Modal -->
-    <div class="modal fade" id="prisModal" role="dialog">
-
+    <div class="modal fade" id="prisModal" role="dialog"></div>
+    <!-- Slett - Modal -->
+    <div class="modal fade" id="slettSkoModal" role="dialog">
+        @Html.Partial("SlettModal", Model)
     </div>
 </body>
 </html>

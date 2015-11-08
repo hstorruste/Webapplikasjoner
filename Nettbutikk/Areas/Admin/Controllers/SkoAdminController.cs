@@ -100,14 +100,20 @@ namespace Nettbutikk.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Slett(int skoId)
+        public bool Slett(int skoId)
         {
             var slettet = _skoBLL.slett(skoId);
             if(slettet == null)
             {
                 ViewBag.Feil = "Sko med id: " + skoId + " ble ikke slettet!";
+                return false;
             }
-            return RedirectToAction("Index");
+            return true;
+        }
+
+        public ActionResult SlettModal(Skoen enSko)
+        {
+            return PartialView(enSko);
         }
     }
 }

@@ -1,0 +1,19 @@
+﻿@model Model.Nettbutikk.Skoen
+
+
+<div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Slett sko</h4>
+        </div>
+        <div class="modal-body">
+            <h4 class="text-danger">Er du sikker på at du vil slette <span id="slettSko" data-id="@Model.skoId">@Html.DisplayFor(modelItem => Model.navn)</span>?</h4>
+        </div>
+        <div class="modal-footer">
+            <label id="slettSkoModalError" class="col-md-12"></label>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Avbryt</button>
+            <button type="button" class="btn btn-danger" onclick="slettSko()">Slett</button>
+        </div>
+    </div>
+</div>

@@ -128,6 +128,7 @@
     <Content Include="Areas\Admin\Views\SkoAdmin\Prishistorikk.cshtml" />
     <Content Include="Areas\Admin\Views\LoggInn\LoggInn.cshtml" />
     <Content Include="Areas\Admin\Views\KundeAdmin\KundeListe.cshtml" />
+    <Content Include="Areas\Admin\Views\SkoAdmin\SlettModal.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Pictures\Admin\grp.png" />
     <Content Include="Pictures\Admin\lock.png" />
