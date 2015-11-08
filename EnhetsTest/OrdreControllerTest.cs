@@ -13,7 +13,7 @@ using System.Web.Mvc;
 namespace EnhetsTest
 {
     [TestClass]
-    class OrdreControllerTest
+    public class OrdreControllerTest
     {
         [TestMethod]
         public void Index_Ok_vis_view()
@@ -60,5 +60,7 @@ namespace EnhetsTest
             Assert.AreEqual(resultat.RouteName, "");
             Assert.AreEqual(resultat.RouteValues.Values.Last(), "Nettbutikk");
         }
+
+
     }
 }

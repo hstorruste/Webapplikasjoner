@@ -33,6 +33,7 @@ namespace Nettbutikk.Areas.Admin.Controllers
             }
         }
 
+        [ChildActionOnly]
         public ActionResult KundeListe()
         {
             var tempListe = _kundeBLL.getKunder();

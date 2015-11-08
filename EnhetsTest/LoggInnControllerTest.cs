@@ -13,7 +13,7 @@ using System.Web.Mvc;
 namespace EnhetsTest
 {
     [TestClass]
-    class LoggInnControllerTest
+    public class LoggInnControllerTest
     {
         [TestMethod]
         public void LoggInn_ikke_ok()
@@ -31,7 +31,7 @@ namespace EnhetsTest
         }
 
         [TestMethod]
-        public void Logg_feil_ikke_logget_inn()
+        public void Loggin_Ok_vis_View()
         {
             //Arrange
             var controller = new AttributtController(new AttributtBLL(new DbAttributterStub()));
@@ -42,7 +42,7 @@ namespace EnhetsTest
 
             //Assert
             Assert.AreEqual(resultat.RouteName, "");
-            Assert.AreEqual(resultat.RouteValues.Values.Last(), "Admin");
+            Assert.AreEqual(resultat.RouteValues.Values.Last(), "Nettbutikk");
         }
     }
 }

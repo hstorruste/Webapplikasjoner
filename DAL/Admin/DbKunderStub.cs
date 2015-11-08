@@ -12,7 +12,26 @@ namespace DAL.Admin
     {
         public Kunde getKunde(int id)
         {
-            throw new NotImplementedException();
+            var enKunde = new Kunde
+            {
+                id = 1,
+                fornavn = "Adrian",
+                etternavn = "Westlund",
+                adresse = "Årvollveien 60D",
+                postnr = "0590",
+                poststed = "Oslo",
+                epost = "adrianwestlund@gmail.com",
+                passordId = 1
+            };
+
+            if (id == enKunde.id)
+            {
+                return enKunde;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<Kunde> getKunder()
