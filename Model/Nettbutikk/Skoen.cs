@@ -33,6 +33,7 @@ namespace Model.Nettbutikk
         public string beskrivelse { get; set; }
         [Display(Name = "Bilder")]
         public List<Bilde> bilder { get; set; }
-        
+        [ScaffoldColumn(false)]
+        public bool slettet { get; set; }
     }
 }

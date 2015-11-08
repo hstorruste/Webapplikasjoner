@@ -20,6 +20,23 @@
             function visPriser() {
                 $('#prisModalTrigger').click()
             }
+
+            $('.btn-gjenopprettSko').click(function () {
+                var tag = $(this);
+                var skoId = tag.data("id");
+
+                $.ajax({
+                    url: '@Url.Action("Gjenopprett","SkoAdmin")',
+                    data: { skoId: skoId },
+                    type: 'POST',
+                    success: function (data) {
+                        window.location.href = '@Url.Action("Index","SkoAdmin")';
+                    },
+                    error: function (err) {
+
+                    }
+                });
+            });
         });
 
         function slettSko() {
@@ -116,7 +133,13 @@
         <a class="btn btn-default col-md-2" data-toggle="modal" data-target="#bildeModal">Vis bilder ( @Model.bilder.Count )</a>
         <a class="btn btn-default col-md-2" id="btnPris" data-id="@Model.skoId">Prishistorikk</a>
         @Html.ActionLink("Rediger", "Edit", new { id = Model.skoId }, new { @class = "btn btn-warning col-md-2" })
-        <a class="btn btn-danger col-md-2" data-toggle="modal" data-target="#slettSkoModal">Slett</a>
+        @if (!Model.slettet) {
+            <a class="btn btn-danger col-md-2" data-toggle="modal" data-target="#slettSkoModal">Slett</a>
+        }
+        else
+        {
+            <a class="btn btn-warning col-md-2 btn-gjenopprettSko" data-id="@Model.skoId">Gjenopprett</a>
+        }
     </p>
 
     <!-- BildeModal -->

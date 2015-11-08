@@ -94,8 +94,9 @@ namespace DAL.Admin
                             {
                                 bildeId = b.BildeId,
                                 bildeUrl = b.BildeUrl
-                            }).ToList()
-
+                            }).ToList(),
+                            slettet = enSko.Slettet
+                            
                         };
 
                         return hentetSko;

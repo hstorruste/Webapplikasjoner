@@ -115,5 +115,16 @@ namespace Nettbutikk.Areas.Admin.Controllers
         {
             return PartialView(enSko);
         }
+
+        public bool Gjenopprett(int skoId)
+        {
+            var gjenopprettet = _skoBLL.gjenopprett(skoId);
+            if (gjenopprettet == null)
+            {
+                ViewBag.Feil = "Sko med id: " + skoId + " ble ikke slettet!";
+                return false;
+            }
+            return true;
+        }
     }
 }

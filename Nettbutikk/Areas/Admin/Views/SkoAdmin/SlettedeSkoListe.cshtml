@@ -34,7 +34,7 @@
             </td>
             <td>
                 @Html.ActionLink("Detaljer", "Detaljer", new { id = item.skoId }, new { @class = "btn btn-default" }) |
-                @Html.ActionLink("Gjenopprett", "Gjenopprett", new { id = item.skoId }, new { @class = "btn btn-warning" })
+                <a class="btn btn-warning btn-gjenopprettSko" data-id="@item.skoId">Gjenopprett</a>
             </td>
         </tr>
     }

@@ -8,31 +8,36 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+
+
             $('.btn-sletteSko').click( function () {
-                console.log("Klikket slett!");
                 var skoId = $(this).data("id");
                 var navn = $(this).data("navn");
                 var url = '@Url.Action("SlettModal","SkoAdmin")';
-                /*$.ajax({
-                    url: 'Url.Action("SlettModal","SkoAdmin")',
-                    data: JSON.stringify({ skoId: skoId, navn: navn }),
-                    type: 'POST',
-                    success: function (data) {
-                        $('#sletteModalContainer').html(data);
-                        openSlettSkoModal();
-                    },
-                    error: function (err) {
-                        $('#slettSkoModalError').text("Noe gikk galt! Kunne ikke slette skoen.");
-                    }
-                });*/
+                
                 $('#slettSkoModal').load(url, { skoId: skoId, navn: navn }, openSlettSkoModal());
 
                 function openSlettSkoModal() {
-                    console.log("åpner modal...");
                     $('#slettSkoModal').modal();
                 }
             });
 
+            $('.btn-gjenopprettSko').click(function () {
+                var tag = $(this);
+                var skoId = tag.data("id");
+
+                $.ajax({
+                    url: '@Url.Action("Gjenopprett","SkoAdmin")',
+                    data: { skoId: skoId },
+                    type: 'POST',
+                    success: function (data) {
+                        tag.parent().parent().remove();
+                    },
+                    error: function (err) {
+
+                    }
+                });
+            });
         });
 
         function slettSko() {
