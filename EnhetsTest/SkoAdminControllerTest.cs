@@ -20,7 +20,7 @@ namespace EnhetsTest
         public void Index_vis_view()
         {
             //Arrange
-            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()),new AttributtBLL(new DbAttributterStub()));
             var SessionMock = new TestControllerBuilder();
             SessionMock.InitializeController(controller);
             controller.Session["AdminLoggetInn"] = true;
@@ -36,7 +36,7 @@ namespace EnhetsTest
         public void Index_feil_ikke_logget_inn()
         {
             //Arrange
-            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
             var SessionMock = new TestControllerBuilder();
             SessionMock.InitializeController(controller);
             controller.Session["AdminLoggetInn"] = false;
@@ -52,7 +52,7 @@ namespace EnhetsTest
         public void Index_feil_logget_inn_undefined()
         {
             //Arrange
-            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
             var SessionMock = new TestControllerBuilder();
             SessionMock.InitializeController(controller);
             //Act
@@ -67,7 +67,7 @@ namespace EnhetsTest
         public void SkoListe_vis_view()
         {
             //Arrange
-            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
             var forventetResultat = new List<SkoListeElement>
             {
                 new SkoListeElement
@@ -116,7 +116,7 @@ namespace EnhetsTest
         public void SlettedeSkoListe_vis_view()
         {
             //Arrange
-            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
             var forventetResultat = new List<SkoListeElement>
             {
                 new SkoListeElement
@@ -165,7 +165,7 @@ namespace EnhetsTest
         public void Detaljer_Ok_get()
         {
             //Arrange
-            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
             var SessionMock = new TestControllerBuilder();
             SessionMock.InitializeController(controller);
             controller.Session["AdminLoggetInn"] = true;
@@ -226,7 +226,7 @@ namespace EnhetsTest
         public void Detaljer_Feil_Db_get()
         {
             //Arrange
-            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
             var SessionMock = new TestControllerBuilder();
             SessionMock.InitializeController(controller);
             controller.Session["AdminLoggetInn"] = true;
@@ -245,7 +245,7 @@ namespace EnhetsTest
         public void Detaljer_feil_ikke_logget_inn()
         {
             //Arrange
-            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
             var SessionMock = new TestControllerBuilder();
             SessionMock.InitializeController(controller);
             controller.Session["AdminLoggetInn"] = false;
@@ -263,7 +263,7 @@ namespace EnhetsTest
         public void Detaljer_feil_logget_inn_undefined()
         {
             //Arrange
-            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
             var SessionMock = new TestControllerBuilder();
             SessionMock.InitializeController(controller);
 
@@ -280,7 +280,7 @@ namespace EnhetsTest
         public void Prishistorikk_Ok_get()
         {
             //Arrange
-            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
             var forventetResultat = new List<Pris>
             {
                 new Pris { skoId = 1, skoNavn = "B&CO 2455100311",
@@ -313,7 +313,7 @@ namespace EnhetsTest
         public void Prishistorikk_Feil_Db_get()
         {
             //Arrange
-            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()));
+            var controller = new SkoAdminController(new SkoBLL(new DbSkoStub()), new AttributtBLL(new DbAttributterStub()));
 
             //Act
             var resultat = (PartialViewResult)controller.Prishistorikk(0);

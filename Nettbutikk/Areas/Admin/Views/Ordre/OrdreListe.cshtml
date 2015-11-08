@@ -1,27 +1,27 @@
-﻿@model Model.Nettbutikk.Ordre
+﻿@model List<Model.Nettbutikk.Ordre>
 
 @foreach (var item in Model)
 {
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">@Html.DisplayNameFor(modelItem => Model.ordreId) @Html.DisplayNameFor(modelItem => Model.kundeNavn) @Html.DisplayNameFor(modelItem => Model.ordreDato)</a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">@Html.DisplayNameFor(modelItem => item.ordreId) @Html.DisplayNameFor(modelItem => item.kundeNavn) @Html.DisplayNameFor(modelItem => item.ordreDato)</a>
             </h4>
         </div>
         <div id="collapse1" class="panel-collapse collapse">
             <div class="panel-body">
-                @if (Model.varer != null && Model.varer.Count > 0)
+                @if (item.varer != null && item.varer.Count > 0)
                 {
                     <table class="table">
                         <tr class="panel-heading">
-                            <th>@Html.DisplayNameFor(modelItem => Model.varer[0].bildeUrl)</th>
+                            <th>@Html.DisplayNameFor(modelItem => item.varer[0].bildeUrl)</th>
                             <th>Produktinformasjon</th>
 
-                            <th>@Html.DisplayNameFor(modelItem => Model.varer[0].storlek)</th>
-                            <th>@Html.DisplayNameFor(modelItem => Model.varer[0].pris)</th>
+                            <th>@Html.DisplayNameFor(modelItem => item.varer[0].storlek)</th>
+                            <th>@Html.DisplayNameFor(modelItem => item.varer[0].pris)</th>
                             </tr>
 
-                            @foreach (var vare in Model.varer)
+                            @foreach (var vare in item.varer)
                             {
                                 <tr>
                                     <td><a href="@Url.Action("Detaljer", "Sko", new { skoId = vare.skoId })"><img src="@Html.DisplayFor(modelItem => vare.bildeUrl)" class="img-responsive" /></a></td>
@@ -39,8 +39,8 @@
                             <tr class="panel-footer">
                                 <td></td>
                                 <td></td>
-                                <td>@Html.DisplayNameFor(model => model.totalBelop)</td>
-                                <td>@Html.DisplayFor(model => model.totalBelop)</td>
+                                <td>@Html.DisplayNameFor(modelItem => item.totalBelop)</td>
+                                <td>@Html.DisplayFor(modelItem => item.totalBelop)</td>
 
                             </tr>
                             <tr class="panel-footer">
@@ -48,7 +48,7 @@
                                 <td></td>
                                 <td><small>Herav mva:</small></td>
                                 <td>
-                                    @{decimal mva = Model.totalBelop - System.Decimal.Divide(Model.totalBelop, 1.25M); }
+                                    @{decimal mva = item.totalBelop - System.Decimal.Divide(item.totalBelop, 1.25M); }
                                     <small>@mva</small>
                                 </td>
                             </tr>

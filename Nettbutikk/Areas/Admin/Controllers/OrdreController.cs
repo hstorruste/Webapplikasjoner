@@ -32,7 +32,7 @@ namespace Nettbutikk.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult KundeListe()
+        public ActionResult OrdreListe()
         {
             var liste = _ordreBLL.getOrdrer();
             return PartialView(liste);
