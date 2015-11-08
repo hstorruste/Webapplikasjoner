@@ -29,8 +29,7 @@ namespace Nettbutikk.Areas.Admin.Controllers
             }
             else
             {
-                var liste = _kundeBLL.getKunder();
-                return View(liste);
+                return View();
             }
         }
 

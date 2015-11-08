@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <h2 class="text-center">
+            Ordrer
+        </h2>
+        <p class="text-center">Her kan man se alle ordrer</p>
+        <hr />
+        <div class="panel-group" id="accordion">
+            @Html.Action("OrdreListe", "Ordre")
+        </div>
+    </div>
+</body>
+</html>

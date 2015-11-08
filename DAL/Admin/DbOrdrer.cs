@@ -16,21 +16,28 @@ namespace DAL.Admin
             {
                 try
                 {
-                    var funnet = db.Ordrer.Find(id);
-                    DbKunder dbKunder = new DbKunder();
-                    Kunde kunde = dbKunder.getKunde(funnet.KundeId);
-                    //HandlevognVare varer = DbHandlevogn.
+                    Ordrer enOrdre = db.Ordrer.Include("OrdreDetaljer.Sko.Merke").Include("OrdreDetaljer.Sko.Bilder").Include("Kunder.Poststeder")
+                        .SingleOrDefault(o => o.OrdreId == id);
                     return new Ordre()
                     {
-                        ordreId = funnet.OrdreId,
-                        kundeId = funnet.KundeId,
-                        ordreDato = funnet.OrdreDato,
-                        //varer = funnet.,
-                        totalBelop = funnet.TotalBelop,
-                        kundeNavn = kunde.fornavn + " " + kunde.etternavn,
-                        adresse = kunde.adresse,
-                        postnr = kunde.postnr,
-                        poststed = kunde.poststed,
+                        ordreId = enOrdre.OrdreId,
+                        ordreDato = enOrdre.OrdreDato,
+                        kundeId = enOrdre.KundeId,
+                        kundeNavn = enOrdre.Kunder.Fornavn + " " + enOrdre.Kunder.Etternavn,
+                        adresse = enOrdre.Kunder.Adresse,
+                        postnr = enOrdre.Kunder.Postnr,
+                        poststed = enOrdre.Kunder.Poststeder.Poststed,
+                        varer = enOrdre.OrdreDetaljer.Select(d => new HandlevognVare
+                        {
+                            skoId = d.Sko.SkoId,
+                            skoNavn = d.Sko.Navn,
+                            merke = d.Sko.Merke.Navn,
+                            farge = d.Sko.Farge,
+                            storlek = d.Storlek,
+                            pris = d.Pris,
+                            bildeUrl = d.Sko.Bilder.Where(b => b.BildeUrl.Contains("/Medium/")).FirstOrDefault().BildeUrl,
+                        }).ToList(),
+                        totalBelop = enOrdre.TotalBelop
                     };
                 }
                 catch (Exception feil)
@@ -47,16 +54,28 @@ namespace DAL.Admin
             {
                 try
                 {
-                    return db.Ordrer.Select(o => new Ordre()
+                    List<Ordre> alleOrdre = db.Ordrer.Select(o => new Ordre()
                     {
-                        /*ordreId = o.OrdreId,
-                        fornavn = k.Fornavn,
-                        etternavn = k.Etternavn,
-                        adresse = k.Adresse,
-                        postnr = k.Postnr,
-                        poststed = k.Poststeder.Poststed,
-                        epost = k.Epost*/
+                        ordreId = o.OrdreId,
+                        ordreDato = o.OrdreDato,
+                        kundeId = o.KundeId,
+                        kundeNavn = o.Kunder.Fornavn + " " + o.Kunder.Etternavn,
+                        adresse = o.Kunder.Adresse,
+                        postnr = o.Kunder.Postnr,
+                        poststed = o.Kunder.Poststeder.Poststed,
+                        varer = o.OrdreDetaljer.Select(d => new HandlevognVare
+                        {
+                            skoId = d.Sko.SkoId,
+                            skoNavn = d.Sko.Navn,
+                            merke = d.Sko.Merke.Navn,
+                            farge = d.Sko.Farge,
+                            storlek = d.Storlek,
+                            pris = d.Pris,
+                            bildeUrl = d.Sko.Bilder.Where(b => b.BildeUrl.Contains("/Medium/")).FirstOrDefault().BildeUrl,
+                        }).ToList(),
+                        totalBelop = o.TotalBelop
                     }).ToList();
+                    return alleOrdre;
                 }
                 catch (Exception feil)
                 {

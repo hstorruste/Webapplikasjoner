@@ -42,11 +42,13 @@
   <ItemGroup>
     <Compile Include="Admin\IKundeLogikk.cs" />
     <Compile Include="Admin\ILoggInnLogikk.cs" />
+    <Compile Include="Admin\IOrdreLogikk.cs" />
     <Compile Include="Admin\ISkoLogikk.cs" />
     <Compile Include="Admin\KundeBLL.cs" />
     <Compile Include="Admin\AttributtBLL.cs" />
     <Compile Include="Admin\IAttributtLogikk.cs" />
     <Compile Include="Admin\LoggInnBLL.cs" />
+    <Compile Include="Admin\OrdreBLL.cs" />
     <Compile Include="Admin\SkoBLL.cs" />
     <Compile Include="Nettbutikk\HandlevognBLL.cs" />
     <Compile Include="Nettbutikk\IHandlevognLogikk.cs" />
