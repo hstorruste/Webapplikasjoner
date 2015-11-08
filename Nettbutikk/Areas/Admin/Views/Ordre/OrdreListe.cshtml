@@ -1,36 +1,14 @@
 ﻿@model Model.Nettbutikk.Ordre
 
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ordreDato)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.totalBelop)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.kundeNavn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.adresse)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.postnr)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.poststed)
-        </th>
-        <th></th>
-    </tr>
-
 @foreach (var item in Model)
 {
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Kunder</a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">@Html.DisplayNameFor(modelItem => Model.ordreId) @Html.DisplayNameFor(modelItem => Model.kundeNavn) @Html.DisplayNameFor(modelItem => Model.ordreDato)</a>
             </h4>
         </div>
-        <div id="collapse1" class="panel-collapse collapse in">
+        <div id="collapse1" class="panel-collapse collapse">
             <div class="panel-body">
                 @if (Model.varer != null && Model.varer.Count > 0)
                 {
