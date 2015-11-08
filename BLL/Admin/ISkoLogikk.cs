@@ -15,5 +15,10 @@ namespace BLL.Admin
         List<Pris> getPrishistorikk(int skoId);
         Skoen slett(int id);
         Skoen gjenopprett(int id);
+        Skoen lagreSko(Skoen innsko);
+        Storlek leggTilStorlek(int skoId, Storlek innStr);
+        Bilde leggTilBilde(int skoId, Bilde innBilde);
+        Storlek slettStorlek(int id);
+        Bilde slettBilde(int id);
     }
 }

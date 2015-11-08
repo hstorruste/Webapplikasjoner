@@ -10,6 +10,81 @@ namespace DAL.Admin
 {
     public class DbSko : IDbSko
     {
+        public Skoen lagreSko(Skoen innsko)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    var nySko = new Sko {
+                        Navn = innsko.navn,
+                        Farge = innsko.farge,
+                        Beskrivelse = innsko.beskrivelse,
+                        
+                    };
+                    var lagretSko = db.Sko.Add(nySko);
+                    //Sjekk om merke eksisterer og legger til merke.
+                    var eksistererMerke = db.Merker.SingleOrDefault(m => m.Navn == innsko.merke);
+                    if(eksistererMerke == null)
+                    {
+                        var lagtTilMerke = db.Merker.Add(new Merker { Navn = innsko.merke });
+                        lagretSko.Merke = lagtTilMerke;
+                    }
+                    else
+                    {
+                        lagretSko.Merke = eksistererMerke;
+                    }
+
+                    //Sjekk om kategori eksisterer og legger til kategori.
+                    var eksistererKategori = db.Kategorier.SingleOrDefault(k => k.Navn == innsko.kategori);
+                    if(eksistererKategori == null)
+                    {
+                        var lagtTilKategori = db.Kategorier.Add(new Kategorier { Navn = innsko.kategori });
+                        lagretSko.Kategori = lagtTilKategori;
+                    }
+                    else
+                    {
+                        lagretSko.Kategori = eksistererKategori;
+                    }
+
+                    //Sjekk om ForHvem eksisterer og legger til ForHvem.
+                    var eksistererFor = db.For.SingleOrDefault(f => f.Navn == innsko.forHvem);
+                    if(eksistererFor == null)
+                    {
+                        var lagtTilFor = db.For.Add(new For { Navn = innsko.forHvem });
+                        lagretSko.ForHvem = lagtTilFor;
+                    }
+                    else
+                    {
+                        lagretSko.ForHvem = eksistererFor;
+                    }
+
+                    //Legger til pris
+                    db.Priser.Add(new Priser { Pris = innsko.pris, Sko = lagretSko, Dato = DateTime.Now });
+
+                    db.SaveChanges();
+                    var utSko = new Skoen
+                    {
+                        skoId = lagretSko.SkoId,
+                        navn = lagretSko.Navn,
+                        merke = lagretSko.Merke.Navn,
+                        farge = lagretSko.Farge,
+                        kategori = lagretSko.Kategori.Navn,
+                        forHvem = lagretSko.ForHvem.Navn,
+                        beskrivelse = lagretSko.Beskrivelse,
+                        pris = lagretSko.Pris.OrderByDescending( p => p.Dato).FirstOrDefault().Pris
+                    };
+                    return utSko;
+
+                }
+                catch (Exception feil)
+                {
+                    DAL.ErrorHandler.logError(feil);
+                    return null;
+                }
+            }
+        }
+
         public List<Skoen> getAktuelleSko()
         {
             using (var db = new NettbutikkContext())
@@ -224,6 +299,100 @@ namespace DAL.Admin
                     return slettet;
                 }
                 catch(Exception feil)
+                {
+                    DAL.ErrorHandler.logError(feil);
+                    return null;
+                }
+            }
+        }
+
+        public Storlek leggTilStorlek(int skoId, Storlek innStr)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    var nyStr = new Storlekar
+                    {
+                        Storlek = innStr.storlek,
+                        Sko = db.Sko.Find(skoId),
+                        Antall = innStr.antall
+                    };
+                    var lagretStr = db.Storlekar.Add(nyStr);
+                    db.SaveChanges();
+                    var utStr = new Storlek
+                    {
+                        storlekId = lagretStr.StorlekId,
+                        storlek = lagretStr.Storlek,
+                        antall = lagretStr.Antall
+                    };
+                    return utStr;
+                }
+                catch (Exception feil)
+                {
+                    DAL.ErrorHandler.logError(feil);
+                    return null;
+                }
+            }
+        }
+
+        public Bilde leggTilBilde(int skoId, Bilde innBilde)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    var nyttBilde = new Bilder
+                    {
+                        BildeUrl = innBilde.bildeUrl,
+                        Sko = db.Sko.Find(skoId)
+                    };
+                    var lagretBilde = db.Bilder.Add(nyttBilde);
+                    db.SaveChanges();
+                    var utBilde = new Bilde
+                    {
+                        bildeId = lagretBilde.BildeId,
+                        bildeUrl = lagretBilde.BildeUrl
+                    };
+                    return utBilde;
+                }
+                catch (Exception feil)
+                {
+                    DAL.ErrorHandler.logError(feil);
+                    return null;
+                }
+            }
+        }
+
+        public Storlek slettStorlek(int id)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    var slettet = db.Storlekar.Remove(db.Storlekar.Find(id));
+                    db.SaveChanges();
+                    return new Storlek() { storlekId = slettet.StorlekId, storlek = slettet.Storlek };
+                }
+                catch (Exception feil)
+                {
+                    DAL.ErrorHandler.logError(feil);
+                    return null;
+                }
+            }
+        }
+
+        public Bilde slettBilde(int id)
+        {
+            using (var db = new NettbutikkContext())
+            {
+                try
+                {
+                    var slettet = db.Bilder.Remove(db.Bilder.Find(id));
+                    db.SaveChanges();
+                    return new Bilde() { bildeId = slettet.BildeId, bildeUrl = slettet.BildeUrl };
+                }
+                catch (Exception feil)
                 {
                     DAL.ErrorHandler.logError(feil);
                     return null;

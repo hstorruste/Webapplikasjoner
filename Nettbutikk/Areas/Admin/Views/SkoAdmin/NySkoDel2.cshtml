@@ -1,0 +1,139 @@
+﻿@model Model.Nettbutikk.Skoen
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ny Sko</title>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#bilde').on('change',function (e) {
+                var files = e.target.files;
+                if (files.length > 0) {
+                    var data = new FormData();
+                    for (var i = 0; i < files.length; ++i) {
+                        data.append("file" + i, files[i]);
+                    }
+
+                    var bStr = $('input[name=Storlek]:checked').val();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("LastOppBilde","SkoAdmin")' + '?bildeStr=' + bStr,
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function (data) {
+                            console.log(data);
+                            leggTilBilde();
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
+                }
+            });
+
+        });
+
+        function leggTilStr() {
+            var str = $('#str').val();
+            if (str == "") {
+                $('#errorLbl').text("Størrelse må oppgis");
+                return;
+            }
+
+            var id = $('#sko').data("id");
+
+            $.ajax({
+                url: '@Url.Action("LeggTilStr", "SkoAdmin")',
+                data: JSON.stringify({ skoId: id, ny: { storlek: str } }),
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data != null) {
+                        $('#errorLbl').text("");
+                        var ny = "<tr><td class='col-md-2' data-strid='" + data.storlekId + "'>";
+                        ny += data.storlek + "</td><td class='col-md-1'><a class='btn btn-danger' onclick='slettStr(" + '"' + data.storlekId + '"' + ")'>&times;</a></td></tr>";
+                        $('#storlekar').append(ny);
+                    }
+                    else {
+                        $('#errorLbl').text("Noe gikk galt!");
+                    }
+                },
+                error: function (data) {
+                    $('#errorLbl').text("Noe gikk galt!");
+                }
+            });
+
+        }
+
+        function slettStr(strId) {
+            $.ajax({
+                url: '@Url.Action("SlettStr", "SkoAdmin")',
+                data: JSON.stringify({ id: strId }),
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data != null) {
+                        var tag = "td[data-strid=" + data.storlekId + "]";
+                        $(tag).parent().remove();
+                    }
+                    else {
+                        $('#errorLbl').text("Noe gikk galt!");
+                    }
+                },
+                error: function (err) {
+                    $('#errorLbl').text("Noe gikk galt!");
+                }
+            });
+        }
+
+        function leggTilBilde() {
+
+        }
+    </script>
+</head>
+<body>
+    <div class="form-horizontal" id="sko" data-id="@Model.skoId">
+        <h3 class="text-center">@Model.navn - Del2</h3>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.storlekar, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="number" min="15" max="50" id="str" name="str" />
+                <button type="button" onclick="leggTilStr()">Legg til</button>
+            </div>
+        </div>
+        <p class="text-center text-danger" id="errorLbl"></p>
+
+        <table id="storlekar" class="table col-md-offset-2">
+
+        </table>
+
+        <div class="form-group ">
+            @Html.LabelFor(model => model.bilder, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" id="bilde" name="bilde" accept="image/*" />
+                <input type="radio" name="Storlek" value="Medium" checked /> Medium 
+                <input type="radio" name="Storlek" value="Stor" /> Stor <br />
+                <button type="button" id="btnBilde">Legg til</button>
+            </div>
+            
+        </div>
+
+        <table id="bilder" class="table col-md-offset-2"></table>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a type="button" href="@Url.Action("Index","SkoAdmin")" class="btn btn-success">Ferdig</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

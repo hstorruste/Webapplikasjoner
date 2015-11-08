@@ -61,7 +61,7 @@
         <ul class="nav nav-tabs nav-justified">
             <li class="active"><a data-toggle="tab" href="#skoliste">Skoliste</a></li>
             <li><a data-toggle="tab" href="#slettetliste">Slettede sko</a></li>
-            <li><a data-toggle="tab" href="#nysko">Legg til ny</a></li>
+            <li><a href='@Url.Action("NySko","SkoAdmin")'>Legg til ny</a></li>
         </ul>
         <p class="text-center text-danger">@ViewBag.Feil</p>
         <div class="tab-content">
@@ -75,7 +75,6 @@
             </div>
             <div id="nysko" class="tab-pane fade">
                 <h3 class="text-center">Ny sko</h3>
-                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
             </div>
         </div>
         <!-- Slett - Modal -->

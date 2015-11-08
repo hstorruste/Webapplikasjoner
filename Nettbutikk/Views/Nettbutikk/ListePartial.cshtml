@@ -4,7 +4,10 @@
 <div class="panel panel-default text-center col-md-12">
     <a href="@Url.Action("Detaljer","Sko", new { skoId = Model.skoId })">
         <div class="panel-body col-md-12 clearfix">
-            <img src="@Html.DisplayFor(modelItem => Model.bilder[0].bildeUrl)" />
+            @if (Model.bilder.Count > 0)
+            {
+                <img src="@Html.DisplayFor(modelItem => Model.bilder[0].bildeUrl)" />
+            }
             <div class="col-md-12 ">
                 @Html.DisplayFor(modelItem => Model.navn)
             </div>

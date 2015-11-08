@@ -131,6 +131,8 @@
     <Content Include="Areas\Admin\Views\SkoAdmin\SlettModal.cshtml" />
     <Content Include="Areas\Admin\Views\Ordre\OrdreListe.cshtml" />
     <Content Include="Areas\Admin\Views\Ordre\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SkoAdmin\NySko.cshtml" />
+    <Content Include="Areas\Admin\Views\SkoAdmin\NySkoDel2.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Pictures\Admin\grp.png" />
     <Content Include="Pictures\Admin\lock.png" />
