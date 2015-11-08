@@ -1,14 +1,14 @@
 ﻿@model List<Model.Nettbutikk.Ordre>
-
+@{int i = 1; }
 @foreach (var item in Model)
 {
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">@Html.DisplayFor(modelItem => item.ordreId) @Html.DisplayFor(modelItem => item.kundeNavn) @Html.DisplayFor(modelItem => item.ordreDato)</a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse@(i)">@Html.DisplayFor(modelItem => item.ordreId) @Html.DisplayFor(modelItem => item.kundeNavn) @Html.DisplayFor(modelItem => item.ordreDato)</a>
             </h4>
         </div>
-        <div id="collapse1" class="panel-collapse collapse">
+        <div id="collapse@(i++)" class="panel-collapse collapse">
             <div class="panel-body">
                 @if (item.varer != null && item.varer.Count > 0)
                 {
