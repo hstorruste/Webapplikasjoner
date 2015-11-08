@@ -16,7 +16,12 @@ namespace Nettbutikk.Areas.Admin.Controllers
         {
             _LoggInnBLL = new LoggInnBLL();
         }
-       
+
+        public LoggInnController(ILoggInnLogikk stub)
+        {
+            _LoggInnBLL = stub;
+        }
+
         public ActionResult LoggInn()
         {
             return View();

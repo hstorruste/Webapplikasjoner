@@ -129,6 +129,8 @@
     <Content Include="Areas\Admin\Views\LoggInn\LoggInn.cshtml" />
     <Content Include="Areas\Admin\Views\KundeAdmin\KundeListe.cshtml" />
     <Content Include="Areas\Admin\Views\SkoAdmin\SlettModal.cshtml" />
+    <Content Include="Areas\Admin\Views\Ordre\OrdreListe.cshtml" />
+    <Content Include="Areas\Admin\Views\Ordre\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Pictures\Admin\grp.png" />
     <Content Include="Pictures\Admin\lock.png" />
@@ -322,6 +324,7 @@
     <Compile Include="Areas\Admin\Controllers\AttributtController.cs" />
     <Compile Include="Areas\Admin\Controllers\KundeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoggInnController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdreController.cs" />
     <Compile Include="Areas\Admin\Controllers\SkoAdminController.cs" />
     <Compile Include="Areas\Admin\Models\SkoListeElement.cs" />
     <Compile Include="Controllers\HandlevognController.cs" />

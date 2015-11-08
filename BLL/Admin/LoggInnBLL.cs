@@ -21,6 +21,7 @@ namespace BLL.Admin
         {
             _repo = stub;
         }
+
         public bool adminIDb(LoggInn innAdmin)
         {
             return _repo.adminIDb(innAdmin);

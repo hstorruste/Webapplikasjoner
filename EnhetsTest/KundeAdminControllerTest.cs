@@ -63,7 +63,7 @@ namespace EnhetsTest
         }
 
         [TestMethod]
-        public void SkoListe_vis_view()
+        public void KundeListe_vis_view()
         {
             //Arrange
             var controller = new KundeAdminController(new KundeBLL(new DbKunderStub()));
