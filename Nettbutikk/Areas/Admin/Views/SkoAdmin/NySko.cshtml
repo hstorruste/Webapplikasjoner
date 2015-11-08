@@ -1,0 +1,104 @@
+﻿@model Model.Nettbutikk.Skoen
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ny Sko</title>
+
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h3 class="text-center">Ny sko</h3>
+            <p>@ViewData["lagreError"]</p>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.navn, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.navn, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.navn, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.merke, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.merke, new { htmlAttributes = new { @class = "form-control", @list = "merker" } })
+                    <datalist id="merker">
+                        @foreach (var m in (List<Model.Nettbutikk.Merke>)ViewData["merkeListe"])
+                        {
+                            <option value="@m.navn"></option>
+                        }
+                    </datalist>
+                    @Html.ValidationMessageFor(model => model.merke, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.farge, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.farge, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.farge, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.kategori, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.kategori, new { htmlAttributes = new { @class = "form-control", @list = "kategorier" } })
+                    <datalist id="kategorier">
+                        @foreach (var k in (List<Model.Nettbutikk.Kategori>)ViewData["kategoriListe"])
+                        {
+                            <option value="@k.navn"></option>
+                        }
+                    </datalist>
+                    @Html.ValidationMessageFor(model => model.kategori, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.forHvem, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.forHvem, new { htmlAttributes = new { @class = "form-control", @list = "forhvem" } })
+                    <datalist id="forhvem">
+                        @foreach (var f in (List<Model.Nettbutikk.ForHvem>)ViewData["forListe"])
+                        {
+                            <option value="@f.navn"></option>
+                        }
+                    </datalist>
+                    @Html.ValidationMessageFor(model => model.forHvem, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.beskrivelse, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.beskrivelse, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.beskrivelse, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.pris, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.pris, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pris, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Lagre og fortsett >>" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+</body>
+</html>
+

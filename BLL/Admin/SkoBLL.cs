@@ -46,9 +46,34 @@ namespace BLL.Admin
             return _repo.gjenopprett(id);
         }
 
+        public Skoen lagreSko(Skoen innsko)
+        {
+            return _repo.lagreSko(innsko);
+        }
+
+        public Bilde leggTilBilde(int skoId, Bilde innBilde)
+        {
+            return _repo.leggTilBilde(skoId, innBilde);
+        }
+
+        public Storlek leggTilStorlek(int skoId, Storlek innStr)
+        {
+            return _repo.leggTilStorlek(skoId, innStr);
+        }
+
         public Skoen slett(int id)
         {
             return _repo.slett(id);
+        }
+
+        public Bilde slettBilde(int id)
+        {
+            return _repo.slettBilde(id);
+        }
+
+        public Storlek slettStorlek(int id)
+        {
+            return _repo.slettStorlek(id);
         }
     }
 }
